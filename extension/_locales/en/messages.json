@@ -1,0 +1,44 @@
+{
+    "extension_name": {
+        "message": "Summarize and Translate with Claude"
+    },
+    "extension_description": {
+        "message": "Summarize and translate web pages. Uses Claude as the backend."
+    },
+    "popup_button_run": {
+        "message": "Run it again"
+    },
+    "popup_button_options": {
+        "message": "Open options page"
+    },
+    "popup_summarizing": {
+        "message": "Summarizing"
+    },
+    "popup_translating": {
+        "message": "Translating"
+    },
+    "popup_unexpected_response": {
+        "message": "An unknown error occurred. Please check the console log."
+    },
+    "popup_miscellaneous_error": {
+        "message": "This page cannot be summarized or translated."
+    },
+    "options_title": {
+        "message": "Options - Summarize and Translate with Claude"
+    },
+    "options_apikey": {
+        "message": "Anthropic API Key"
+    },
+    "options_apikey_hint": {
+        "message": "You can obtain a Anthropic API Key at the following page."
+    },
+    "options_choose_language": {
+        "message": "Summarize in / Translate to"
+    },
+    "options_button_save": {
+        "message": "Save options"
+    },
+    "options_saved": {
+        "message": "Saved."
+    }
+}

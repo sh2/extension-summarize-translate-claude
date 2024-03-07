@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extension_name__",
+  "version": "0.9.0",
+  "description": "__MSG_extension_description__",
+  "default_locale": "en",
+  "icons": {
+    "128": "img/icon-128.png"
+  },
+  "author": "sh2@pop01.odn.ne.jp",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "options_page": "options.html",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.anthropic.com/*"
+  ]
+}
