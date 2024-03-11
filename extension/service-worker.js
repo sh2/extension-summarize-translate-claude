@@ -36,6 +36,10 @@ const getCharacterLimit = (modelId, task) => {
   // Summarize: Number of characters equal to the maximum number of tokens in the context window
   // Translate: Number of characters equal to the maximum number of output tokens in the model
   const characterLimits = {
+    "claude-3-opus-20240229": {
+      summarize: 200000,
+      translate: 4096
+    },
     "claude-3-sonnet-20240229": {
       summarize: 200000,
       translate: 4096
