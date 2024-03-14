@@ -17,6 +17,16 @@
   </header>
 
   <p>
+    <label for="languageModel" data-i18n="options_choose_model">Language Model</label>
+    <br>
+    <select id="languageModel">
+      <option value="opus">Claude 3 Opus</option>
+      <option value="sonnet">Claude 3 Sonnet</option>
+      <option value="haiku">Claude 3 Haiku</option>
+    </select>
+  </p>
+
+  <p>
     <label for="apiKey" data-i18n="options_apikey">Anthropic API Key</label>
     <br>
     <input type="password" id="apiKey" size="108">

@@ -1,15 +1,18 @@
 const restoreOptions = async () => {
   const options = await chrome.storage.local.get({
+    languageModel: "haiku",
     apiKey: "",
     languageCode: "en"
   });
 
+  document.getElementById("languageModel").value = options.languageModel;
   document.getElementById("apiKey").value = options.apiKey;
   document.getElementById("languageCode").value = options.languageCode;
 };
 
 const saveOptions = async () => {
   const options = {
+    languageModel: document.getElementById("languageModel").value,
     apiKey: document.getElementById("apiKey").value,
     languageCode: document.getElementById("languageCode").value
   };

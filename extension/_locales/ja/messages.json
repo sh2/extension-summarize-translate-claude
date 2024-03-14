@@ -32,6 +32,9 @@
     "options_title": {
         "message": "オプション - Claudeによる要約と翻訳"
     },
+    "options_choose_model": {
+        "message": "言語モデル"
+    },
     "options_apikey": {
         "message": "Anthropic APIキー"
     },

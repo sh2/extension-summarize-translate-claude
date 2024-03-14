@@ -1,7 +1,15 @@
-const modelId = "claude-3-sonnet-20240229";
+const getModelId = (languageModel) => {
+  const modelIds = {
+    opus: "claude-3-opus-20240229",
+    sonnet: "claude-3-sonnet-20240229",
+    haiku: "claude-3-haiku-20240307",
+  };
+
+  return modelIds[languageModel];
+}
 
 const getSystemPrompt = (task, languageCode, userPromptLength) => {
-  const languageName = {
+  const languageNames = {
     en: "English",
     de: "German",
     es: "Spanish",
@@ -19,10 +27,10 @@ const getSystemPrompt = (task, languageCode, userPromptLength) => {
 
   if (task === "summarize") {
     return `Summarize the entire text as up to ${numItems}-item Markdown numbered list ` +
-      `in ${languageName[languageCode]} and reply only with the list.\n` +
+      `in ${languageNames[languageCode]} and reply only with the list.\n` +
       "Format:\n1. First point.\n2. Second point.\n3. Third point.";
   } else if (task === "translate") {
-    return `Translate the entire text into ${languageName[languageCode]} ` +
+    return `Translate the entire text into ${languageNames[languageCode]} ` +
       "and reply only with the translated result.";
   } else {
     return "";
@@ -41,6 +49,10 @@ const getCharacterLimit = (modelId, task) => {
       translate: 4096
     },
     "claude-3-sonnet-20240229": {
+      summarize: 200000,
+      translate: 4096
+    },
+    "claude-3-haiku-20240307": {
       summarize: 200000,
       translate: 4096
     }
@@ -92,11 +104,15 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   (async () => {
     if (request.message === "chunk") {
       // Split the user prompt
+      const { languageModel } = await chrome.storage.local.get({ languageModel: "haiku" });
+      const modelId = getModelId(languageModel);
       const userPromptChunks = chunkText(request.userPrompt, getCharacterLimit(modelId, request.task));
       sendResponse(userPromptChunks);
     } else if (request.message === "generate") {
       // Generate content
-      const { apiKey, languageCode } = await chrome.storage.local.get({ apiKey: "", languageCode: "en" });
+      const { languageModel, apiKey, languageCode } =
+        await chrome.storage.local.get({ languageModel: "haiku", apiKey: "", languageCode: "en" });
+      const modelId = getModelId(languageModel);
       const userPrompt = request.userPrompt;
       const systemPrompt = getSystemPrompt(request.task, languageCode, userPrompt.length);
 
