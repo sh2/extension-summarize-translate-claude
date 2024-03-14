@@ -10,8 +10,7 @@ Chrome extension to summarize and translate web pages. Uses Claude as the backen
 4. Open 'Options' page and register the Anthropic API Key, then select the language.
 
 You can obtain a Anthropic API Key from [Claude API \ Anthropic](https://www.anthropic.com/api).
-This extension currently uses Claude 3 Sonnet.
-I will evaluate Claude 3 Haiku when it is released.
+This extension uses Claude 3 Haiku by default.
 
 ## Usage
 
