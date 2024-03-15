@@ -28,7 +28,7 @@ const getSystemPrompt = (task, languageCode, userPromptLength) => {
   if (task === "summarize") {
     return `Summarize the entire text as up to ${numItems}-item Markdown numbered list ` +
       `in ${languageNames[languageCode]} and reply only with the list.\n` +
-      "Format:\n1. First point.\n2. Second point.\n3. Third point.";
+      "<example>\n1. First point.\n2. Second point.\n3. Third point.\n</example>";
   } else if (task === "translate") {
     return `Translate the entire text into ${languageNames[languageCode]} ` +
       "and reply only with the translated result.";
@@ -115,6 +115,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       const modelId = getModelId(languageModel);
       const userPrompt = request.userPrompt;
       const systemPrompt = getSystemPrompt(request.task, languageCode, userPrompt.length);
+      const prefill = { summarize: "Summary:", translate: "Translation:" }
 
       try {
         const response = await fetch(`https://api.anthropic.com/v1/messages`, {
@@ -128,7 +129,10 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
             model: modelId,
             max_tokens: 4096,
             system: systemPrompt,
-            messages: [{ role: "user", content: userPrompt }]
+            messages: [
+              { role: "user", content: `Text: ${userPrompt}` },
+              { role: "assistant", content: prefill[request.task] }
+            ]
           })
         });
 
