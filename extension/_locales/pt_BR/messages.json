@@ -1,0 +1,56 @@
+{
+    "extension_name": {
+        "message": "Resumir e Traduzir com Claude"
+    },
+    "extension_description": {
+        "message": "Resumir e traduzir páginas da web. Usa Claude como backend."
+    },
+    "popup_button_run": {
+        "message": "Executar novamente"
+    },
+    "popup_button_results": {
+        "message": "Abrir resultados em uma nova guia"
+    },
+    "popup_button_options": {
+        "message": "Abrir página de opções"
+    },
+    "popup_summarizing": {
+        "message": "Resumindo"
+    },
+    "popup_summarizing_captions": {
+        "message": "Resumindo as legendas"
+    },
+    "popup_translating": {
+        "message": "Traduzindo"
+    },
+    "popup_unexpected_response": {
+        "message": "Ocorreu um erro desconhecido. Por favor, verifique o log do console."
+    },
+    "popup_miscellaneous_error": {
+        "message": "Esta página não pode ser resumida ou traduzida."
+    },
+    "results_title": {
+        "message": "Resultados - Resumir e Traduzir com Claude"
+    },
+    "options_title": {
+        "message": "Opções - Resumir e Traduzir com Claude"
+    },
+    "options_choose_model": {
+        "message": "Modelo de Linguagem"
+    },
+    "options_apikey": {
+        "message": "Chave de API da Anthropic"
+    },
+    "options_apikey_hint": {
+        "message": "Você pode obter uma Chave de API da Anthropic na página a seguir."
+    },
+    "options_choose_language": {
+        "message": "Resumir em / Traduzir para"
+    },
+    "options_button_save": {
+        "message": "Salvar opções"
+    },
+    "options_saved": {
+        "message": "Salvo."
+    }
+}

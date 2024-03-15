@@ -1,0 +1,56 @@
+{
+    "extension_name": {
+        "message": "Резюмировать и переводить с помощью Claude"
+    },
+    "extension_description": {
+        "message": "Резюмируйте и переводите веб-страницы. Использует Claude в качестве бэкенда."
+    },
+    "popup_button_run": {
+        "message": "Запустить снова"
+    },
+    "popup_button_results": {
+        "message": "Открыть результаты в новой вкладке"
+    },
+    "popup_button_options": {
+        "message": "Открыть страницу настроек"
+    },
+    "popup_summarizing": {
+        "message": "Резюмирование"
+    },
+    "popup_summarizing_captions": {
+        "message": "Резюмирование подписей"
+    },
+    "popup_translating": {
+        "message": "Перевод"
+    },
+    "popup_unexpected_response": {
+        "message": "Произошла неизвестная ошибка. Пожалуйста, проверьте журнал консоли."
+    },
+    "popup_miscellaneous_error": {
+        "message": "Эта страница не может быть резюмирована или переведена."
+    },
+    "results_title": {
+        "message": "Результаты - Резюмировать и переводить с помощью Claude"
+    },
+    "options_title": {
+        "message": "Настройки - Резюмировать и переводить с помощью Claude"
+    },
+    "options_choose_model": {
+        "message": "Языковая модель"
+    },
+    "options_apikey": {
+        "message": "API-ключ Anthropic"
+    },
+    "options_apikey_hint": {
+        "message": "Вы можете получить API-ключ Anthropic на следующей странице."
+    },
+    "options_choose_language": {
+        "message": "Резюмировать на / Перевести на"
+    },
+    "options_button_save": {
+        "message": "Сохранить настройки"
+    },
+    "options_saved": {
+        "message": "Сохранено."
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "extension_name": {
+        "message": "用 Claude 總結和翻譯"
+    },
+    "extension_description": {
+        "message": "總結和翻譯網頁。使用 Claude 作為後台。"
+    },
+    "popup_button_run": {
+        "message": "再次執行"
+    },
+    "popup_button_results": {
+        "message": "在新分頁中開啟結果"
+    },
+    "popup_button_options": {
+        "message": "開啟選項頁面"
+    },
+    "popup_summarizing": {
+        "message": "正在總結"
+    },
+    "popup_summarizing_captions": {
+        "message": "正在總結字幕"
+    },
+    "popup_translating": {
+        "message": "正在翻譯"
+    },
+    "popup_unexpected_response": {
+        "message": "發生未知錯誤。請檢查控制台記錄。"
+    },
+    "popup_miscellaneous_error": {
+        "message": "無法總結或翻譯此頁面。"
+    },
+    "results_title": {
+        "message": "結果 - 用 Claude 總結和翻譯"
+    },
+    "options_title": {
+        "message": "選項 - 用 Claude 總結和翻譯"
+    },
+    "options_choose_model": {
+        "message": "語言模型"
+    },
+    "options_apikey": {
+        "message": "Anthropic API 金鑰"
+    },
+    "options_apikey_hint": {
+        "message": "你可以在以下頁面獲取 Anthropic API 金鑰。"
+    },
+    "options_choose_language": {
+        "message": "總結/翻譯成"
+    },
+    "options_button_save": {
+        "message": "儲存選項"
+    },
+    "options_saved": {
+        "message": "已儲存。"
+    }
+}

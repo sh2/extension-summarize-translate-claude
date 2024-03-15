@@ -1,0 +1,56 @@
+{
+    "extension_name": {
+        "message": "Mit Claude zusammenfassen und übersetzen"
+    },
+    "extension_description": {
+        "message": "Webseiten zusammenfassen und übersetzen. Verwendet Claude als Backend."
+    },
+    "popup_button_run": {
+        "message": "Erneut ausführen"
+    },
+    "popup_button_results": {
+        "message": "Ergebnisse in neuem Tab öffnen"
+    },
+    "popup_button_options": {
+        "message": "Optionsseite öffnen"
+    },
+    "popup_summarizing": {
+        "message": "Zusammenfassung wird erstellt"
+    },
+    "popup_summarizing_captions": {
+        "message": "Untertitel werden zusammengefasst"
+    },
+    "popup_translating": {
+        "message": "Übersetzung läuft"
+    },
+    "popup_unexpected_response": {
+        "message": "Ein unbekannter Fehler ist aufgetreten. Bitte überprüfen Sie das Konsolenprotokoll."
+    },
+    "popup_miscellaneous_error": {
+        "message": "Diese Seite kann nicht zusammengefasst oder übersetzt werden."
+    },
+    "results_title": {
+        "message": "Ergebnisse - Mit Claude zusammenfassen und übersetzen"
+    },
+    "options_title": {
+        "message": "Optionen - Mit Claude zusammenfassen und übersetzen"
+    },
+    "options_choose_model": {
+        "message": "Sprachmodell"
+    },
+    "options_apikey": {
+        "message": "Anthropic API-Schlüssel"
+    },
+    "options_apikey_hint": {
+        "message": "Sie können einen Anthropic API-Schlüssel auf der folgenden Seite erhalten."
+    },
+    "options_choose_language": {
+        "message": "Zusammenfassen in / Übersetzen nach"
+    },
+    "options_button_save": {
+        "message": "Optionen speichern"
+    },
+    "options_saved": {
+        "message": "Gespeichert."
+    }
+}
