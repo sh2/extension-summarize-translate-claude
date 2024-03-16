@@ -26,8 +26,11 @@ const getSystemPrompt = (task, languageCode, userPromptLength) => {
   const numItems = Math.min(10, 3 + Math.floor(userPromptLength / 2000));
 
   if (task === "summarize") {
-    return `Summarize the entire text as up to ${numItems}-item Markdown numbered list ` +
+    return `Summarize the entire text as ${numItems}-item Markdown numbered list ` +
       `in ${languageNames[languageCode]} and reply only with the list.\n` +
+      "<example>\n1. First point.\n2. Second point.\n3. Third point.\n</example>";
+  } else if (task === "summarize_image") {
+    return `Summarize the image as Markdown numbered list in ${languageNames[languageCode]}.\n` +
       "<example>\n1. First point.\n2. Second point.\n3. Third point.\n</example>";
   } else if (task === "translate") {
     return `Translate the entire text into ${languageNames[languageCode]} ` +
@@ -36,6 +39,53 @@ const getSystemPrompt = (task, languageCode, userPromptLength) => {
     return "";
   }
 };
+
+const getPrefill = (task, languageCode) => {
+  console.log(task, languageCode);
+  const prefills = {
+    summarize: {
+      en: "Summary:",
+      de: "Zusammenfassung:",
+      es: "Resumen:",
+      fr: "Résumé:",
+      it: "Sommario:",
+      pt_br: "Resumo:",
+      ru: "Резюме:",
+      zh_cn: "摘要:",
+      zh_tw: "摘要:",
+      ja: "要約:",
+      ko: "요약:"
+    },
+    summarize_image: {
+      en: "Summary:",
+      de: "Zusammenfassung:",
+      es: "Resumen:",
+      fr: "Résumé:",
+      it: "Sommario:",
+      pt_br: "Resumo:",
+      ru: "Резюме:",
+      zh_cn: "摘要:",
+      zh_tw: "摘要:",
+      ja: "要約:",
+      ko: "요약:"
+    },
+    translate: {
+      en: "Translation:",
+      de: "Übersetzung:",
+      es: "Traducción:",
+      fr: "Traduction:",
+      it: "Traduzione:",
+      pt_br: "Tradução:",
+      ru: "Перевод:",
+      zh_cn: "翻译:",
+      zh_tw: "翻譯:",
+      ja: "翻訳:",
+      ko: "번역:"
+    }
+  };
+
+  return prefills[task][languageCode];
+}
 
 const getCharacterLimit = (modelId, task) => {
   // Limit on the number of characters handled at one time
@@ -115,7 +165,34 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       const modelId = getModelId(languageModel);
       const userPrompt = request.userPrompt;
       const systemPrompt = getSystemPrompt(request.task, languageCode, userPrompt.length);
-      const prefill = { summarize: "Summary:", translate: "Translation:" }
+      let messages = []
+
+      if (request.task === "summarize_image") {
+        const [mediaInfo, mediaData] = userPrompt.split(',');
+        const mediaType = mediaInfo.split(':')[1].split(';')[0];
+
+        messages.push({
+          role: "user",
+          content: [
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": mediaType,
+                "data": mediaData,
+              },
+            },
+            {
+              "type": "text",
+              "text": "Here is the image."
+            }
+          ]
+        });
+      } else {
+        messages.push({ role: "user", content: `Text: ${userPrompt}` });
+      }
+
+      messages.push({ role: "assistant", content: getPrefill(request.task, languageCode) });
 
       try {
         const response = await fetch(`https://api.anthropic.com/v1/messages`, {
@@ -129,10 +206,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
             model: modelId,
             max_tokens: 4096,
             system: systemPrompt,
-            messages: [
-              { role: "user", content: `Text: ${userPrompt}` },
-              { role: "assistant", content: prefill[request.task] }
-            ]
+            messages: messages
           })
         });
 

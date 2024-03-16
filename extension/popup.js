@@ -118,7 +118,7 @@ const main = async () => {
     } else {
       // If no text is selected, get the whole text of the page
       task = "summarize";
-      
+
       if (tab.url.startsWith("https://www.youtube.com/watch?v=")) {
         // If the page is a YouTube video, get the captions instead of the whole text
         loadingMessage = chrome.i18n.getMessage("popup_summarizing_captions");
@@ -127,17 +127,31 @@ const main = async () => {
       }
 
       if (!userPrompt) {
+        // Get the main text of the page using Readability.js
         loadingMessage = chrome.i18n.getMessage("popup_summarizing");
         await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["lib/Readability.min.js"] });
         userPrompt = (await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: getWholeText }))[0].result;
+      }
+
+      if (!userPrompt) {
+        // If the whole text is empty, get the visible tab as an image
+        task = "summarize_image";
+        loadingMessage = chrome.i18n.getMessage("popup_summarizing_image");
+        userPrompt = await (chrome.tabs.captureVisibleTab(tab.windowId, { format: "jpeg" }));
       }
     }
 
     displayIntervalId = setInterval(displayLoadingMessage, 500, loadingMessage);
 
     // Split the user prompt
-    userPromptChunks = await chrome.runtime.sendMessage({ message: "chunk", task: task, userPrompt: userPrompt });
-    console.log(userPromptChunks);
+    if (task === "summarize_image") {
+      // If the user prompt is an image, do not split it
+      userPromptChunks = [userPrompt];
+    }
+    else {
+      userPromptChunks = await chrome.runtime.sendMessage({ message: "chunk", task: task, userPrompt: userPrompt });
+      console.log(userPromptChunks);
+    }
 
     for (const userPromptChunk of userPromptChunks) {
       // Generate content
