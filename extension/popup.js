@@ -92,6 +92,11 @@ const displayLoadingMessage = (loadingMessage) => {
 };
 
 const main = async () => {
+  // Save the options to the session storage
+  const languageModel = document.getElementById("languageModel").value;
+  const languageCode = document.getElementById("languageCode").value;
+  await chrome.storage.session.set({ languageModel: languageModel, languageCode: languageCode });
+
   let displayIntervalId = 0;
   let content = "";
   contentIndex = (await chrome.storage.session.get({ contentIndex: -1 })).contentIndex;
@@ -107,6 +112,8 @@ const main = async () => {
     document.getElementById("content").textContent = "";
     document.getElementById("status").textContent = "";
     document.getElementById("run").disabled = true;
+    document.getElementById("languageModel").disabled = true;
+    document.getElementById("languageCode").disabled = true;
     document.getElementById("results").disabled = true;
 
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -189,6 +196,8 @@ const main = async () => {
 
     document.getElementById("status").textContent = "";
     document.getElementById("run").disabled = false;
+    document.getElementById("languageModel").disabled = false;
+    document.getElementById("languageCode").disabled = false;
     document.getElementById("results").disabled = false;
 
     // Convert the content from Markdown to HTML
@@ -201,7 +210,7 @@ const main = async () => {
   }
 };
 
-const initialize = () => {
+const initialize = async () => {
   // Disable links when converting from Markdown to HTML
   marked.use({ renderer: { link: (_href, _title, text) => text } });
 
@@ -209,6 +218,11 @@ const initialize = () => {
   document.querySelectorAll("[data-i18n]").forEach(element => {
     element.textContent = chrome.i18n.getMessage(element.getAttribute("data-i18n"));
   });
+
+  // Restore the options
+  const { languageModel, languageCode } = await chrome.storage.local.get({ languageModel: "haiku", languageCode: "en" });
+  document.getElementById("languageModel").value = languageModel;
+  document.getElementById("languageCode").value = languageCode;
 
   main();
 }

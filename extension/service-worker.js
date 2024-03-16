@@ -41,7 +41,6 @@ const getSystemPrompt = (task, languageCode, userPromptLength) => {
 };
 
 const getPrefill = (task, languageCode) => {
-  console.log(task, languageCode);
   const prefills = {
     summarize: {
       en: "Summary:",
@@ -154,14 +153,14 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   (async () => {
     if (request.message === "chunk") {
       // Split the user prompt
-      const { languageModel } = await chrome.storage.local.get({ languageModel: "haiku" });
+      const { languageModel } = await chrome.storage.session.get({ languageModel: "haiku" });
       const modelId = getModelId(languageModel);
       const userPromptChunks = chunkText(request.userPrompt, getCharacterLimit(modelId, request.task));
       sendResponse(userPromptChunks);
     } else if (request.message === "generate") {
       // Generate content
-      const { languageModel, apiKey, languageCode } =
-        await chrome.storage.local.get({ languageModel: "haiku", apiKey: "", languageCode: "en" });
+      const { apiKey } = await chrome.storage.local.get({ apiKey: "" });
+      const { languageModel, languageCode } = await chrome.storage.session.get({ languageModel: "haiku", languageCode: "en" });
       const modelId = getModelId(languageModel);
       const userPrompt = request.userPrompt;
       const systemPrompt = getSystemPrompt(request.task, languageCode, userPrompt.length);
