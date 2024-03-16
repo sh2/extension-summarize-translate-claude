@@ -1,9 +1,9 @@
 {
     "extension_name": {
-        "message": "Резюмировать и переводить с помощью Claude"
+        "message": "Обобщение и перевод с помощью Claude"
     },
     "extension_description": {
-        "message": "Резюмируйте и переводите веб-страницы. Использует Claude в качестве бэкенда."
+        "message": "Обобщение и перевод веб-страниц. Использует Claude в качестве бэкенда."
     },
     "popup_button_run": {
         "message": "Запустить снова"
@@ -15,10 +15,13 @@
         "message": "Открыть страницу настроек"
     },
     "popup_summarizing": {
-        "message": "Резюмирование"
+        "message": "Обобщение"
     },
     "popup_summarizing_captions": {
-        "message": "Резюмирование подписей"
+        "message": "Обобщение субтитров"
+    },
+    "popup_summarizing_image": {
+        "message": "Обобщение изображения"
     },
     "popup_translating": {
         "message": "Перевод"
@@ -27,13 +30,13 @@
         "message": "Произошла неизвестная ошибка. Пожалуйста, проверьте журнал консоли."
     },
     "popup_miscellaneous_error": {
-        "message": "Эта страница не может быть резюмирована или переведена."
+        "message": "Эту страницу нельзя обобщить или перевести."
     },
     "results_title": {
-        "message": "Результаты - Резюмировать и переводить с помощью Claude"
+        "message": "Результаты - Обобщение и перевод с помощью Claude"
     },
     "options_title": {
-        "message": "Настройки - Резюмировать и переводить с помощью Claude"
+        "message": "Настройки - Обобщение и перевод с помощью Claude"
     },
     "options_choose_model": {
         "message": "Языковая модель"
@@ -45,7 +48,7 @@
         "message": "Вы можете получить API-ключ Anthropic на следующей странице."
     },
     "options_choose_language": {
-        "message": "Резюмировать на / Перевести на"
+        "message": "Обобщить на / Перевести на"
     },
     "options_button_save": {
         "message": "Сохранить настройки"

@@ -3,13 +3,13 @@
         "message": "Resumir e Traduzir com Claude"
     },
     "extension_description": {
-        "message": "Resumir e traduzir páginas da web. Usa Claude como backend."
+        "message": "Resuma e traduza páginas web. Usa Claude como backend."
     },
     "popup_button_run": {
         "message": "Executar novamente"
     },
     "popup_button_results": {
-        "message": "Abrir resultados em uma nova guia"
+        "message": "Abrir resultados em uma nova aba"
     },
     "popup_button_options": {
         "message": "Abrir página de opções"
@@ -19,6 +19,9 @@
     },
     "popup_summarizing_captions": {
         "message": "Resumindo as legendas"
+    },
+    "popup_summarizing_image": {
+        "message": "Resumindo a imagem"
     },
     "popup_translating": {
         "message": "Traduzindo"

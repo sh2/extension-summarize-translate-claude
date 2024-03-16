@@ -20,8 +20,11 @@
     "popup_summarizing_captions": {
         "message": "Untertitel werden zusammengefasst"
     },
+    "popup_summarizing_image": {
+        "message": "Bild wird zusammengefasst"
+    },
     "popup_translating": {
-        "message": "Übersetzung läuft"
+        "message": "Wird übersetzt"
     },
     "popup_unexpected_response": {
         "message": "Ein unbekannter Fehler ist aufgetreten. Bitte überprüfen Sie das Konsolenprotokoll."
@@ -45,7 +48,7 @@
         "message": "Sie können einen Anthropic API-Schlüssel auf der folgenden Seite erhalten."
     },
     "options_choose_language": {
-        "message": "Zusammenfassen in / Übersetzen nach"
+        "message": "Zusammenfassung in / Übersetzen nach"
     },
     "options_button_save": {
         "message": "Optionen speichern"

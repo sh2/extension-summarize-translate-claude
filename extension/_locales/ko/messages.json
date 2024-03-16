@@ -1,6 +1,6 @@
 {
     "extension_name": {
-        "message": "Claude로 요약 및 번역"
+        "message": "Claude로 요약하고 번역하기"
     },
     "extension_description": {
         "message": "웹 페이지를 요약하고 번역합니다. 백엔드로 Claude를 사용합니다."
@@ -20,6 +20,9 @@
     "popup_summarizing_captions": {
         "message": "캡션 요약 중"
     },
+    "popup_summarizing_image": {
+        "message": "이미지 요약 중"
+    },
     "popup_translating": {
         "message": "번역 중"
     },
@@ -30,10 +33,10 @@
         "message": "이 페이지는 요약하거나 번역할 수 없습니다."
     },
     "results_title": {
-        "message": "결과 - Claude로 요약 및 번역"
+        "message": "결과 - Claude로 요약하고 번역하기"
     },
     "options_title": {
-        "message": "옵션 - Claude로 요약 및 번역"
+        "message": "옵션 - Claude로 요약하고 번역하기"
     },
     "options_choose_model": {
         "message": "언어 모델"
@@ -45,7 +48,7 @@
         "message": "다음 페이지에서 Anthropic API 키를 얻을 수 있습니다."
     },
     "options_choose_language": {
-        "message": "요약/번역 언어 선택"
+        "message": "요약 언어 / 번역 언어"
     },
     "options_button_save": {
         "message": "옵션 저장"
