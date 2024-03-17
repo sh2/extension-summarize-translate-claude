@@ -153,17 +153,16 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   (async () => {
     if (request.message === "chunk") {
       // Split the user prompt
-      const { languageModel } = await chrome.storage.session.get({ languageModel: "haiku" });
-      const modelId = getModelId(languageModel);
+      const modelId = getModelId(request.languageModel);
       const userPromptChunks = chunkText(request.userPrompt, getCharacterLimit(modelId, request.task));
       sendResponse(userPromptChunks);
     } else if (request.message === "generate") {
       // Generate content
       const { apiKey } = await chrome.storage.local.get({ apiKey: "" });
-      const { languageModel, languageCode } = await chrome.storage.session.get({ languageModel: "haiku", languageCode: "en" });
-      const modelId = getModelId(languageModel);
+      const modelId = getModelId(request.languageModel);
       const userPrompt = request.userPrompt;
-      const systemPrompt = getSystemPrompt(request.task, languageCode, userPrompt.length);
+      const systemPrompt = getSystemPrompt(request.task, request.languageCode, userPrompt.length);
+      const prefill = getPrefill(request.task, request.languageCode);
       let messages = []
 
       if (request.task === "summarize_image") {
@@ -191,7 +190,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
         messages.push({ role: "user", content: `Text: ${userPrompt}` });
       }
 
-      messages.push({ role: "assistant", content: getPrefill(request.task, languageCode) });
+      messages.push({ role: "assistant", content: prefill });
 
       try {
         const response = await fetch(`https://api.anthropic.com/v1/messages`, {

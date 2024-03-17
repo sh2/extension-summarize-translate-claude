@@ -92,11 +92,6 @@ const displayLoadingMessage = (loadingMessage) => {
 };
 
 const main = async () => {
-  // Save the options to the session storage
-  const languageModel = document.getElementById("languageModel").value;
-  const languageCode = document.getElementById("languageCode").value;
-  await chrome.storage.session.set({ languageModel: languageModel, languageCode: languageCode });
-
   let displayIntervalId = 0;
   let content = "";
   contentIndex = (await chrome.storage.session.get({ contentIndex: -1 })).contentIndex;
@@ -104,6 +99,8 @@ const main = async () => {
   await chrome.storage.session.set({ contentIndex: contentIndex });
 
   try {
+    const languageModel = document.getElementById("languageModel").value;
+    const languageCode = document.getElementById("languageCode").value;
     let userPrompt = "";
     let userPromptChunks = [];
     let task = "";
@@ -129,7 +126,6 @@ const main = async () => {
       if (tab.url.startsWith("https://www.youtube.com/watch?v=")) {
         // If the page is a YouTube video, get the captions instead of the whole text
         loadingMessage = chrome.i18n.getMessage("popup_summarizing_captions");
-        const { languageCode } = (await chrome.storage.local.get({ languageCode: "en" }));
         userPrompt = (await chrome.scripting.executeScript({ target: { tabId: tab.id }, func: getCaptions, args: [tab.url, languageCode] }))[0].result;
       }
 
@@ -156,13 +152,19 @@ const main = async () => {
       userPromptChunks = [userPrompt];
     }
     else {
-      userPromptChunks = await chrome.runtime.sendMessage({ message: "chunk", task: task, userPrompt: userPrompt });
+      userPromptChunks = await chrome.runtime.sendMessage({
+        message: "chunk", task: task, userPrompt: userPrompt, languageModel: languageModel
+      });
+
       console.log(userPromptChunks);
     }
 
     for (const userPromptChunk of userPromptChunks) {
       // Generate content
-      const response = await chrome.runtime.sendMessage({ message: "generate", task: task, userPrompt: userPromptChunk });
+      const response = await chrome.runtime.sendMessage({
+        message: "generate", task: task, userPrompt: userPromptChunk, languageModel: languageModel, languageCode: languageCode
+      });
+
       console.log(response);
 
       if (response.ok) {
