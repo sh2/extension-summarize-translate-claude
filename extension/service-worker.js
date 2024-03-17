@@ -173,16 +173,16 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
           role: "user",
           content: [
             {
-              "type": "image",
-              "source": {
-                "type": "base64",
-                "media_type": mediaType,
-                "data": mediaData,
+              type: "image",
+              source: {
+                type: "base64",
+                media_type: mediaType,
+                data: mediaData
               },
             },
             {
-              "type": "text",
-              "text": "Here is the image."
+              type: "text",
+              text: "Here is the image."
             }
           ]
         });
