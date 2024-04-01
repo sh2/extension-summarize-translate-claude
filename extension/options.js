@@ -1,7 +1,7 @@
 const restoreOptions = async () => {
   const options = await chrome.storage.local.get({
-    languageModel: "haiku",
     apiKey: "",
+    languageModel: "haiku",
     languageCode: "en",
     noTextAction: "summarize",
     noTextCustomPrompt: "",
@@ -9,8 +9,8 @@ const restoreOptions = async () => {
     textCustomPrompt: ""
   });
 
-  document.getElementById("languageModel").value = options.languageModel;
   document.getElementById("apiKey").value = options.apiKey;
+  document.getElementById("languageModel").value = options.languageModel;
   document.getElementById("languageCode").value = options.languageCode;
   document.querySelector(`input[name="noTextAction"][value="${options.noTextAction}"]`).checked = true;
   document.getElementById("noTextCustomPrompt").value = options.noTextCustomPrompt;
@@ -20,8 +20,8 @@ const restoreOptions = async () => {
 
 const saveOptions = async () => {
   const options = {
-    languageModel: document.getElementById("languageModel").value,
     apiKey: document.getElementById("apiKey").value,
+    languageModel: document.getElementById("languageModel").value,
     languageCode: document.getElementById("languageCode").value,
     noTextAction: document.querySelector('input[name="noTextAction"]:checked').value,
     noTextCustomPrompt: document.getElementById("noTextCustomPrompt").value,
