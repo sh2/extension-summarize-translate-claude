@@ -6,9 +6,9 @@ const getModelId = (languageModel) => {
   };
 
   return modelIds[languageModel];
-}
+};
 
-const getSystemPrompt = (task, languageCode, userPromptLength) => {
+const getSystemPrompt = async (task, taskOption, languageCode, userPromptLength) => {
   const languageNames = {
     en: "English",
     de: "German",
@@ -24,38 +24,38 @@ const getSystemPrompt = (task, languageCode, userPromptLength) => {
   };
 
   const numItems = Math.min(10, 3 + Math.floor(userPromptLength / 2000));
+  let systemPrompt = "";
 
   if (task === "summarize") {
-    return `Summarize the entire text as ${numItems}-item Markdown numbered list ` +
-      `in ${languageNames[languageCode]} and reply only with the list.\n` +
-      "<example>\n1. First point.\n2. Second point.\n3. Third point.\n</example>";
-  } else if (task === "summarize_image") {
-    return `Summarize the image as Markdown numbered list in ${languageNames[languageCode]}.\n` +
-      "<example>\n1. First point.\n2. Second point.\n3. Third point.\n</example>";
+    if (taskOption === "image") {
+      systemPrompt = `Summarize the image as Markdown numbered list ` +
+        `in ${languageNames[languageCode]} and reply only with the list.\n` +
+        "<example>\n1. First point.\n2. Second point.\n3. Third point.\n</example>";
+    } else {
+      systemPrompt = `Summarize the entire text as up to ${numItems}-item Markdown numbered list ` +
+        `in ${languageNames[languageCode]} and reply only with the list.\n` +
+        "<example>\n1. First point.\n2. Second point.\n3. Third point.\n</example>";
+    }
   } else if (task === "translate") {
-    return `Translate the entire text into ${languageNames[languageCode]} ` +
-      "and reply only with the translated result.";
-  } else {
-    return "";
+    if (taskOption === "image") {
+      systemPrompt = `Translate the image into ${languageNames[languageCode]} ` +
+        "and reply only with the translated result.";
+    } else {
+      systemPrompt = `Translate the entire text into ${languageNames[languageCode]} ` +
+        "and reply only with the translated result.";
+    }
+  } else if (task === "noTextCustom") {
+    systemPrompt = (await chrome.storage.local.get({ noTextCustomPrompt: "" })).noTextCustomPrompt;
+  } else if (task === "textCustom") {
+    systemPrompt = (await chrome.storage.local.get({ textCustomPrompt: "" })).textCustomPrompt;
   }
+
+  return systemPrompt;
 };
 
 const getPrefill = (task, languageCode) => {
   const prefills = {
     summarize: {
-      en: "Summary:",
-      de: "Zusammenfassung:",
-      es: "Resumen:",
-      fr: "Résumé:",
-      it: "Sommario:",
-      pt_br: "Resumo:",
-      ru: "Резюме:",
-      zh_cn: "摘要:",
-      zh_tw: "摘要:",
-      ja: "要約:",
-      ko: "요약:"
-    },
-    summarize_image: {
       en: "Summary:",
       de: "Zusammenfassung:",
       es: "Resumen:",
@@ -83,8 +83,12 @@ const getPrefill = (task, languageCode) => {
     }
   };
 
-  return prefills[task][languageCode];
-}
+  if (task === "summarize" || task === "translate") {
+    return prefills[task][languageCode];
+  } else {
+    return "";
+  }
+};
 
 const getCharacterLimit = (modelId, task) => {
   // Limit on the number of characters handled at one time
@@ -92,18 +96,26 @@ const getCharacterLimit = (modelId, task) => {
   // In Claude, the calculation is performed in the following way
   // Summarize: Number of characters equal to the maximum number of tokens in the context window
   // Translate: Number of characters equal to the maximum number of output tokens in the model
+  // noTextCustom: The same as Summarize
+  // textCustom: The same as Summarize
   const characterLimits = {
     "claude-3-opus-20240229": {
       summarize: 200000,
-      translate: 4096
+      translate: 4096,
+      noTextCustom: 200000,
+      textCustom: 200000
     },
     "claude-3-sonnet-20240229": {
       summarize: 200000,
-      translate: 4096
+      translate: 4096,
+      noTextCustom: 200000,
+      textCustom: 200000
     },
     "claude-3-haiku-20240307": {
       summarize: 200000,
-      translate: 4096
+      translate: 4096,
+      noTextCustom: 200000,
+      textCustom: 200000
     }
   };
 
@@ -161,11 +173,18 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       const { apiKey } = await chrome.storage.local.get({ apiKey: "" });
       const modelId = getModelId(request.languageModel);
       const userPrompt = request.userPrompt;
-      const systemPrompt = getSystemPrompt(request.task, request.languageCode, userPrompt.length);
-      const prefill = getPrefill(request.task, request.languageCode);
-      let messages = []
 
-      if (request.task === "summarize_image") {
+      const systemPrompt = await getSystemPrompt(
+        request.task,
+        request.taskOption,
+        request.languageCode,
+        userPrompt.length
+      );
+
+      const prefill = getPrefill(request.task, request.languageCode);
+      let messages = [];
+
+      if (request.taskOption === "image") {
         const [mediaInfo, mediaData] = userPrompt.split(',');
         const mediaType = mediaInfo.split(':')[1].split(';')[0];
 
@@ -190,7 +209,9 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
         messages.push({ role: "user", content: `Text: ${userPrompt}` });
       }
 
-      messages.push({ role: "assistant", content: prefill });
+      if (prefill) {
+        messages.push({ role: "assistant", content: prefill });
+      }
 
       try {
         const response = await fetch(`https://api.anthropic.com/v1/messages`, {
