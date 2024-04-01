@@ -3,7 +3,7 @@
         "message": "Resumir y traducir con Claude"
     },
     "extension_description": {
-        "message": "Resuma y traduzca páginas web. Utiliza Claude como backend."
+        "message": "Resumir y traducir páginas web. Utiliza Claude como backend."
     },
     "popup_button_run": {
         "message": "Ejecutar de nuevo"
@@ -26,8 +26,17 @@
     "popup_translating": {
         "message": "Traduciendo"
     },
+    "popup_translating_captions": {
+        "message": "Traduciendo los subtítulos"
+    },
+    "popup_translating_image": {
+        "message": "Traduciendo la imagen"
+    },
+    "popup_processing": {
+        "message": "Procesando"
+    },
     "popup_unexpected_response": {
-        "message": "Se produjo un error desconocido. Por favor, verifique el registro de la consola."
+        "message": "Ocurrió un error desconocido. Por favor, revisa el registro de la consola."
     },
     "popup_miscellaneous_error": {
         "message": "Esta página no se puede resumir ni traducir."
@@ -38,17 +47,44 @@
     "options_title": {
         "message": "Opciones - Resumir y traducir con Claude"
     },
-    "options_choose_model": {
+    "options_model": {
         "message": "Modelo de lenguaje"
     },
     "options_apikey": {
-        "message": "Clave de API de Anthropic"
+        "message": "Clave API de Anthropic"
     },
     "options_apikey_hint": {
-        "message": "Puede obtener una clave de API de Anthropic en la siguiente página."
+        "message": "Puedes obtener una clave API de Anthropic en la siguiente página."
     },
-    "options_choose_language": {
+    "options_language": {
         "message": "Resumir en / Traducir a"
+    },
+    "options_language_notes": {
+        "message": "La configuración de idioma se ignora en acciones personalizadas."
+    },
+    "options_no_text_action": {
+        "message": "Cuando no se selecciona texto, realizar la siguiente acción"
+    },
+    "options_no_text_summarize": {
+        "message": "Resumir (predeterminado)"
+    },
+    "options_no_text_translate": {
+        "message": "Traducir"
+    },
+    "options_no_text_custom": {
+        "message": "Acción personalizada"
+    },
+    "options_text_action": {
+        "message": "Cuando se selecciona texto, realizar la siguiente acción"
+    },
+    "options_text_summarize": {
+        "message": "Resumir"
+    },
+    "options_text_translate": {
+        "message": "Traducir (predeterminado)"
+    },
+    "options_text_custom": {
+        "message": "Acción personalizada"
     },
     "options_button_save": {
         "message": "Guardar opciones"

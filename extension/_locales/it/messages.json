@@ -3,10 +3,10 @@
         "message": "Riassumi e traduci con Claude"
     },
     "extension_description": {
-        "message": "Riassumi e traduci le pagine web. Usa Claude come backend."
+        "message": "Riassumi e traduci pagine web. Utilizza Claude come backend."
     },
     "popup_button_run": {
-        "message": "Eseguilo di nuovo"
+        "message": "Esegui di nuovo"
     },
     "popup_button_results": {
         "message": "Apri i risultati in una nuova scheda"
@@ -26,8 +26,17 @@
     "popup_translating": {
         "message": "Traducendo"
     },
+    "popup_translating_captions": {
+        "message": "Traducendo i sottotitoli"
+    },
+    "popup_translating_image": {
+        "message": "Traducendo l'immagine"
+    },
+    "popup_processing": {
+        "message": "Elaborazione"
+    },
     "popup_unexpected_response": {
-        "message": "Si è verificato un errore sconosciuto. Si prega di controllare il log della console."
+        "message": "Si è verificato un errore sconosciuto. Controlla il log della console."
     },
     "popup_miscellaneous_error": {
         "message": "Questa pagina non può essere riassunta o tradotta."
@@ -38,17 +47,44 @@
     "options_title": {
         "message": "Opzioni - Riassumi e traduci con Claude"
     },
-    "options_choose_model": {
+    "options_model": {
         "message": "Modello di linguaggio"
     },
     "options_apikey": {
         "message": "Chiave API Anthropic"
     },
     "options_apikey_hint": {
-        "message": "È possibile ottenere una chiave API Anthropic alla pagina seguente."
+        "message": "Puoi ottenere una chiave API Anthropic alla seguente pagina."
     },
-    "options_choose_language": {
+    "options_language": {
         "message": "Riassumi in / Traduci in"
+    },
+    "options_language_notes": {
+        "message": "L'impostazione della lingua viene ignorata nelle azioni personalizzate."
+    },
+    "options_no_text_action": {
+        "message": "Quando nessun testo è selezionato, esegui la seguente azione"
+    },
+    "options_no_text_summarize": {
+        "message": "Riassumi (predefinito)"
+    },
+    "options_no_text_translate": {
+        "message": "Traduci"
+    },
+    "options_no_text_custom": {
+        "message": "Azione personalizzata"
+    },
+    "options_text_action": {
+        "message": "Quando il testo è selezionato, esegui la seguente azione"
+    },
+    "options_text_summarize": {
+        "message": "Riassumi"
+    },
+    "options_text_translate": {
+        "message": "Traduci (predefinito)"
+    },
+    "options_text_custom": {
+        "message": "Azione personalizzata"
     },
     "options_button_save": {
         "message": "Salva opzioni"

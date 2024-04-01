@@ -26,11 +26,20 @@
     "popup_translating": {
         "message": "Перевод"
     },
+    "popup_translating_captions": {
+        "message": "Перевод субтитров"
+    },
+    "popup_translating_image": {
+        "message": "Перевод изображения"
+    },
+    "popup_processing": {
+        "message": "Обработка"
+    },
     "popup_unexpected_response": {
         "message": "Произошла неизвестная ошибка. Пожалуйста, проверьте журнал консоли."
     },
     "popup_miscellaneous_error": {
-        "message": "Эту страницу нельзя обобщить или перевести."
+        "message": "Эта страница не может быть обобщена или переведена."
     },
     "results_title": {
         "message": "Результаты - Обобщение и перевод с помощью Claude"
@@ -38,17 +47,44 @@
     "options_title": {
         "message": "Настройки - Обобщение и перевод с помощью Claude"
     },
-    "options_choose_model": {
+    "options_model": {
         "message": "Языковая модель"
     },
     "options_apikey": {
-        "message": "API-ключ Anthropic"
+        "message": "Ключ API Anthropic"
     },
     "options_apikey_hint": {
-        "message": "Вы можете получить API-ключ Anthropic на следующей странице."
+        "message": "Вы можете получить ключ API Anthropic на следующей странице."
     },
-    "options_choose_language": {
+    "options_language": {
         "message": "Обобщить на / Перевести на"
+    },
+    "options_language_notes": {
+        "message": "Настройка языка игнорируется в пользовательских действиях."
+    },
+    "options_no_text_action": {
+        "message": "Когда текст не выделен, выполнить следующее действие"
+    },
+    "options_no_text_summarize": {
+        "message": "Обобщить (по умолчанию)"
+    },
+    "options_no_text_translate": {
+        "message": "Перевести"
+    },
+    "options_no_text_custom": {
+        "message": "Пользовательское действие"
+    },
+    "options_text_action": {
+        "message": "Когда текст выделен, выполнить следующее действие"
+    },
+    "options_text_summarize": {
+        "message": "Обобщить"
+    },
+    "options_text_translate": {
+        "message": "Перевести (по умолчанию)"
+    },
+    "options_text_custom": {
+        "message": "Пользовательское действие"
     },
     "options_button_save": {
         "message": "Сохранить настройки"

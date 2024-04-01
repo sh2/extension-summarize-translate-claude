@@ -26,6 +26,15 @@
     "popup_translating": {
         "message": "Traduction en cours"
     },
+    "popup_translating_captions": {
+        "message": "Traduction des sous-titres en cours"
+    },
+    "popup_translating_image": {
+        "message": "Traduction de l'image en cours"
+    },
+    "popup_processing": {
+        "message": "Traitement en cours"
+    },
     "popup_unexpected_response": {
         "message": "Une erreur inconnue s'est produite. Veuillez vérifier le journal de la console."
     },
@@ -38,7 +47,7 @@
     "options_title": {
         "message": "Options - Résumer et traduire avec Claude"
     },
-    "options_choose_model": {
+    "options_model": {
         "message": "Modèle de langue"
     },
     "options_apikey": {
@@ -47,8 +56,35 @@
     "options_apikey_hint": {
         "message": "Vous pouvez obtenir une clé API Anthropic sur la page suivante."
     },
-    "options_choose_language": {
-        "message": "Résumer en / Traduire en"
+    "options_language": {
+        "message": "Résumer en / Traduire vers"
+    },
+    "options_language_notes": {
+        "message": "Le paramètre de langue est ignoré dans les actions personnalisées."
+    },
+    "options_no_text_action": {
+        "message": "Lorsqu'aucun texte n'est sélectionné, effectuer l'action suivante"
+    },
+    "options_no_text_summarize": {
+        "message": "Résumer (par défaut)"
+    },
+    "options_no_text_translate": {
+        "message": "Traduire"
+    },
+    "options_no_text_custom": {
+        "message": "Action personnalisée"
+    },
+    "options_text_action": {
+        "message": "Lorsqu'un texte est sélectionné, effectuer l'action suivante"
+    },
+    "options_text_summarize": {
+        "message": "Résumer"
+    },
+    "options_text_translate": {
+        "message": "Traduire (par défaut)"
+    },
+    "options_text_custom": {
+        "message": "Action personnalisée"
     },
     "options_button_save": {
         "message": "Enregistrer les options"

@@ -1,6 +1,6 @@
 {
     "extension_name": {
-        "message": "Claude로 요약하고 번역하기"
+        "message": "Claude를 사용하여 요약 및 번역"
     },
     "extension_description": {
         "message": "웹 페이지를 요약하고 번역합니다. 백엔드로 Claude를 사용합니다."
@@ -26,6 +26,15 @@
     "popup_translating": {
         "message": "번역 중"
     },
+    "popup_translating_captions": {
+        "message": "캡션 번역 중"
+    },
+    "popup_translating_image": {
+        "message": "이미지 번역 중"
+    },
+    "popup_processing": {
+        "message": "처리 중"
+    },
     "popup_unexpected_response": {
         "message": "알 수 없는 오류가 발생했습니다. 콘솔 로그를 확인하세요."
     },
@@ -33,12 +42,12 @@
         "message": "이 페이지는 요약하거나 번역할 수 없습니다."
     },
     "results_title": {
-        "message": "결과 - Claude로 요약하고 번역하기"
+        "message": "결과 - Claude를 사용하여 요약 및 번역"
     },
     "options_title": {
-        "message": "옵션 - Claude로 요약하고 번역하기"
+        "message": "옵션 - Claude를 사용하여 요약 및 번역"
     },
-    "options_choose_model": {
+    "options_model": {
         "message": "언어 모델"
     },
     "options_apikey": {
@@ -47,8 +56,35 @@
     "options_apikey_hint": {
         "message": "다음 페이지에서 Anthropic API 키를 얻을 수 있습니다."
     },
-    "options_choose_language": {
+    "options_language": {
         "message": "요약 언어 / 번역 언어"
+    },
+    "options_language_notes": {
+        "message": "사용자 지정 작업에서는 언어 설정이 무시됩니다."
+    },
+    "options_no_text_action": {
+        "message": "텍스트가 선택되지 않은 경우 다음 작업 수행"
+    },
+    "options_no_text_summarize": {
+        "message": "요약(기본값)"
+    },
+    "options_no_text_translate": {
+        "message": "번역"
+    },
+    "options_no_text_custom": {
+        "message": "사용자 지정 작업"
+    },
+    "options_text_action": {
+        "message": "텍스트가 선택된 경우 다음 작업 수행"
+    },
+    "options_text_summarize": {
+        "message": "요약"
+    },
+    "options_text_translate": {
+        "message": "번역(기본값)"
+    },
+    "options_text_custom": {
+        "message": "사용자 지정 작업"
     },
     "options_button_save": {
         "message": "옵션 저장"

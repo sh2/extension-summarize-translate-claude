@@ -1,9 +1,9 @@
 {
     "extension_name": {
-        "message": "使用 Claude 總結與翻譯"
+        "message": "使用 Claude 總結和翻譯"
     },
     "extension_description": {
-        "message": "總結與翻譯網頁內容。使用 Claude 作為後端。"
+        "message": "總結和翻譯網頁。使用 Claude 作為後端。"
     },
     "popup_button_run": {
         "message": "再次執行"
@@ -26,29 +26,65 @@
     "popup_translating": {
         "message": "正在翻譯"
     },
+    "popup_translating_captions": {
+        "message": "正在翻譯字幕"
+    },
+    "popup_translating_image": {
+        "message": "正在翻譯圖片"
+    },
+    "popup_processing": {
+        "message": "處理中"
+    },
     "popup_unexpected_response": {
-        "message": "發生未知錯誤。請查看主控台記錄。"
+        "message": "發生未知錯誤。請檢查控制台日誌。"
     },
     "popup_miscellaneous_error": {
         "message": "無法總結或翻譯此頁面。"
     },
     "results_title": {
-        "message": "結果 - 使用 Claude 總結與翻譯"
+        "message": "結果 - 使用 Claude 總結和翻譯"
     },
     "options_title": {
-        "message": "選項 - 使用 Claude 總結與翻譯"
+        "message": "選項 - 使用 Claude 總結和翻譯"
     },
-    "options_choose_model": {
+    "options_model": {
         "message": "語言模型"
     },
     "options_apikey": {
         "message": "Anthropic API 金鑰"
     },
     "options_apikey_hint": {
-        "message": "你可以在以下頁面獲取 Anthropic API 金鑰。"
+        "message": "您可以在以下頁面獲取 Anthropic API 金鑰。"
     },
-    "options_choose_language": {
+    "options_language": {
         "message": "總結/翻譯為"
+    },
+    "options_language_notes": {
+        "message": "在自定義操作中會忽略語言設置。"
+    },
+    "options_no_text_action": {
+        "message": "未選擇文字時，執行以下操作"
+    },
+    "options_no_text_summarize": {
+        "message": "總結（預設）"
+    },
+    "options_no_text_translate": {
+        "message": "翻譯"
+    },
+    "options_no_text_custom": {
+        "message": "自定義操作"
+    },
+    "options_text_action": {
+        "message": "選擇文字時，執行以下操作"
+    },
+    "options_text_summarize": {
+        "message": "總結"
+    },
+    "options_text_translate": {
+        "message": "翻譯（預設）"
+    },
+    "options_text_custom": {
+        "message": "自定義操作"
     },
     "options_button_save": {
         "message": "儲存選項"

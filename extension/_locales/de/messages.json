@@ -1,6 +1,6 @@
 {
     "extension_name": {
-        "message": "Mit Claude zusammenfassen und übersetzen"
+        "message": "Zusammenfassen und Übersetzen mit Claude"
     },
     "extension_description": {
         "message": "Webseiten zusammenfassen und übersetzen. Verwendet Claude als Backend."
@@ -24,7 +24,16 @@
         "message": "Bild wird zusammengefasst"
     },
     "popup_translating": {
-        "message": "Wird übersetzt"
+        "message": "Übersetzung läuft"
+    },
+    "popup_translating_captions": {
+        "message": "Untertitel werden übersetzt"
+    },
+    "popup_translating_image": {
+        "message": "Bild wird übersetzt"
+    },
+    "popup_processing": {
+        "message": "Verarbeitung"
     },
     "popup_unexpected_response": {
         "message": "Ein unbekannter Fehler ist aufgetreten. Bitte überprüfen Sie das Konsolenprotokoll."
@@ -33,12 +42,12 @@
         "message": "Diese Seite kann nicht zusammengefasst oder übersetzt werden."
     },
     "results_title": {
-        "message": "Ergebnisse - Mit Claude zusammenfassen und übersetzen"
+        "message": "Ergebnisse - Zusammenfassen und Übersetzen mit Claude"
     },
     "options_title": {
-        "message": "Optionen - Mit Claude zusammenfassen und übersetzen"
+        "message": "Optionen - Zusammenfassen und Übersetzen mit Claude"
     },
-    "options_choose_model": {
+    "options_model": {
         "message": "Sprachmodell"
     },
     "options_apikey": {
@@ -47,8 +56,35 @@
     "options_apikey_hint": {
         "message": "Sie können einen Anthropic API-Schlüssel auf der folgenden Seite erhalten."
     },
-    "options_choose_language": {
-        "message": "Zusammenfassung in / Übersetzen nach"
+    "options_language": {
+        "message": "Zusammenfassen in / Übersetzen nach"
+    },
+    "options_language_notes": {
+        "message": "Die Spracheinstellung wird bei benutzerdefinierten Aktionen nicht berücksichtigt."
+    },
+    "options_no_text_action": {
+        "message": "Wenn kein Text ausgewählt ist, führen Sie folgende Aktion aus"
+    },
+    "options_no_text_summarize": {
+        "message": "Zusammenfassen (Standard)"
+    },
+    "options_no_text_translate": {
+        "message": "Übersetzen"
+    },
+    "options_no_text_custom": {
+        "message": "Benutzerdefinierte Aktion"
+    },
+    "options_text_action": {
+        "message": "Wenn Text ausgewählt ist, führen Sie folgende Aktion aus"
+    },
+    "options_text_summarize": {
+        "message": "Zusammenfassen"
+    },
+    "options_text_translate": {
+        "message": "Übersetzen (Standard)"
+    },
+    "options_text_custom": {
+        "message": "Benutzerdefinierte Aktion"
     },
     "options_button_save": {
         "message": "Optionen speichern"

@@ -3,7 +3,7 @@
         "message": "Resumir e Traduzir com Claude"
     },
     "extension_description": {
-        "message": "Resuma e traduza páginas web. Usa Claude como backend."
+        "message": "Resuma e traduza páginas da web. Usa Claude como backend."
     },
     "popup_button_run": {
         "message": "Executar novamente"
@@ -26,6 +26,15 @@
     "popup_translating": {
         "message": "Traduzindo"
     },
+    "popup_translating_captions": {
+        "message": "Traduzindo as legendas"
+    },
+    "popup_translating_image": {
+        "message": "Traduzindo a imagem"
+    },
+    "popup_processing": {
+        "message": "Processando"
+    },
     "popup_unexpected_response": {
         "message": "Ocorreu um erro desconhecido. Por favor, verifique o log do console."
     },
@@ -38,7 +47,7 @@
     "options_title": {
         "message": "Opções - Resumir e Traduzir com Claude"
     },
-    "options_choose_model": {
+    "options_model": {
         "message": "Modelo de Linguagem"
     },
     "options_apikey": {
@@ -47,8 +56,35 @@
     "options_apikey_hint": {
         "message": "Você pode obter uma Chave de API da Anthropic na página a seguir."
     },
-    "options_choose_language": {
+    "options_language": {
         "message": "Resumir em / Traduzir para"
+    },
+    "options_language_notes": {
+        "message": "A configuração de idioma é desconsiderada em ações personalizadas."
+    },
+    "options_no_text_action": {
+        "message": "Quando nenhum texto for selecionado, faça a seguinte ação"
+    },
+    "options_no_text_summarize": {
+        "message": "Resumir (padrão)"
+    },
+    "options_no_text_translate": {
+        "message": "Traduzir"
+    },
+    "options_no_text_custom": {
+        "message": "Ação personalizada"
+    },
+    "options_text_action": {
+        "message": "Quando o texto for selecionado, faça a seguinte ação"
+    },
+    "options_text_summarize": {
+        "message": "Resumir"
+    },
+    "options_text_translate": {
+        "message": "Traduzir (padrão)"
+    },
+    "options_text_custom": {
+        "message": "Ação personalizada"
     },
     "options_button_save": {
         "message": "Salvar opções"
