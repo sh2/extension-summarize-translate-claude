@@ -44,6 +44,12 @@
     "results_title": {
         "message": "Resultados - Resumir e Traduzir com Claude"
     },
+    "results_button_copy": {
+        "message": "Copiar"
+    },
+    "results_copied": {
+        "message": "Copiado."
+    },
     "options_title": {
         "message": "Opções - Resumir e Traduzir com Claude"
     },
@@ -51,10 +57,10 @@
         "message": "Modelo de Linguagem"
     },
     "options_apikey": {
-        "message": "Chave de API da Anthropic"
+        "message": "Chave de API do Anthropic"
     },
     "options_apikey_hint": {
-        "message": "Você pode obter uma Chave de API da Anthropic na página a seguir."
+        "message": "Você pode obter uma Chave de API do Anthropic na página a seguir."
     },
     "options_language": {
         "message": "Resumir em / Traduzir para"

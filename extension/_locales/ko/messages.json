@@ -44,6 +44,12 @@
     "results_title": {
         "message": "결과 - Claude를 사용하여 요약 및 번역"
     },
+    "results_button_copy": {
+        "message": "복사"
+    },
+    "results_copied": {
+        "message": "복사되었습니다."
+    },
     "options_title": {
         "message": "옵션 - Claude를 사용하여 요약 및 번역"
     },

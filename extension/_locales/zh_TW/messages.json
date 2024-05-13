@@ -44,6 +44,12 @@
     "results_title": {
         "message": "結果 - 使用 Claude 總結和翻譯"
     },
+    "results_button_copy": {
+        "message": "複製"
+    },
+    "results_copied": {
+        "message": "已複製。"
+    },
     "options_title": {
         "message": "選項 - 使用 Claude 總結和翻譯"
     },
@@ -57,10 +63,10 @@
         "message": "您可以在以下頁面獲取 Anthropic API 金鑰。"
     },
     "options_language": {
-        "message": "總結/翻譯為"
+        "message": "總結/翻譯語言"
     },
     "options_language_notes": {
-        "message": "在自定義操作中會忽略語言設置。"
+        "message": "在自定義操作中，語言設置將被忽略。"
     },
     "options_no_text_action": {
         "message": "未選擇文字時，執行以下操作"

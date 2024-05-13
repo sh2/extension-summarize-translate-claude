@@ -44,6 +44,12 @@
     "results_title": {
         "message": "Resultados - Resumir y traducir con Claude"
     },
+    "results_button_copy": {
+        "message": "Copiar"
+    },
+    "results_copied": {
+        "message": "Copiado."
+    },
     "options_title": {
         "message": "Opciones - Resumir y traducir con Claude"
     },

@@ -44,6 +44,12 @@
     "results_title": {
         "message": "Ergebnisse - Zusammenfassen und Übersetzen mit Claude"
     },
+    "results_button_copy": {
+        "message": "Kopieren"
+    },
+    "results_copied": {
+        "message": "Kopiert."
+    },
     "options_title": {
         "message": "Optionen - Zusammenfassen und Übersetzen mit Claude"
     },
@@ -60,10 +66,10 @@
         "message": "Zusammenfassen in / Übersetzen nach"
     },
     "options_language_notes": {
-        "message": "Die Spracheinstellung wird bei benutzerdefinierten Aktionen nicht berücksichtigt."
+        "message": "Die Spracheinstellung wird bei benutzerdefinierten Aktionen ignoriert."
     },
     "options_no_text_action": {
-        "message": "Wenn kein Text ausgewählt ist, führen Sie folgende Aktion aus"
+        "message": "Wenn kein Text ausgewählt ist, führe folgende Aktion aus"
     },
     "options_no_text_summarize": {
         "message": "Zusammenfassen (Standard)"
@@ -75,7 +81,7 @@
         "message": "Benutzerdefinierte Aktion"
     },
     "options_text_action": {
-        "message": "Wenn Text ausgewählt ist, führen Sie folgende Aktion aus"
+        "message": "Wenn Text ausgewählt ist, führe folgende Aktion aus"
     },
     "options_text_summarize": {
         "message": "Zusammenfassen"

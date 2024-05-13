@@ -44,6 +44,12 @@
     "results_title": {
         "message": "Результаты - Обобщение и перевод с помощью Claude"
     },
+    "results_button_copy": {
+        "message": "Копировать"
+    },
+    "results_copied": {
+        "message": "Скопировано."
+    },
     "options_title": {
         "message": "Настройки - Обобщение и перевод с помощью Claude"
     },
