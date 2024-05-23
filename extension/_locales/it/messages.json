@@ -1,6 +1,6 @@
 {
     "extension_name": {
-        "message": "Riassumi e traduci con Claude"
+        "message": "Riassumi e Traduci con Claude"
     },
     "extension_description": {
         "message": "Riassumi e traduci pagine web. Utilizza Claude come backend."
@@ -15,34 +15,34 @@
         "message": "Apri la pagina delle opzioni"
     },
     "popup_summarizing": {
-        "message": "Riassumendo"
+        "message": "Riassunto in corso"
     },
     "popup_summarizing_captions": {
-        "message": "Riassumendo i sottotitoli"
+        "message": "Riassunto delle didascalie"
     },
     "popup_summarizing_image": {
-        "message": "Riassumendo l'immagine"
+        "message": "Riassunto dell'immagine"
     },
     "popup_translating": {
-        "message": "Traducendo"
+        "message": "Traduzione in corso"
     },
     "popup_translating_captions": {
-        "message": "Traducendo i sottotitoli"
+        "message": "Traduzione delle didascalie"
     },
     "popup_translating_image": {
-        "message": "Traducendo l'immagine"
+        "message": "Traduzione dell'immagine"
     },
     "popup_processing": {
         "message": "Elaborazione"
     },
     "popup_unexpected_response": {
-        "message": "Si è verificato un errore sconosciuto. Controlla il log della console."
+        "message": "Si è verificato un errore sconosciuto. Si prega di controllare il registro della console."
     },
     "popup_miscellaneous_error": {
         "message": "Questa pagina non può essere riassunta o tradotta."
     },
     "results_title": {
-        "message": "Risultati - Riassumi e traduci con Claude"
+        "message": "Risultati - Riassumi e Traduci con Claude"
     },
     "results_button_copy": {
         "message": "Copia"
@@ -51,16 +51,16 @@
         "message": "Copiato."
     },
     "options_title": {
-        "message": "Opzioni - Riassumi e traduci con Claude"
-    },
-    "options_model": {
-        "message": "Modello di linguaggio"
+        "message": "Opzioni - Riassumi e Traduci con Claude"
     },
     "options_apikey": {
         "message": "Chiave API Anthropic"
     },
     "options_apikey_hint": {
-        "message": "Puoi ottenere una chiave API Anthropic alla seguente pagina."
+        "message": "È possibile ottenere una chiave API Anthropic alla seguente pagina."
+    },
+    "options_model": {
+        "message": "Modello linguistico"
     },
     "options_language": {
         "message": "Riassumi in / Traduci in"
@@ -69,7 +69,7 @@
         "message": "L'impostazione della lingua viene ignorata nelle azioni personalizzate."
     },
     "options_no_text_action": {
-        "message": "Quando nessun testo è selezionato, esegui la seguente azione"
+        "message": "Quando non è selezionato alcun testo, esegui la seguente azione"
     },
     "options_no_text_summarize": {
         "message": "Riassumi (predefinito)"
@@ -81,7 +81,7 @@
         "message": "Azione personalizzata"
     },
     "options_text_action": {
-        "message": "Quando il testo è selezionato, esegui la seguente azione"
+        "message": "Quando è selezionato del testo, esegui la seguente azione"
     },
     "options_text_summarize": {
         "message": "Riassumi"

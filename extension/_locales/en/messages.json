@@ -53,14 +53,14 @@
     "options_title": {
         "message": "Options - Summarize and Translate with Claude"
     },
-    "options_model": {
-        "message": "Language Model"
-    },
     "options_apikey": {
         "message": "Anthropic API Key"
     },
     "options_apikey_hint": {
         "message": "You can obtain a Anthropic API Key at the following page."
+    },
+    "options_model": {
+        "message": "Language Model"
     },
     "options_language": {
         "message": "Summarize in / Translate to"
