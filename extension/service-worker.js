@@ -29,7 +29,7 @@ const getSystemPrompt = async (task, taskOption, languageCode, userPromptLength)
 
   if (task === "summarize") {
     if (taskOption === "image") {
-      systemPrompt = `Summarize the image as Markdown numbered list ` +
+      systemPrompt = "Summarize the image as Markdown numbered list " +
         `in ${languageNames[languageCode]} and reply only with the list.\n` +
         "<example>\n1. First point.\n2. Second point.\n3. Third point.\n</example>";
     } else {
@@ -188,8 +188,8 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       let messages = [];
 
       if (request.taskOption === "image") {
-        const [mediaInfo, mediaData] = userPrompt.split(',');
-        const mediaType = mediaInfo.split(':')[1].split(';')[0];
+        const [mediaInfo, mediaData] = userPrompt.split(",");
+        const mediaType = mediaInfo.split(":")[1].split(";")[0];
 
         messages.push({
           role: "user",
@@ -217,7 +217,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       }
 
       try {
-        const response = await fetch(`https://api.anthropic.com/v1/messages`, {
+        const response = await fetch("https://api.anthropic.com/v1/messages", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
