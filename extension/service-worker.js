@@ -168,27 +168,28 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   (async () => {
     if (request.message === "chunk") {
       // Split the task input
-      const modelId = getModelId(request.languageModel);
-      const chunkSize = getCharacterLimit(modelId, request.actionType);
-      const taskInputChunks = chunkText(request.taskInput, chunkSize);
+      const { actionType, taskInput, languageModel } = request;
+      const modelId = getModelId(languageModel);
+      const chunkSize = getCharacterLimit(modelId, actionType);
+      const taskInputChunks = chunkText(taskInput, chunkSize);
       sendResponse(taskInputChunks);
     } else if (request.message === "generate") {
       // Generate content
+      const { actionType, mediaType, taskInput, languageModel, languageCode } = request;
       const { apiKey } = await chrome.storage.local.get({ apiKey: "" });
-      const modelId = getModelId(request.languageModel);
-      const taskInput = request.taskInput;
+      const modelId = getModelId(languageModel);
 
       const systemPrompt = await getSystemPrompt(
-        request.actionType,
-        request.mediaType,
-        request.languageCode,
+        actionType,
+        mediaType,
+        languageCode,
         taskInput.length
       );
 
-      const prefill = getPrefill(request.task, request.languageCode);
+      const prefill = getPrefill(actionType, languageCode);
       let messages = [];
 
-      if (request.mediaType === "image") {
+      if (mediaType === "image") {
         const [mediaInfo, mediaData] = taskInput.split(",");
         const mediaType = mediaInfo.split(":")[1].split(";")[0];
 
@@ -233,11 +234,18 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
           })
         });
 
-        sendResponse({
+        const responseData = {
           ok: response.ok,
           status: response.status,
           body: tryJsonParse(await response.text())
-        });
+        };
+
+        if (response.ok) {
+          const taskData = JSON.stringify({ actionType, mediaType, taskInput, languageModel, languageCode });
+          await chrome.storage.session.set({ taskCache: taskData, responseCache: responseData });
+        }
+
+        sendResponse(responseData);
       } catch (error) {
         sendResponse({
           ok: false,
