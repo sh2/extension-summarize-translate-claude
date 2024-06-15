@@ -1,0 +1,101 @@
+{
+    "extension_name": {
+        "message": "Claude দিয়ে সারাংশ এবং অনুবাদ করুন"
+    },
+    "extension_description": {
+        "message": "ওয়েব পৃষ্ঠাগুলির সারাংশ এবং অনুবাদ করুন। ব্যাকএন্ড হিসেবে Claude ব্যবহার করে।"
+    },
+    "popup_button_run": {
+        "message": "আবার চালান"
+    },
+    "popup_button_results": {
+        "message": "একটি নতুন ট্যাবে ফলাফল খুলুন"
+    },
+    "popup_button_options": {
+        "message": "বিকল্প পৃষ্ঠা খুলুন"
+    },
+    "popup_summarizing": {
+        "message": "সারাংশ তৈরি করা হচ্ছে"
+    },
+    "popup_summarizing_captions": {
+        "message": "শিরোনামের সারাংশ তৈরি করা হচ্ছে"
+    },
+    "popup_summarizing_image": {
+        "message": "ছবিটির সারাংশ তৈরি করা হচ্ছে"
+    },
+    "popup_translating": {
+        "message": "অনুবাদ করা হচ্ছে"
+    },
+    "popup_translating_captions": {
+        "message": "শিরোনামগুলি অনুবাদ করা হচ্ছে"
+    },
+    "popup_translating_image": {
+        "message": "ছবিটি অনুবাদ করা হচ্ছে"
+    },
+    "popup_processing": {
+        "message": "প্রক্রিয়াধীন"
+    },
+    "popup_unexpected_response": {
+        "message": "একটি অজানা ত্রুটি ঘটেছে। দয়া করে কনসোল লগ চেক করুন।"
+    },
+    "popup_miscellaneous_error": {
+        "message": "এই পৃষ্ঠাটির সারাংশ বা অনুবাদ করা যাবে না।"
+    },
+    "results_title": {
+        "message": "ফলাফল - Claude দিয়ে সারাংশ এবং অনুবাদ করুন"
+    },
+    "results_button_copy": {
+        "message": "প্রতিলিপি করুন"
+    },
+    "results_copied": {
+        "message": "প্রতিলিপি করা হয়েছে।"
+    },
+    "options_title": {
+        "message": "বিকল্প - Claude দিয়ে সারাংশ এবং অনুবাদ করুন"
+    },
+    "options_apikey": {
+        "message": "Anthropic API Key"
+    },
+    "options_apikey_hint": {
+        "message": "আপনি নিম্নলিখিত পৃষ্ঠা থেকে একটি Anthropic API Key পেতে পারেন।"
+    },
+    "options_model": {
+        "message": "ভাষা মডেল"
+    },
+    "options_language": {
+        "message": "এই ভাষায় সারাংশ / এই ভাষায় অনুবাদ করুন"
+    },
+    "options_language_notes": {
+        "message": "কাস্টম ক্রিয়াকলাপে ভাষা সেটিং উপেক্ষা করা হয়।"
+    },
+    "options_no_text_action": {
+        "message": "যখন কোন পাঠ্য নির্বাচন করা হয় না, তখন নিম্নলিখিত ক্রিয়াটি করুন"
+    },
+    "options_no_text_summarize": {
+        "message": "সারাংশ (ডিফল্ট)"
+    },
+    "options_no_text_translate": {
+        "message": "অনুবাদ করুন"
+    },
+    "options_no_text_custom": {
+        "message": "কাস্টম ক্রিয়া"
+    },
+    "options_text_action": {
+        "message": "যখন পাঠ্য নির্বাচন করা হয়, তখন নিম্নলিখিত ক্রিয়াটি করুন"
+    },
+    "options_text_summarize": {
+        "message": "সারাংশ"
+    },
+    "options_text_translate": {
+        "message": "অনুবাদ করুন (ডিফল্ট)"
+    },
+    "options_text_custom": {
+        "message": "কাস্টম ক্রিয়া"
+    },
+    "options_button_save": {
+        "message": "বিকল্পগুলি সংরক্ষণ করুন"
+    },
+    "options_saved": {
+        "message": "সংরক্ষিত হয়েছে।"
+    }
+}

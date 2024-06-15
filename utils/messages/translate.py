@@ -13,6 +13,8 @@ def main():
         "vi": "Vietnamese",
         "ru": "Russian",
         "ar": "Arabic",
+        "hi": "Hindi",
+        "bn": "Bengali",
         "zh_CN": "Simplified Chinese",
         "zh_TW": "Traditional Chinese",
         "ko": "Korean"
@@ -29,10 +31,10 @@ def main():
         print(languageCode, languageName)
 
         system_instruction = f"Translate the following JSON content to {languageName}" \
-            " in a formal tone. The word \"Claude\" should be left in English."
+            " in a formal tone. The word \"Anthropic\" and \"Claude\" must be left in English."
 
         model = google.generativeai.GenerativeModel(
-            model_name="gemini-1.5-flash-latest",
+            model_name="gemini-1.5-flash",
             system_instruction=system_instruction,
             generation_config={
                 "response_mime_type": "application/json",

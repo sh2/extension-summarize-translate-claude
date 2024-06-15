@@ -19,6 +19,8 @@ const getSystemPrompt = async (actionType, mediaType, languageCode, taskInuptLen
     vi: "Vietnamese",
     ru: "Russian",
     ar: "Arabic",
+    hi: "Hindi",
+    bn: "Bengali",
     zh_cn: "Simplified Chinese",
     zh_tw: "Traditional Chinese",
     ja: "Japanese",
@@ -67,6 +69,8 @@ const getPrefill = (actionType, languageCode) => {
       vi: "Tóm tắt:",
       ru: "Резюме:",
       ar: "ملخص:",
+      hi: "सारांश:",
+      bn: "সারংশ:",
       zh_cn: "摘要:",
       zh_tw: "摘要:",
       ja: "要約:",
@@ -82,6 +86,8 @@ const getPrefill = (actionType, languageCode) => {
       vi: "Dịch:",
       ru: "Перевод:",
       ar: "ترجمة:",
+      hi: "अनुवाद:",
+      bn: "অনুবাদ:",
       zh_cn: "翻译:",
       zh_tw: "翻譯:",
       ja: "翻訳:",
@@ -130,7 +136,8 @@ const getCharacterLimit = (modelId, actionType) => {
 
 const chunkText = (text, chunkSize) => {
   const chunks = [];
-  const sentenceBreaks = ["\n\n", "。", "．", ".", "\n", " "];
+  // ।: U+0964 Devanagari Danda
+  const sentenceBreaks = ["\n\n", "।", "。", "．", ".", "\n", " "];
   let remainingText = text.replace(/\r\n?/g, "\n");
 
   while (remainingText.length > chunkSize) {
