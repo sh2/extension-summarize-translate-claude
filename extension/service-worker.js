@@ -1,5 +1,6 @@
 const getModelId = (languageModel) => {
   const modelIds = {
+    "3.5-sonnet": "claude-3-5-sonnet-20240620",
     opus: "claude-3-opus-20240229",
     sonnet: "claude-3-sonnet-20240229",
     haiku: "claude-3-haiku-20240307",
@@ -111,6 +112,12 @@ const getCharacterLimit = (modelId, actionType) => {
   // noTextCustom: The same as Summarize
   // textCustom: The same as Summarize
   const characterLimits = {
+    "claude-3-5-sonnet-20240620": {
+      summarize: 200000,
+      translate: 4096,
+      noTextCustom: 200000,
+      textCustom: 200000
+    },
     "claude-3-opus-20240229": {
       summarize: 200000,
       translate: 4096,
