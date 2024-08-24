@@ -19,8 +19,5 @@
     "activeTab",
     "scripting",
     "storage"
-  ],
-  "host_permissions": [
-    "https://api.anthropic.com/*"
   ]
 }

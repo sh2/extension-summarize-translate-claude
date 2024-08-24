@@ -242,7 +242,8 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
           headers: {
             "Content-Type": "application/json",
             "anthropic-version": "2023-06-01",
-            "x-api-key": apiKey
+            "x-api-key": apiKey,
+            "anthropic-dangerous-direct-browser-access": "true"
           },
           body: JSON.stringify({
             model: modelId,
