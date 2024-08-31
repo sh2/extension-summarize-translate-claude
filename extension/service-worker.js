@@ -1,12 +1,12 @@
 const getModelId = (languageModel) => {
-  const modelIds = {
+  const modelMappings = {
     "3.5-sonnet": "claude-3-5-sonnet-20240620",
     opus: "claude-3-opus-20240229",
     sonnet: "claude-3-sonnet-20240229",
     haiku: "claude-3-haiku-20240307",
   };
 
-  return modelIds[languageModel];
+  return modelMappings[languageModel];
 };
 
 const getSystemPrompt = async (actionType, mediaType, languageCode, taskInuptLength) => {
