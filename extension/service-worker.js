@@ -114,7 +114,7 @@ const getCharacterLimit = (modelId, actionType) => {
   const characterLimits = {
     "claude-3-5-sonnet-20240620": {
       summarize: 200000,
-      translate: 4096,
+      translate: 8192,
       noTextCustom: 200000,
       textCustom: 200000
     },
