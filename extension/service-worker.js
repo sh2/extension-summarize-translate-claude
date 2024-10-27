@@ -1,9 +1,9 @@
 const getModelId = (languageModel) => {
   const modelMappings = {
-    "3.5-sonnet": "claude-3-5-sonnet-20240620",
-    opus: "claude-3-opus-20240229",
-    sonnet: "claude-3-sonnet-20240229",
-    haiku: "claude-3-haiku-20240307",
+    "3.5-sonnet": "claude-3-5-sonnet-latest",
+    "3-opus": "claude-3-opus-latest",
+    "3-sonnet": "claude-3-sonnet-20240229",
+    "3-haiku": "claude-3-haiku-20240307",
   };
 
   return modelMappings[languageModel];
@@ -112,13 +112,13 @@ const getCharacterLimit = (modelId, actionType) => {
   // noTextCustom: The same as Summarize
   // textCustom: The same as Summarize
   const characterLimits = {
-    "claude-3-5-sonnet-20240620": {
+    "claude-3-5-sonnet-latest": {
       summarize: 200000,
       translate: 8192,
       noTextCustom: 200000,
       textCustom: 200000
     },
-    "claude-3-opus-20240229": {
+    "claude-3-opus-latest": {
       summarize: 200000,
       translate: 4096,
       noTextCustom: 200000,

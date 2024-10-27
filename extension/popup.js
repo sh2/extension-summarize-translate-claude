@@ -313,10 +313,15 @@ const initialize = async () => {
     element.textContent = chrome.i18n.getMessage(element.getAttribute("data-i18n"));
   });
 
-  // Restore the options
-  const { languageModel, languageCode } = await chrome.storage.local.get({ languageModel: "haiku", languageCode: "en" });
+  // Restore the language code from the local storage
+  const { languageModel, languageCode } = await chrome.storage.local.get({ languageModel: "3-haiku", languageCode: "en" });
   document.getElementById("languageModel").value = languageModel;
   document.getElementById("languageCode").value = languageCode;
+
+  // Set the default language model if the language model is not set
+  if (!document.getElementById("languageModel").value) {
+    document.getElementById("languageModel").value = "3-haiku";
+  }
 
   main(true);
 };
