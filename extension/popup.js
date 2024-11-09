@@ -106,7 +106,7 @@ const extractTaskInformation = async (languageCode) => {
 
   if (taskInput) {
     actionType = (await chrome.storage.local.get({ textAction: "translate" })).textAction;
-    mediaType = "";
+    mediaType = "text";
   } else {
     // If no text is selected, get the whole text of the page
     actionType = (await chrome.storage.local.get({ noTextAction: "summarize" })).noTextAction;
@@ -124,7 +124,7 @@ const extractTaskInformation = async (languageCode) => {
 
     if (!taskInput) {
       // Get the main text of the page using Readability.js
-      mediaType = "";
+      mediaType = "text";
 
       await chrome.scripting.executeScript({
         target: { tabId: tab.id },

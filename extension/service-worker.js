@@ -1,12 +1,18 @@
-const getModelId = (languageModel) => {
+const getModelId = (languageModel, mediaType) => {
   const modelMappings = {
     "3.5-sonnet": "claude-3-5-sonnet-latest",
+    "3.5-haiku": "claude-3-5-haiku-latest",
     "3-opus": "claude-3-opus-latest",
     "3-sonnet": "claude-3-sonnet-20240229",
     "3-haiku": "claude-3-haiku-20240307",
   };
 
-  return modelMappings[languageModel];
+  if (languageModel === "3.5-haiku" && mediaType === "image") {
+    // Since Claude 3.5 Haiku does not support images, use Claude 3 Haiku instead.
+    return "claude-3-haiku-20240307";
+  } else {
+    return modelMappings[languageModel];
+  }
 };
 
 const getSystemPrompt = async (actionType, mediaType, languageCode, taskInuptLength) => {
@@ -118,6 +124,12 @@ const getCharacterLimit = (modelId, actionType) => {
       noTextCustom: 200000,
       textCustom: 200000
     },
+    "claude-3-5-haiku-latest": {
+      summarize: 200000,
+      translate: 8192,
+      noTextCustom: 200000,
+      textCustom: 200000
+    },
     "claude-3-opus-latest": {
       summarize: 200000,
       translate: 4096,
@@ -186,7 +198,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
     if (request.message === "chunk") {
       // Split the task input
       const { actionType, taskInput, languageModel } = request;
-      const modelId = getModelId(languageModel);
+      const modelId = getModelId(languageModel, "text");
       const chunkSize = getCharacterLimit(modelId, actionType);
       const taskInputChunks = chunkText(taskInput, chunkSize);
       sendResponse(taskInputChunks);
@@ -195,7 +207,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       await chrome.storage.session.set({ taskCache: "", responseCache: {} });
       const { actionType, mediaType, taskInput, languageModel, languageCode } = request;
       const { apiKey } = await chrome.storage.local.get({ apiKey: "" });
-      const modelId = getModelId(languageModel);
+      const modelId = getModelId(languageModel, mediaType);
 
       const systemPrompt = await getSystemPrompt(
         actionType,
