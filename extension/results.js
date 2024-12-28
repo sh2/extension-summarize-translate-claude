@@ -2,6 +2,8 @@
 
 import { adjustLayoutForScreenSize } from "./utils.js";
 
+let result = {};
+
 const copyContent = async () => {
   const content = document.getElementById("content").textContent;
   const status = document.getElementById("status");
@@ -11,6 +13,8 @@ const copyContent = async () => {
   status.textContent = chrome.i18n.getMessage("results_copied");
   setTimeout(() => status.textContent = "", 1000);
 };
+
+// TODO: implement askQuestion
 
 const initialize = async () => {
   // Disable links when converting from Markdown to HTML
@@ -29,12 +33,12 @@ const initialize = async () => {
 
   // Restore the content from the session storage
   const urlParams = new URLSearchParams(window.location.search);
-  const contentIndex = urlParams.get("i");
-  const content = (await chrome.storage.session.get({ [`c_${contentIndex}`]: "" }))[`c_${contentIndex}`];
+  const resultIndex = urlParams.get("i");
+  result = (await chrome.storage.session.get({ [`r_${resultIndex}`]: "" }))[`r_${resultIndex}`];
 
   // Convert the content from Markdown to HTML
   const div = document.createElement("div");
-  div.textContent = content;
+  div.textContent = result.responseContent;
   document.getElementById("content").innerHTML = DOMPurify.sanitize(marked.parse(div.innerHTML));
 };
 

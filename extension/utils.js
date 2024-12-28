@@ -1,3 +1,11 @@
+const tryParseJson = (text) => {
+  try {
+    return JSON.parse(text);
+  } catch {
+    return { error: { message: text } };
+  }
+};
+
 export const adjustLayoutForScreenSize = () => {
   // Add the narrow class if the screen width is narrow
   if (document.getElementById("header").clientWidth < 640) {
@@ -62,5 +70,37 @@ export const getModelId = (languageModel, mediaType) => {
     return "claude-3-haiku-20240307";
   } else {
     return modelMappings[languageModel];
+  }
+};
+
+export const generateContent = async (apiKey, modelId, maxOutputTokens, systemPrompt, apiContents) => {
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "anthropic-version": "2023-06-01",
+        "x-api-key": apiKey,
+        "anthropic-dangerous-direct-browser-access": "true"
+      },
+      body: JSON.stringify({
+        model: modelId,
+        max_tokens: maxOutputTokens,
+        system: systemPrompt,
+        messages: apiContents
+      })
+    });
+
+    return {
+      ok: response.ok,
+      status: response.status,
+      body: tryParseJson(await response.text())
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      status: 1000,
+      body: { error: { message: error.stack } }
+    };
   }
 };
