@@ -1,19 +1,4 @@
-const getModelId = (languageModel, mediaType) => {
-  const modelMappings = {
-    "3.5-sonnet": "claude-3-5-sonnet-latest",
-    "3.5-haiku": "claude-3-5-haiku-latest",
-    "3-opus": "claude-3-opus-latest",
-    "3-sonnet": "claude-3-sonnet-20240229",
-    "3-haiku": "claude-3-haiku-20240307",
-  };
-
-  if (languageModel === "3.5-haiku" && mediaType === "image") {
-    // Since Claude 3.5 Haiku does not support images, use Claude 3 Haiku instead.
-    return "claude-3-haiku-20240307";
-  } else {
-    return modelMappings[languageModel];
-  }
-};
+import { getModelId } from "./utils.js";
 
 const getSystemPrompt = async (actionType, mediaType, languageCode, taskInuptLength) => {
   const languageNames = {
@@ -153,6 +138,18 @@ const getCharacterLimit = (modelId, actionType) => {
   return characterLimits[modelId][actionType];
 };
 
+const getMaxOutputTokens = (modelId) => {
+  const maxOutputTokens = {
+    "claude-3-5-sonnet-latest": 8192,
+    "claude-3-5-haiku-latest": 8192,
+    "claude-3-opus-latest": 4096,
+    "claude-3-sonnet-20240229": 4096,
+    "claude-3-haiku-20240307": 4096
+  };
+
+  return maxOutputTokens[modelId];
+};
+
 const chunkText = (text, chunkSize) => {
   const chunks = [];
   // ।: U+0964 Devanagari Danda
@@ -208,6 +205,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       const { actionType, mediaType, taskInput, languageModel, languageCode } = request;
       const { apiKey } = await chrome.storage.local.get({ apiKey: "" });
       const modelId = getModelId(languageModel, mediaType);
+      const maxOutputTokens = getMaxOutputTokens(modelId);
 
       const systemPrompt = await getSystemPrompt(
         actionType,
@@ -259,7 +257,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
           },
           body: JSON.stringify({
             model: modelId,
-            max_tokens: 4096,
+            max_tokens: maxOutputTokens,
             system: systemPrompt,
             messages: messages
           })

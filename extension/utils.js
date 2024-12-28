@@ -47,3 +47,20 @@ export const displayLoadingMessage = (elementId, loadingMessage) => {
       status.textContent = `${loadingMessage}.`;
   }
 };
+
+export const getModelId = (languageModel, mediaType) => {
+  const modelMappings = {
+    "3.5-sonnet": "claude-3-5-sonnet-latest",
+    "3.5-haiku": "claude-3-5-haiku-latest",
+    "3-opus": "claude-3-opus-latest",
+    "3-sonnet": "claude-3-sonnet-20240229",
+    "3-haiku": "claude-3-haiku-20240307",
+  };
+
+  if (languageModel === "3.5-haiku" && mediaType === "image") {
+    // Since Claude 3.5 Haiku does not support images, use Claude 3 Haiku instead.
+    return "claude-3-haiku-20240307";
+  } else {
+    return modelMappings[languageModel];
+  }
+};
