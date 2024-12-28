@@ -32,3 +32,18 @@ export const loadTemplate = async (templateId) => {
     return null;
   }
 };
+
+export const displayLoadingMessage = (elementId, loadingMessage) => {
+  const status = document.getElementById(elementId);
+
+  switch (status.textContent) {
+    case `${loadingMessage}.`:
+      status.textContent = `${loadingMessage}..`;
+      break;
+    case `${loadingMessage}..`:
+      status.textContent = `${loadingMessage}...`;
+      break;
+    default:
+      status.textContent = `${loadingMessage}.`;
+  }
+};
