@@ -47,6 +47,10 @@ const initialize = async () => {
   // Check if the screen is narrow  
   adjustLayoutForScreenSize();
 
+  // Load the language model template
+  const languageModelTemplate = await loadTemplate("languageModelTemplate");
+  document.getElementById("languageModelContainer").appendChild(languageModelTemplate);
+
   // Load the language code template
   const languageCodeTemplate = await loadTemplate("languageCodeTemplate");
   document.getElementById("languageCodeContainer").appendChild(languageCodeTemplate);
