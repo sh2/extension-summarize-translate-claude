@@ -1,3 +1,5 @@
+import { loadTemplate } from "./utils.js";
+
 const checkNarrowScreen = () => {
   // Add the narrow class if the screen width is narrow
   if (document.getElementById("header").clientWidth < 640) {
@@ -50,9 +52,13 @@ const saveOptions = async () => {
   setTimeout(() => status.textContent = "", 1000);
 };
 
-const initialize = () => {
+const initialize = async () => {
   // Check if the screen is narrow  
   checkNarrowScreen();
+
+  // Load the language code template
+  const languageCodeTemplate = await loadTemplate("languageCodeTemplate");
+  document.getElementById("languageCodeContainer").appendChild(languageCodeTemplate);
 
   // Set the text direction of the body
   document.body.setAttribute("dir", chrome.i18n.getMessage("@@bidi_dir"));

@@ -1,5 +1,7 @@
 /* globals DOMPurify, Readability, marked */
 
+import { loadTemplate } from "./utils.js";
+
 let contentIndex = 0;
 
 const checkNarrowScreen = () => {
@@ -304,6 +306,10 @@ const initialize = async () => {
 
   // Disable links when converting from Markdown to HTML
   marked.use({ renderer: { link: ({ text }) => text } });
+
+  // Load the language code template
+  const languageCodeTemplate = await loadTemplate("languageCodeTemplate");
+  document.getElementById("languageCodeContainer").appendChild(languageCodeTemplate);
 
   // Set the text direction of the body
   document.body.setAttribute("dir", chrome.i18n.getMessage("@@bidi_dir"));

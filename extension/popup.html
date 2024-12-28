@@ -52,24 +52,7 @@
       </optgroup>
     </select>
 
-    <select id="languageCode">
-      <option value="en">English</option>
-      <option value="de">Deutsch</option>
-      <option value="es">Español</option>
-      <option value="fr">Français</option>
-      <option value="it">Italiano</option>
-      <option value="pt_br">Português - Brasil</option>
-      <option value="vi">Tiếng Việt</option>
-      <option value="ru">Русский</option>
-      <option value="ar">العربية</option>
-      <option value="hi">हिन्दी</option>
-      <option value="bn">বাংলা</option>
-      <option value="zh_cn">中文 - 简体</option>
-      <option value="zh_tw">中文 - 繁體</option>
-      <option value="ja">日本語</option>
-      <option value="ko">한국어</option>
-    </select>
-
+    <span id="languageCodeContainer"></span>
     <button id="run" data-i18n="popup_button_run">Run it again</button>
   </div>
 
@@ -80,7 +63,7 @@
 
   <script src="lib/marked.umd.min.js"></script>
   <script src="lib/purify.min.js"></script>
-  <script src="popup.js"></script>
+  <script type="module" src="popup.js"></script>
 </body>
 
 </html>
