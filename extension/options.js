@@ -1,13 +1,4 @@
-import { loadTemplate } from "./utils.js";
-
-const checkNarrowScreen = () => {
-  // Add the narrow class if the screen width is narrow
-  if (document.getElementById("header").clientWidth < 640) {
-    document.body.classList.add("narrow");
-  } else {
-    document.body.classList.remove("narrow");
-  }
-};
+import { adjustLayoutForScreenSize, loadTemplate } from "./utils.js";
 
 const restoreOptions = async () => {
   const options = await chrome.storage.local.get({
@@ -54,7 +45,7 @@ const saveOptions = async () => {
 
 const initialize = async () => {
   // Check if the screen is narrow  
-  checkNarrowScreen();
+  adjustLayoutForScreenSize();
 
   // Load the language code template
   const languageCodeTemplate = await loadTemplate("languageCodeTemplate");
@@ -73,4 +64,4 @@ const initialize = async () => {
 
 document.addEventListener("DOMContentLoaded", initialize);
 document.getElementById("save").addEventListener("click", saveOptions);
-window.addEventListener("resize", checkNarrowScreen);
+window.addEventListener("resize", adjustLayoutForScreenSize);

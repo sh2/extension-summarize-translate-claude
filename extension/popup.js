@@ -1,17 +1,8 @@
 /* globals DOMPurify, Readability, marked */
 
-import { loadTemplate } from "./utils.js";
+import { adjustLayoutForScreenSize, loadTemplate } from "./utils.js";
 
 let contentIndex = 0;
-
-const checkNarrowScreen = () => {
-  // Add the narrow class if the screen width is narrow
-  if (document.getElementById("header").clientWidth < 640) {
-    document.body.classList.add("narrow");
-  } else {
-    document.body.classList.remove("narrow");
-  }
-};
 
 const getSelectedText = () => {
   // Return the selected text
@@ -301,11 +292,11 @@ const main = async (useCache) => {
 };
 
 const initialize = async () => {
-  // Check if the screen is narrow
-  checkNarrowScreen();
-
   // Disable links when converting from Markdown to HTML
   marked.use({ renderer: { link: ({ text }) => text } });
+
+  // Check if the screen is narrow
+  adjustLayoutForScreenSize();
 
   // Load the language code template
   const languageCodeTemplate = await loadTemplate("languageCodeTemplate");
@@ -350,4 +341,4 @@ document.getElementById("options").addEventListener("click", () => {
   });
 });
 
-window.addEventListener("resize", checkNarrowScreen);
+window.addEventListener("resize", adjustLayoutForScreenSize);
