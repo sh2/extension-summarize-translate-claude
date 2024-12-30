@@ -280,6 +280,7 @@ const main = async (useCache) => {
     // Save the content to the session storage
     await chrome.storage.session.set({
       [`r_${resultIndex}`]: {
+        requestMediaType: response.requestMediaType,
         requestSystemPrompt: response.requestSystemPrompt,
         requestApiContent: response.requestApiContent,
         responseContent: content

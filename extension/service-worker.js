@@ -229,6 +229,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       const response = await generateContent(apiKey, modelId, maxOutputTokens, systemPrompt, apiContents);
 
       // Add the system prompt and the user input to the response
+      response.requestMediaType = mediaType;
       response.requestSystemPrompt = systemPrompt;
       response.requestApiContent = apiContents[0];
 

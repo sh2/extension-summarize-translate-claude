@@ -63,7 +63,7 @@ const askQuestion = async () => {
   // Generate the response
   const { apiKey } = await chrome.storage.local.get({ apiKey: "" });
   const languageModel = document.getElementById("languageModel").value;
-  const modelId = getModelId(languageModel);
+  const modelId = getModelId(languageModel, result.requestMediaType);
   const maxOutputTokens = getMaxOutputTokens(modelId);
   const response = await generateContent(apiKey, modelId, maxOutputTokens, result.requestSystemPrompt, apiContents);
   console.log(response);
