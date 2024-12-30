@@ -73,6 +73,18 @@ export const getModelId = (languageModel, mediaType) => {
   }
 };
 
+export const getMaxOutputTokens = (modelId) => {
+  const maxOutputTokens = {
+    "claude-3-5-sonnet-latest": 8192,
+    "claude-3-5-haiku-latest": 8192,
+    "claude-3-opus-latest": 4096,
+    "claude-3-sonnet-20240229": 4096,
+    "claude-3-haiku-20240307": 4096
+  };
+
+  return maxOutputTokens[modelId];
+};
+
 export const generateContent = async (apiKey, modelId, maxOutputTokens, systemPrompt, apiContents) => {
   try {
     const response = await fetch("https://api.anthropic.com/v1/messages", {

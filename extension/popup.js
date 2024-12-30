@@ -198,8 +198,7 @@ const main = async (useCache) => {
     if (mediaType === "image") {
       // If the task input is an image, do not split it
       taskInputChunks = [taskInput];
-    }
-    else {
+    } else {
       taskInputChunks = await chrome.runtime.sendMessage({
         message: "chunk",
         actionType: actionType,
@@ -312,7 +311,7 @@ const initialize = async () => {
     element.textContent = chrome.i18n.getMessage(element.getAttribute("data-i18n"));
   });
 
-  // Restore the language code from the local storage
+  // Restore the language model and language code from the local storage
   const { languageModel, languageCode } = await chrome.storage.local.get({ languageModel: "3-haiku", languageCode: "en" });
   document.getElementById("languageModel").value = languageModel;
   document.getElementById("languageCode").value = languageCode;

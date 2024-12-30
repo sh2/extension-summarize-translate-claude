@@ -1,6 +1,6 @@
-import { getModelId, generateContent } from "./utils.js";
+import { getModelId, getMaxOutputTokens, generateContent } from "./utils.js";
 
-const getSystemPrompt = async (actionType, mediaType, languageCode, taskInuptLength) => {
+const getSystemPrompt = async (actionType, mediaType, languageCode, taskInputLength) => {
   const languageNames = {
     en: "English",
     de: "German",
@@ -19,7 +19,7 @@ const getSystemPrompt = async (actionType, mediaType, languageCode, taskInuptLen
     ko: "Korean"
   };
 
-  const numItems = Math.min(10, 3 + Math.floor(taskInuptLength / 2000));
+  const numItems = Math.min(10, 3 + Math.floor(taskInputLength / 2000));
   let systemPrompt = "";
 
   if (actionType === "summarize") {
@@ -136,18 +136,6 @@ const getCharacterLimit = (modelId, actionType) => {
   };
 
   return characterLimits[modelId][actionType];
-};
-
-const getMaxOutputTokens = (modelId) => {
-  const maxOutputTokens = {
-    "claude-3-5-sonnet-latest": 8192,
-    "claude-3-5-haiku-latest": 8192,
-    "claude-3-opus-latest": 4096,
-    "claude-3-sonnet-20240229": 4096,
-    "claude-3-haiku-20240307": 4096
-  };
-
-  return maxOutputTokens[modelId];
 };
 
 const chunkText = (text, chunkSize) => {
