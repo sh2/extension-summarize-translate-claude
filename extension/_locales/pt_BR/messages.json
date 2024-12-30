@@ -3,13 +3,13 @@
         "message": "Resumir e Traduzir com Claude"
     },
     "extension_description": {
-        "message": "Resuma e traduza páginas da web. Utiliza Claude como backend."
+        "message": "Resuma e traduza páginas da web. Usa Claude como backend."
     },
     "popup_button_run": {
         "message": "Executar novamente"
     },
     "popup_button_results": {
-        "message": "Abrir resultados em uma nova guia"
+        "message": "Abrir resultados em uma nova aba"
     },
     "popup_button_options": {
         "message": "Abrir página de opções"
@@ -36,7 +36,7 @@
         "message": "Processando"
     },
     "popup_unexpected_response": {
-        "message": "Ocorreu um erro desconhecido. Verifique o log do console."
+        "message": "Ocorreu um erro desconhecido. Por favor, verifique o log do console."
     },
     "popup_miscellaneous_error": {
         "message": "Esta página não pode ser resumida ou traduzida."
@@ -44,11 +44,23 @@
     "results_title": {
         "message": "Resultados - Resumir e Traduzir com Claude"
     },
+    "results_button_clear": {
+        "message": "Limpar conversa"
+    },
     "results_button_copy": {
         "message": "Copiar"
     },
     "results_copied": {
         "message": "Copiado."
+    },
+    "results_button_send": {
+        "message": "Enviar"
+    },
+    "results_waiting_response": {
+        "message": "Aguardando uma resposta"
+    },
+    "results_unexpected_response": {
+        "message": "Ocorreu um erro desconhecido. Por favor, verifique o log do console."
     },
     "options_title": {
         "message": "Opções - Resumir e Traduzir com Claude"
@@ -57,7 +69,7 @@
         "message": "Chave de API Anthropic"
     },
     "options_apikey_hint": {
-        "message": "Você pode obter uma chave de API Anthropic na seguinte página."
+        "message": "Você pode obter uma chave de API Anthropic na página seguinte."
     },
     "options_model": {
         "message": "Modelo de Linguagem"
@@ -66,10 +78,10 @@
         "message": "Resumir em / Traduzir para"
     },
     "options_language_notes": {
-        "message": "A configuração de idioma é ignorada em ações personalizadas."
+        "message": "A configuração de idioma é desconsiderada em ações personalizadas."
     },
     "options_no_text_action": {
-        "message": "Quando nenhum texto é selecionado, execute a seguinte ação"
+        "message": "Quando nenhum texto é selecionado, realize a seguinte ação"
     },
     "options_no_text_summarize": {
         "message": "Resumir (padrão)"
@@ -81,7 +93,7 @@
         "message": "Ação personalizada"
     },
     "options_text_action": {
-        "message": "Quando o texto é selecionado, execute a seguinte ação"
+        "message": "Quando o texto é selecionado, realize a seguinte ação"
     },
     "options_text_summarize": {
         "message": "Resumir"

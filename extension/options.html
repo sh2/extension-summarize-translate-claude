@@ -45,39 +45,13 @@
   <p>
     <label for="languageModel" data-i18n="options_model">Language Model</label>
     <br>
-    <select id="languageModel">
-      <optgroup label="Claude 3.5">
-        <option value="3.5-sonnet">Claude 3.5 Sonnet</option>
-        <option value="3.5-haiku">Claude 3.5 Haiku</option>
-      </optgroup>
-      <optgroup label="Claude 3">
-        <option value="3-opus">Claude 3 Opus</option>
-        <option value="3-sonnet">Claude 3 Sonnet</option>
-        <option value="3-haiku">Claude 3 Haiku</option>
-      </optgroup>
-    </select>
+    <span id="languageModelContainer"></span>
   </p>
 
   <p>
     <label for="languageCode" data-i18n="options_language">Summarize in / Translate to</label>
     <br>
-    <select id="languageCode">
-      <option value="en">English</option>
-      <option value="de">Deutsch</option>
-      <option value="es">Español</option>
-      <option value="fr">Français</option>
-      <option value="it">Italiano</option>
-      <option value="pt_br">Português - Brasil</option>
-      <option value="vi">Tiếng Việt</option>
-      <option value="ru">Русский</option>
-      <option value="ar">العربية</option>
-      <option value="hi">हिन्दी</option>
-      <option value="bn">বাংলা</option>
-      <option value="zh_cn">中文 - 简体</option>
-      <option value="zh_tw">中文 - 繁體</option>
-      <option value="ja">日本語</option>
-      <option value="ko">한국어</option>
-    </select>
+    <span id="languageCodeContainer"></span>
     <br>
     <small>
       <span data-i18n="options_language_notes">The language setting is disregarded in custom actions.</span>
@@ -118,10 +92,10 @@
 
   <p>
     <button id="save" data-i18n="options_button_save">Save options</button>
-    <span id="status"></span>
+    <span id="status" style="color: gray;"></span>
   </p>
 
-  <script src="options.js"></script>
+  <script type="module" src="options.js"></script>
 </body>
 
 </html>

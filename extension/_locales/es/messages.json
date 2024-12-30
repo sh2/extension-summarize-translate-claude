@@ -3,10 +3,10 @@
         "message": "Resumir y Traducir con Claude"
     },
     "extension_description": {
-        "message": "Resumir y traducir páginas web. Utiliza Claude como backend."
+        "message": "Resume y traduce páginas web. Utiliza Claude como backend."
     },
     "popup_button_run": {
-        "message": "Ejecutarlo de nuevo"
+        "message": "Ejecutar de nuevo"
     },
     "popup_button_results": {
         "message": "Abrir resultados en una nueva pestaña"
@@ -36,19 +36,31 @@
         "message": "Procesando"
     },
     "popup_unexpected_response": {
-        "message": "Se produjo un error desconocido. Por favor, revise el registro de la consola."
+        "message": "Ocurrió un error desconocido. Por favor, revise el registro de la consola."
     },
     "popup_miscellaneous_error": {
-        "message": "Esta página no se puede resumir o traducir."
+        "message": "Esta página no puede ser resumida o traducida."
     },
     "results_title": {
         "message": "Resultados - Resumir y Traducir con Claude"
+    },
+    "results_button_clear": {
+        "message": "Limpiar conversación"
     },
     "results_button_copy": {
         "message": "Copiar"
     },
     "results_copied": {
         "message": "Copiado."
+    },
+    "results_button_send": {
+        "message": "Enviar"
+    },
+    "results_waiting_response": {
+        "message": "Esperando una respuesta"
+    },
+    "results_unexpected_response": {
+        "message": "Ocurrió un error desconocido. Por favor, revise el registro de la consola."
     },
     "options_title": {
         "message": "Opciones - Resumir y Traducir con Claude"
@@ -60,16 +72,16 @@
         "message": "Puede obtener una clave de API de Anthropic en la siguiente página."
     },
     "options_model": {
-        "message": "Modelo de lenguaje"
+        "message": "Modelo de Lenguaje"
     },
     "options_language": {
         "message": "Resumir en / Traducir a"
     },
     "options_language_notes": {
-        "message": "La configuración del idioma se ignora en las acciones personalizadas."
+        "message": "La configuración de idioma se ignora en las acciones personalizadas."
     },
     "options_no_text_action": {
-        "message": "Cuando no se selecciona ningún texto, realice la siguiente acción"
+        "message": "Cuando no se selecciona texto, realizar la siguiente acción"
     },
     "options_no_text_summarize": {
         "message": "Resumir (predeterminado)"
@@ -81,7 +93,7 @@
         "message": "Acción personalizada"
     },
     "options_text_action": {
-        "message": "Cuando se selecciona texto, realice la siguiente acción"
+        "message": "Cuando se selecciona texto, realizar la siguiente acción"
     },
     "options_text_summarize": {
         "message": "Resumir"

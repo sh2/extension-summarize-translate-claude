@@ -1,21 +1,6 @@
-const getModelId = (languageModel, mediaType) => {
-  const modelMappings = {
-    "3.5-sonnet": "claude-3-5-sonnet-latest",
-    "3.5-haiku": "claude-3-5-haiku-latest",
-    "3-opus": "claude-3-opus-latest",
-    "3-sonnet": "claude-3-sonnet-20240229",
-    "3-haiku": "claude-3-haiku-20240307",
-  };
+import { getModelId, getMaxOutputTokens, generateContent } from "./utils.js";
 
-  if (languageModel === "3.5-haiku" && mediaType === "image") {
-    // Since Claude 3.5 Haiku does not support images, use Claude 3 Haiku instead.
-    return "claude-3-haiku-20240307";
-  } else {
-    return modelMappings[languageModel];
-  }
-};
-
-const getSystemPrompt = async (actionType, mediaType, languageCode, taskInuptLength) => {
+const getSystemPrompt = async (actionType, mediaType, languageCode, taskInputLength) => {
   const languageNames = {
     en: "English",
     de: "German",
@@ -34,7 +19,7 @@ const getSystemPrompt = async (actionType, mediaType, languageCode, taskInuptLen
     ko: "Korean"
   };
 
-  const numItems = Math.min(10, 3 + Math.floor(taskInuptLength / 2000));
+  const numItems = Math.min(10, 3 + Math.floor(taskInputLength / 2000));
   let systemPrompt = "";
 
   if (actionType === "summarize") {
@@ -185,14 +170,6 @@ const chunkText = (text, chunkSize) => {
   return chunks;
 };
 
-const tryJsonParse = (text) => {
-  try {
-    return JSON.parse(text);
-  } catch {
-    return { error: { message: text } };
-  }
-};
-
 chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   (async () => {
     if (request.message === "chunk") {
@@ -208,6 +185,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       const { actionType, mediaType, taskInput, languageModel, languageCode } = request;
       const { apiKey } = await chrome.storage.local.get({ apiKey: "" });
       const modelId = getModelId(languageModel, mediaType);
+      const maxOutputTokens = getMaxOutputTokens(modelId);
 
       const systemPrompt = await getSystemPrompt(
         actionType,
@@ -217,13 +195,13 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       );
 
       const prefill = getPrefill(actionType, languageCode);
-      let messages = [];
+      let apiContents = [];
 
       if (mediaType === "image") {
         const [mediaInfo, mediaData] = taskInput.split(",");
         const mediaType = mediaInfo.split(":")[1].split(";")[0];
 
-        messages.push({
+        apiContents.push({
           role: "user",
           content: [
             {
@@ -241,49 +219,25 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
           ]
         });
       } else {
-        messages.push({ role: "user", content: `Text: ${taskInput}` });
+        apiContents.push({ role: "user", content: `Text: ${taskInput}` });
       }
 
       if (prefill) {
-        messages.push({ role: "assistant", content: prefill });
+        apiContents.push({ role: "assistant", content: prefill });
       }
 
-      try {
-        const response = await fetch("https://api.anthropic.com/v1/messages", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "anthropic-version": "2023-06-01",
-            "x-api-key": apiKey,
-            "anthropic-dangerous-direct-browser-access": "true"
-          },
-          body: JSON.stringify({
-            model: modelId,
-            max_tokens: 4096,
-            system: systemPrompt,
-            messages: messages
-          })
-        });
+      const response = await generateContent(apiKey, modelId, maxOutputTokens, systemPrompt, apiContents);
 
-        const responseData = {
-          ok: response.ok,
-          status: response.status,
-          body: tryJsonParse(await response.text())
-        };
+      // Add the system prompt and the user input to the response
+      response.requestSystemPrompt = systemPrompt;
+      response.requestApiContent = apiContents[0];
 
-        if (response.ok) {
-          const taskData = JSON.stringify({ actionType, mediaType, taskInput, languageModel, languageCode });
-          await chrome.storage.session.set({ taskCache: taskData, responseCache: responseData });
-        }
-
-        sendResponse(responseData);
-      } catch (error) {
-        sendResponse({
-          ok: false,
-          status: 1000,
-          body: { error: { message: error.stack } }
-        });
+      if (response.ok) {
+        const responseCacheKey = JSON.stringify({ actionType, mediaType, taskInput, languageModel, languageCode });
+        await chrome.storage.session.set({ responseCacheKey: responseCacheKey, responseCache: response });
       }
+
+      sendResponse(response);
     }
   })();
 
