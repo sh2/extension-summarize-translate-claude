@@ -18,25 +18,25 @@
         "message": "摘要中"
     },
     "popup_summarizing_captions": {
-        "message": "正在摘要字幕"
+        "message": "摘要字幕中"
     },
     "popup_summarizing_image": {
-        "message": "正在摘要圖片"
+        "message": "摘要圖片中"
     },
     "popup_translating": {
         "message": "翻譯中"
     },
     "popup_translating_captions": {
-        "message": "正在翻譯字幕"
+        "message": "翻譯字幕中"
     },
     "popup_translating_image": {
-        "message": "正在翻譯圖片"
+        "message": "翻譯圖片中"
     },
     "popup_processing": {
         "message": "處理中"
     },
     "popup_unexpected_response": {
-        "message": "發生不明錯誤。請檢查主控台日誌。"
+        "message": "發生未知錯誤。請檢查控制台日誌。"
     },
     "popup_miscellaneous_error": {
         "message": "此頁面無法摘要或翻譯。"
@@ -60,7 +60,7 @@
         "message": "等待回應"
     },
     "results_unexpected_response": {
-        "message": "發生不明錯誤。請檢查主控台日誌。"
+        "message": "發生未知錯誤。請檢查控制台日誌。"
     },
     "options_title": {
         "message": "選項 - 使用 Claude 進行摘要與翻譯"
@@ -69,7 +69,7 @@
         "message": "Anthropic API 金鑰"
     },
     "options_apikey_hint": {
-        "message": "您可以在以下頁面取得 Anthropic API 金鑰。"
+        "message": "您可以在以下頁面獲取 Anthropic API 金鑰。"
     },
     "options_model": {
         "message": "語言模型"
@@ -77,8 +77,11 @@
     "options_language": {
         "message": "摘要為 / 翻譯為"
     },
+    "options_language_user": {
+        "message": "使用者指定的語言"
+    },
     "options_language_notes": {
-        "message": "語言設定在自訂動作中會被忽略。"
+        "message": "語言設定在自訂動作中將被忽略。"
     },
     "options_no_text_action": {
         "message": "當未選取文字時，執行以下動作"

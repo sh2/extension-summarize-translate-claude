@@ -39,13 +39,13 @@
         "message": "Ocurrió un error desconocido. Por favor, revise el registro de la consola."
     },
     "popup_miscellaneous_error": {
-        "message": "Esta página no puede ser resumida o traducida."
+        "message": "Esta página no puede ser resumida ni traducida."
     },
     "results_title": {
         "message": "Resultados - Resumir y Traducir con Claude"
     },
     "results_button_clear": {
-        "message": "Limpiar conversación"
+        "message": "Borrar conversación"
     },
     "results_button_copy": {
         "message": "Copiar"
@@ -76,6 +76,9 @@
     },
     "options_language": {
         "message": "Resumir en / Traducir a"
+    },
+    "options_language_user": {
+        "message": "Idioma especificado por el usuario"
     },
     "options_language_notes": {
         "message": "La configuración de idioma se ignora en las acciones personalizadas."

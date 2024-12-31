@@ -36,7 +36,7 @@
         "message": "Traitement en cours"
     },
     "popup_unexpected_response": {
-        "message": "Une erreur inconnue s'est produite. Veuillez consulter le journal de la console."
+        "message": "Une erreur inconnue s'est produite. Veuillez vérifier le journal de la console."
     },
     "popup_miscellaneous_error": {
         "message": "Cette page ne peut pas être résumée ou traduite."
@@ -60,7 +60,7 @@
         "message": "En attente d'une réponse"
     },
     "results_unexpected_response": {
-        "message": "Une erreur inconnue s'est produite. Veuillez consulter le journal de la console."
+        "message": "Une erreur inconnue s'est produite. Veuillez vérifier le journal de la console."
     },
     "options_title": {
         "message": "Options - Résumer et traduire avec Claude"
@@ -76,6 +76,9 @@
     },
     "options_language": {
         "message": "Résumer en / Traduire vers"
+    },
+    "options_language_user": {
+        "message": "Langue spécifiée par l'utilisateur"
     },
     "options_language_notes": {
         "message": "Le paramètre de langue n'est pas pris en compte dans les actions personnalisées."

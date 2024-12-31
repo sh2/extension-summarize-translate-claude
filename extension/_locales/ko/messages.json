@@ -77,11 +77,14 @@
     "options_language": {
         "message": "요약/번역할 언어"
     },
+    "options_language_user": {
+        "message": "사용자 지정 언어"
+    },
     "options_language_notes": {
         "message": "사용자 지정 작업에서는 언어 설정이 무시됩니다."
     },
     "options_no_text_action": {
-        "message": "텍스트를 선택하지 않았을 때 다음 작업 수행"
+        "message": "텍스트가 선택되지 않은 경우 다음 작업 수행"
     },
     "options_no_text_summarize": {
         "message": "요약 (기본값)"
@@ -93,7 +96,7 @@
         "message": "사용자 지정 작업"
     },
     "options_text_action": {
-        "message": "텍스트를 선택했을 때 다음 작업 수행"
+        "message": "텍스트가 선택된 경우 다음 작업 수행"
     },
     "options_text_summarize": {
         "message": "요약"

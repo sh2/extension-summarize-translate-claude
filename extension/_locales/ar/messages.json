@@ -75,7 +75,10 @@
         "message": "نموذج اللغة"
     },
     "options_language": {
-        "message": "التلخيص بـ / الترجمة إلى"
+        "message": "تلخيص إلى / ترجمة إلى"
+    },
+    "options_language_user": {
+        "message": "اللغة المحددة من قبل المستخدم"
     },
     "options_language_notes": {
         "message": "يتم تجاهل إعداد اللغة في الإجراءات المخصصة."

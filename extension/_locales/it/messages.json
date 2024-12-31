@@ -77,6 +77,9 @@
     "options_language": {
         "message": "Riassumi in / Traduci in"
     },
+    "options_language_user": {
+        "message": "Lingua specificata dall'utente"
+    },
     "options_language_notes": {
         "message": "L'impostazione della lingua viene ignorata nelle azioni personalizzate."
     },
