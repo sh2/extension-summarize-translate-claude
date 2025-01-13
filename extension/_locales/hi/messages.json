@@ -9,7 +9,7 @@
         "message": "इसे फिर से चलाएँ"
     },
     "popup_button_results": {
-        "message": "परिणाम एक नए टैब में खोलें"
+        "message": "परिणामों को एक नए टैब में खोलें"
     },
     "popup_button_options": {
         "message": "विकल्प पृष्ठ खोलें"
@@ -45,7 +45,7 @@
         "message": "परिणाम - Claude के साथ संक्षेप और अनुवाद करें"
     },
     "results_button_clear": {
-        "message": "वार्तालाप साफ़ करें"
+        "message": "बातचीत साफ़ करें"
     },
     "results_button_copy": {
         "message": "कॉपी करें"
@@ -84,7 +84,7 @@
         "message": "कस्टम क्रियाओं में भाषा सेटिंग को अनदेखा किया जाता है।"
     },
     "options_no_text_action": {
-        "message": "जब कोई टेक्स्ट चयनित नहीं है, तो निम्नलिखित क्रिया करें"
+        "message": "जब कोई पाठ चयनित नहीं है, तो निम्नलिखित क्रिया करें"
     },
     "options_no_text_summarize": {
         "message": "संक्षेप करें (डिफ़ॉल्ट)"
@@ -96,7 +96,7 @@
         "message": "कस्टम क्रिया"
     },
     "options_text_action": {
-        "message": "जब टेक्स्ट चयनित है, तो निम्नलिखित क्रिया करें"
+        "message": "जब पाठ चयनित है, तो निम्नलिखित क्रिया करें"
     },
     "options_text_summarize": {
         "message": "संक्षेप करें"
@@ -106,6 +106,9 @@
     },
     "options_text_custom": {
         "message": "कस्टम क्रिया"
+    },
+    "options_theme": {
+        "message": "थीम"
     },
     "options_button_save": {
         "message": "विकल्प सहेजें"

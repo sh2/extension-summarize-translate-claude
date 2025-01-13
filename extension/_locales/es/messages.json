@@ -3,7 +3,7 @@
         "message": "Resumir y Traducir con Claude"
     },
     "extension_description": {
-        "message": "Resume y traduce páginas web. Utiliza Claude como backend."
+        "message": "Resuma y traduzca páginas web. Utiliza Claude como backend."
     },
     "popup_button_run": {
         "message": "Ejecutar de nuevo"
@@ -81,7 +81,7 @@
         "message": "Idioma especificado por el usuario"
     },
     "options_language_notes": {
-        "message": "La configuración de idioma se ignora en las acciones personalizadas."
+        "message": "La configuración de idioma se ignora en acciones personalizadas."
     },
     "options_no_text_action": {
         "message": "Cuando no se selecciona texto, realizar la siguiente acción"
@@ -106,6 +106,9 @@
     },
     "options_text_custom": {
         "message": "Acción personalizada"
+    },
+    "options_theme": {
+        "message": "Tema"
     },
     "options_button_save": {
         "message": "Guardar opciones"

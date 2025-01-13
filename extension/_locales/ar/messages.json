@@ -75,7 +75,7 @@
         "message": "نموذج اللغة"
     },
     "options_language": {
-        "message": "تلخيص إلى / ترجمة إلى"
+        "message": "تلخيص بـ / ترجمة إلى"
     },
     "options_language_user": {
         "message": "اللغة المحددة من قبل المستخدم"
@@ -84,7 +84,7 @@
         "message": "يتم تجاهل إعداد اللغة في الإجراءات المخصصة."
     },
     "options_no_text_action": {
-        "message": "عند عدم تحديد أي نص، قم بالإجراء التالي"
+        "message": "عند عدم تحديد نص، قم بالإجراء التالي"
     },
     "options_no_text_summarize": {
         "message": "تلخيص (افتراضي)"
@@ -106,6 +106,9 @@
     },
     "options_text_custom": {
         "message": "إجراء مخصص"
+    },
+    "options_theme": {
+        "message": "السمة"
     },
     "options_button_save": {
         "message": "حفظ الخيارات"

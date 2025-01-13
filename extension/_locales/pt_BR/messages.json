@@ -3,7 +3,7 @@
         "message": "Resumir e Traduzir com Claude"
     },
     "extension_description": {
-        "message": "Resuma e traduza páginas da web. Usa Claude como backend."
+        "message": "Resuma e traduza páginas da web. Utiliza Claude como backend."
     },
     "popup_button_run": {
         "message": "Executar novamente"
@@ -69,7 +69,7 @@
         "message": "Chave de API Anthropic"
     },
     "options_apikey_hint": {
-        "message": "Você pode obter uma chave de API Anthropic na página seguinte."
+        "message": "Você pode obter uma chave de API Anthropic na seguinte página."
     },
     "options_model": {
         "message": "Modelo de Linguagem"
@@ -84,7 +84,7 @@
         "message": "A configuração de idioma é desconsiderada em ações personalizadas."
     },
     "options_no_text_action": {
-        "message": "Quando nenhum texto é selecionado, execute a seguinte ação"
+        "message": "Quando nenhum texto é selecionado, realize a seguinte ação"
     },
     "options_no_text_summarize": {
         "message": "Resumir (padrão)"
@@ -96,7 +96,7 @@
         "message": "Ação personalizada"
     },
     "options_text_action": {
-        "message": "Quando o texto é selecionado, execute a seguinte ação"
+        "message": "Quando o texto é selecionado, realize a seguinte ação"
     },
     "options_text_summarize": {
         "message": "Resumir"
@@ -106,6 +106,9 @@
     },
     "options_text_custom": {
         "message": "Ação personalizada"
+    },
+    "options_theme": {
+        "message": "Tema"
     },
     "options_button_save": {
         "message": "Salvar opções"

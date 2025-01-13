@@ -81,7 +81,7 @@
         "message": "Langue spécifiée par l'utilisateur"
     },
     "options_language_notes": {
-        "message": "Le paramètre de langue n'est pas pris en compte dans les actions personnalisées."
+        "message": "Le paramètre de langue est ignoré dans les actions personnalisées."
     },
     "options_no_text_action": {
         "message": "Lorsqu'aucun texte n'est sélectionné, effectuer l'action suivante"
@@ -106,6 +106,9 @@
     },
     "options_text_custom": {
         "message": "Action personnalisée"
+    },
+    "options_theme": {
+        "message": "Thème"
     },
     "options_button_save": {
         "message": "Enregistrer les options"

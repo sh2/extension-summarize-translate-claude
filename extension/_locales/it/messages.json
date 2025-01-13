@@ -72,7 +72,7 @@
         "message": "È possibile ottenere una chiave API Anthropic alla seguente pagina."
     },
     "options_model": {
-        "message": "Modello linguistico"
+        "message": "Modello Linguistico"
     },
     "options_language": {
         "message": "Riassumi in / Traduci in"
@@ -106,6 +106,9 @@
     },
     "options_text_custom": {
         "message": "Azione personalizzata"
+    },
+    "options_theme": {
+        "message": "Tema"
     },
     "options_button_save": {
         "message": "Salva opzioni"

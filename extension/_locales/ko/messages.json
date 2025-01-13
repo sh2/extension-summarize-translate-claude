@@ -107,6 +107,9 @@
     "options_text_custom": {
         "message": "사용자 지정 작업"
     },
+    "options_theme": {
+        "message": "테마"
+    },
     "options_button_save": {
         "message": "옵션 저장"
     },
