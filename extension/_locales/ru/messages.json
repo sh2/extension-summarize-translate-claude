@@ -1,121 +1,119 @@
-[
-    {
-        "extension_name": {
-            "message": "Суммировать и переводить с Claude"
-        },
-        "extension_description": {
-            "message": "Суммирует и переводит веб-страницы. Использует Claude в качестве бэкенда."
-        },
-        "popup_button_run": {
-            "message": "Запустить снова"
-        },
-        "popup_button_results": {
-            "message": "Открыть результаты в новой вкладке"
-        },
-        "popup_button_options": {
-            "message": "Открыть страницу настроек"
-        },
-        "popup_summarizing": {
-            "message": "Суммирование"
-        },
-        "popup_summarizing_captions": {
-            "message": "Суммирование подписей"
-        },
-        "popup_summarizing_image": {
-            "message": "Суммирование изображения"
-        },
-        "popup_translating": {
-            "message": "Перевод"
-        },
-        "popup_translating_captions": {
-            "message": "Перевод подписей"
-        },
-        "popup_translating_image": {
-            "message": "Перевод изображения"
-        },
-        "popup_processing": {
-            "message": "Обработка"
-        },
-        "popup_unexpected_response": {
-            "message": "Произошла неизвестная ошибка. Пожалуйста, проверьте журнал консоли."
-        },
-        "popup_miscellaneous_error": {
-            "message": "Эту страницу невозможно суммировать или перевести."
-        },
-        "results_title": {
-            "message": "Результаты - Суммировать и переводить с Claude"
-        },
-        "results_button_clear": {
-            "message": "Очистить разговор"
-        },
-        "results_button_copy": {
-            "message": "Копировать"
-        },
-        "results_copied": {
-            "message": "Скопировано."
-        },
-        "results_button_send": {
-            "message": "Отправить"
-        },
-        "results_waiting_response": {
-            "message": "Ожидание ответа"
-        },
-        "results_unexpected_response": {
-            "message": "Произошла неизвестная ошибка. Пожалуйста, проверьте журнал консоли."
-        },
-        "options_title": {
-            "message": "Настройки - Суммировать и переводить с Claude"
-        },
-        "options_apikey": {
-            "message": "Anthropic API Key"
-        },
-        "options_apikey_hint": {
-            "message": "Вы можете получить Anthropic API Key на следующей странице."
-        },
-        "options_model": {
-            "message": "Языковая модель"
-        },
-        "options_language": {
-            "message": "Суммировать на / Перевести на"
-        },
-        "options_language_user": {
-            "message": "Язык, указанный пользователем"
-        },
-        "options_language_notes": {
-            "message": "Настройка языка игнорируется в пользовательских действиях."
-        },
-        "options_no_text_action": {
-            "message": "Когда текст не выбран, выполнить следующее действие"
-        },
-        "options_no_text_summarize": {
-            "message": "Суммировать (по умолчанию)"
-        },
-        "options_no_text_translate": {
-            "message": "Перевести"
-        },
-        "options_no_text_custom": {
-            "message": "Пользовательское действие"
-        },
-        "options_text_action": {
-            "message": "Когда текст выбран, выполнить следующее действие"
-        },
-        "options_text_summarize": {
-            "message": "Суммировать"
-        },
-        "options_text_translate": {
-            "message": "Перевести (по умолчанию)"
-        },
-        "options_text_custom": {
-            "message": "Пользовательское действие"
-        },
-        "options_theme": {
-            "message": "Тема"
-        },
-        "options_button_save": {
-            "message": "Сохранить настройки"
-        },
-        "options_saved": {
-            "message": "Сохранено."
-        }
+{
+    "extension_name": {
+        "message": "Суммировать и переводить с Claude"
+    },
+    "extension_description": {
+        "message": "Суммирует и переводит веб-страницы. Использует Claude в качестве бэкенда."
+    },
+    "popup_button_run": {
+        "message": "Запустить снова"
+    },
+    "popup_button_results": {
+        "message": "Открыть результаты в новой вкладке"
+    },
+    "popup_button_options": {
+        "message": "Открыть страницу настроек"
+    },
+    "popup_summarizing": {
+        "message": "Суммирование"
+    },
+    "popup_summarizing_captions": {
+        "message": "Суммирование подписей"
+    },
+    "popup_summarizing_image": {
+        "message": "Суммирование изображения"
+    },
+    "popup_translating": {
+        "message": "Перевод"
+    },
+    "popup_translating_captions": {
+        "message": "Перевод подписей"
+    },
+    "popup_translating_image": {
+        "message": "Перевод изображения"
+    },
+    "popup_processing": {
+        "message": "Обработка"
+    },
+    "popup_unexpected_response": {
+        "message": "Произошла неизвестная ошибка. Пожалуйста, проверьте журнал консоли."
+    },
+    "popup_miscellaneous_error": {
+        "message": "Эту страницу невозможно суммировать или перевести."
+    },
+    "results_title": {
+        "message": "Результаты - Суммировать и переводить с Claude"
+    },
+    "results_button_clear": {
+        "message": "Очистить разговор"
+    },
+    "results_button_copy": {
+        "message": "Копировать"
+    },
+    "results_copied": {
+        "message": "Скопировано."
+    },
+    "results_button_send": {
+        "message": "Отправить"
+    },
+    "results_waiting_response": {
+        "message": "Ожидание ответа"
+    },
+    "results_unexpected_response": {
+        "message": "Произошла неизвестная ошибка. Пожалуйста, проверьте журнал консоли."
+    },
+    "options_title": {
+        "message": "Настройки - Суммировать и переводить с Claude"
+    },
+    "options_apikey": {
+        "message": "Anthropic API Key"
+    },
+    "options_apikey_hint": {
+        "message": "Вы можете получить Anthropic API Key на следующей странице."
+    },
+    "options_model": {
+        "message": "Языковая модель"
+    },
+    "options_language": {
+        "message": "Суммировать на / Перевести на"
+    },
+    "options_language_user": {
+        "message": "Язык, указанный пользователем"
+    },
+    "options_language_notes": {
+        "message": "Настройка языка игнорируется в пользовательских действиях."
+    },
+    "options_no_text_action": {
+        "message": "Когда текст не выбран, выполнить следующее действие"
+    },
+    "options_no_text_summarize": {
+        "message": "Суммировать (по умолчанию)"
+    },
+    "options_no_text_translate": {
+        "message": "Перевести"
+    },
+    "options_no_text_custom": {
+        "message": "Пользовательское действие"
+    },
+    "options_text_action": {
+        "message": "Когда текст выбран, выполнить следующее действие"
+    },
+    "options_text_summarize": {
+        "message": "Суммировать"
+    },
+    "options_text_translate": {
+        "message": "Перевести (по умолчанию)"
+    },
+    "options_text_custom": {
+        "message": "Пользовательское действие"
+    },
+    "options_theme": {
+        "message": "Тема"
+    },
+    "options_button_save": {
+        "message": "Сохранить настройки"
+    },
+    "options_saved": {
+        "message": "Сохранено."
     }
-]
+}
