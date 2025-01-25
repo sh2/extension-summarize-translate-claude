@@ -107,6 +107,9 @@
     "options_text_custom": {
         "message": "Ação personalizada"
     },
+    "options_streaming": {
+        "message": "Saída de streaming do modelo de linguagem"
+    },
     "options_theme": {
         "message": "Tema"
     },

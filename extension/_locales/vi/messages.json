@@ -18,7 +18,7 @@
         "message": "Đang tóm tắt"
     },
     "popup_summarizing_captions": {
-        "message": "Đang tóm tắt các chú thích"
+        "message": "Đang tóm tắt chú thích"
     },
     "popup_summarizing_image": {
         "message": "Đang tóm tắt hình ảnh"
@@ -27,7 +27,7 @@
         "message": "Đang dịch"
     },
     "popup_translating_captions": {
-        "message": "Đang dịch các chú thích"
+        "message": "Đang dịch chú thích"
     },
     "popup_translating_image": {
         "message": "Đang dịch hình ảnh"
@@ -75,7 +75,7 @@
         "message": "Mô hình ngôn ngữ"
     },
     "options_language": {
-        "message": "Tóm tắt bằng / Dịch sang"
+        "message": "Tóm tắt thành / Dịch sang"
     },
     "options_language_user": {
         "message": "Ngôn ngữ do người dùng chỉ định"
@@ -106,6 +106,9 @@
     },
     "options_text_custom": {
         "message": "Hành động tùy chỉnh"
+    },
+    "options_streaming": {
+        "message": "Truyền trực tuyến đầu ra từ mô hình ngôn ngữ"
     },
     "options_theme": {
         "message": "Chủ đề"

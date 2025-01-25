@@ -126,3 +126,86 @@ export const generateContent = async (apiKey, modelId, maxOutputTokens, systemPr
     };
   }
 };
+
+export const streamGenerateContent = async (apiKey, modelId, maxOutputTokens, systemPrompt, apiContents) => {
+  try {
+    await chrome.storage.session.remove("streamContent");
+
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "anthropic-version": "2023-06-01",
+        "x-api-key": apiKey,
+        "anthropic-dangerous-direct-browser-access": "true"
+      },
+      body: JSON.stringify({
+        model: modelId,
+        max_tokens: maxOutputTokens,
+        system: systemPrompt,
+        messages: apiContents,
+        stream: true
+      })
+    });
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder("utf-8");
+    let buffer = "";
+    let content = "";
+    let body = {};
+
+    while (true) {
+      const { value, done } = await reader.read();
+
+      if (value) {
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+
+        while (lines.length >= 3) {
+          const event = lines.shift().slice(7);
+          const data = lines.shift().slice(6);
+          lines.shift(); // empty line
+
+          if (event === "message_start") {
+            // Set the first metadata received to body
+            body = JSON.parse(data).message;
+          } else if (event === "message_delta") {
+            // Set the delta of the metadata to body
+            const json = JSON.parse(data);
+            body.stop_reason = json.delta.stop_reason;
+            body.stop_sequence = json.delta.stop_sequence;
+            body.usage.output_tokens = json.usage.output_tokens;
+          } else if (event === "content_block_delta") {
+            // Get the delta of the content and concatenate it
+            const json = JSON.parse(data);
+            content += json.delta.text;
+
+            // Set the stream content to session storage
+            await chrome.storage.session.set({ streamContent: content });
+          }
+        }
+
+        buffer = lines.join("\n");
+      }
+
+      if (done) {
+        break;
+      }
+    }
+
+    // Add the final result of content to body
+    body.content = [{ type: "text", text: content }];
+
+    return {
+      ok: response.ok,
+      status: response.status,
+      body: body
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      status: 1000,
+      body: { error: { message: error.stack } }
+    };
+  }
+};

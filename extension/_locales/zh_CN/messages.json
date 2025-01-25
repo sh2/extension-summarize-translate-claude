@@ -107,6 +107,9 @@
     "options_text_custom": {
         "message": "自定义操作"
     },
+    "options_streaming": {
+        "message": "来自语言模型的流式输出"
+    },
     "options_theme": {
         "message": "主题"
     },

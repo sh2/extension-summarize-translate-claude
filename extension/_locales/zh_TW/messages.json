@@ -81,13 +81,13 @@
         "message": "使用者指定的語言"
     },
     "options_language_notes": {
-        "message": "在自訂動作中，語言設定將被忽略。"
+        "message": "自訂動作中會忽略語言設定。"
     },
     "options_no_text_action": {
         "message": "當未選取文字時，執行以下動作"
     },
     "options_no_text_summarize": {
-        "message": "總結（預設）"
+        "message": "總結 (預設)"
     },
     "options_no_text_translate": {
         "message": "翻譯"
@@ -102,10 +102,13 @@
         "message": "總結"
     },
     "options_text_translate": {
-        "message": "翻譯（預設）"
+        "message": "翻譯 (預設)"
     },
     "options_text_custom": {
         "message": "自訂動作"
+    },
+    "options_streaming": {
+        "message": "來自語言模型的串流輸出"
     },
     "options_theme": {
         "message": "主題"

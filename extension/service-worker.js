@@ -1,4 +1,4 @@
-import { getModelId, getMaxOutputTokens, generateContent } from "./utils.js";
+import { getModelId, getMaxOutputTokens, generateContent, streamGenerateContent } from "./utils.js";
 
 const getSystemPrompt = async (actionType, mediaType, languageCode, taskInputLength) => {
   const languageNames = {
@@ -185,7 +185,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
     } else if (request.message === "generate") {
       // Generate content
       const { actionType, mediaType, taskInput, languageModel, languageCode } = request;
-      const { apiKey } = await chrome.storage.local.get({ apiKey: "" });
+      const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
       const modelId = getModelId(languageModel, mediaType);
       const maxOutputTokens = getMaxOutputTokens(modelId);
 
@@ -198,6 +198,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
 
       const prefill = getPrefill(actionType, languageCode);
       let apiContents = [];
+      let response = null;
 
       if (mediaType === "image") {
         const [mediaInfo, mediaData] = taskInput.split(",");
@@ -228,7 +229,11 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
         apiContents.push({ role: "assistant", content: prefill });
       }
 
-      const response = await generateContent(apiKey, modelId, maxOutputTokens, systemPrompt, apiContents);
+      if (streaming) {
+        response = await streamGenerateContent(apiKey, modelId, maxOutputTokens, systemPrompt, apiContents);
+      } else {
+        response = await generateContent(apiKey, modelId, maxOutputTokens, systemPrompt, apiContents);
+      }
 
       // Add the system prompt and the user input to the response
       response.requestMediaType = mediaType;

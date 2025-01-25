@@ -33,7 +33,7 @@
         "message": "छवि का अनुवाद किया जा रहा है"
     },
     "popup_processing": {
-        "message": "प्रसंस्करण"
+        "message": "प्रसंस्करण किया जा रहा है"
     },
     "popup_unexpected_response": {
         "message": "एक अज्ञात त्रुटि हुई। कृपया कंसोल लॉग की जाँच करें।"
@@ -84,7 +84,7 @@
         "message": "कस्टम क्रियाओं में भाषा सेटिंग को अनदेखा किया जाता है।"
     },
     "options_no_text_action": {
-        "message": "जब कोई पाठ चयनित नहीं है, तो निम्नलिखित क्रिया करें"
+        "message": "जब कोई टेक्स्ट चयनित नहीं है, तो निम्नलिखित क्रिया करें"
     },
     "options_no_text_summarize": {
         "message": "संक्षेप करें (डिफ़ॉल्ट)"
@@ -96,7 +96,7 @@
         "message": "कस्टम क्रिया"
     },
     "options_text_action": {
-        "message": "जब पाठ चयनित है, तो निम्नलिखित क्रिया करें"
+        "message": "जब टेक्स्ट चयनित है, तो निम्नलिखित क्रिया करें"
     },
     "options_text_summarize": {
         "message": "संक्षेप करें"
@@ -106,6 +106,9 @@
     },
     "options_text_custom": {
         "message": "कस्टम क्रिया"
+    },
+    "options_streaming": {
+        "message": "भाषा मॉडल से स्ट्रीमिंग आउटपुट"
     },
     "options_theme": {
         "message": "थीम"
