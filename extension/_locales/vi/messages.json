@@ -5,6 +5,12 @@
     "extension_description": {
         "message": "Tóm tắt và dịch các trang web. Sử dụng Claude làm backend."
     },
+    "popup_button_copy": {
+        "message": "Sao chép"
+    },
+    "popup_copied": {
+        "message": "Đã sao chép."
+    },
     "popup_button_run": {
         "message": "Chạy lại"
     },
@@ -18,7 +24,7 @@
         "message": "Đang tóm tắt"
     },
     "popup_summarizing_captions": {
-        "message": "Đang tóm tắt chú thích"
+        "message": "Đang tóm tắt các chú thích"
     },
     "popup_summarizing_image": {
         "message": "Đang tóm tắt hình ảnh"
@@ -27,7 +33,7 @@
         "message": "Đang dịch"
     },
     "popup_translating_captions": {
-        "message": "Đang dịch chú thích"
+        "message": "Đang dịch các chú thích"
     },
     "popup_translating_image": {
         "message": "Đang dịch hình ảnh"
@@ -75,7 +81,7 @@
         "message": "Mô hình ngôn ngữ"
     },
     "options_language": {
-        "message": "Tóm tắt thành / Dịch sang"
+        "message": "Tóm tắt bằng / Dịch sang"
     },
     "options_language_user": {
         "message": "Ngôn ngữ do người dùng chỉ định"

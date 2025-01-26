@@ -3,7 +3,13 @@
         "message": "Résumer et traduire avec Claude"
     },
     "extension_description": {
-        "message": "Résumez et traduisez des pages web. Utilise Claude comme backend."
+        "message": "Résumez et traduisez des pages Web. Utilise Claude comme backend."
+    },
+    "popup_button_copy": {
+        "message": "Copier"
+    },
+    "popup_copied": {
+        "message": "Copié."
     },
     "popup_button_run": {
         "message": "Exécuter à nouveau"
@@ -36,7 +42,7 @@
         "message": "Traitement en cours"
     },
     "popup_unexpected_response": {
-        "message": "Une erreur inconnue s'est produite. Veuillez consulter le journal de la console."
+        "message": "Une erreur inconnue s'est produite. Veuillez vérifier le journal de la console."
     },
     "popup_miscellaneous_error": {
         "message": "Cette page ne peut pas être résumée ou traduite."
@@ -60,7 +66,7 @@
         "message": "En attente d'une réponse"
     },
     "results_unexpected_response": {
-        "message": "Une erreur inconnue s'est produite. Veuillez consulter le journal de la console."
+        "message": "Une erreur inconnue s'est produite. Veuillez vérifier le journal de la console."
     },
     "options_title": {
         "message": "Options - Résumer et traduire avec Claude"
@@ -72,7 +78,7 @@
         "message": "Vous pouvez obtenir une clé API Anthropic sur la page suivante."
     },
     "options_model": {
-        "message": "Modèle de langage"
+        "message": "Modèle de langue"
     },
     "options_language": {
         "message": "Résumer en / Traduire vers"
@@ -108,7 +114,7 @@
         "message": "Action personnalisée"
     },
     "options_streaming": {
-        "message": "Sortie en flux continu du modèle de langage"
+        "message": "Diffusion en continu de la sortie du modèle de langue"
     },
     "options_theme": {
         "message": "Thème"

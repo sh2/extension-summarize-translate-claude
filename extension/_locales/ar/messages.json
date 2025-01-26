@@ -5,6 +5,12 @@
     "extension_description": {
         "message": "تلخيص وترجمة صفحات الويب. يستخدم Claude كخادم خلفي."
     },
+    "popup_button_copy": {
+        "message": "نسخ"
+    },
+    "popup_copied": {
+        "message": "تم النسخ."
+    },
     "popup_button_run": {
         "message": "إعادة التشغيل"
     },
@@ -63,7 +69,7 @@
         "message": "حدث خطأ غير متوقع. يرجى التحقق من سجل وحدة التحكم."
     },
     "options_title": {
-        "message": "خيارات - تلخيص وترجمة باستخدام Claude"
+        "message": "الخيارات - تلخيص وترجمة باستخدام Claude"
     },
     "options_apikey": {
         "message": "مفتاح واجهة برمجة تطبيقات Anthropic"
@@ -75,7 +81,7 @@
         "message": "نموذج اللغة"
     },
     "options_language": {
-        "message": "تلخيص إلى / ترجمة إلى"
+        "message": "تلخيص في / ترجمة إلى"
     },
     "options_language_user": {
         "message": "اللغة المحددة من قبل المستخدم"

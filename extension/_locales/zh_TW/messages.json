@@ -5,6 +5,12 @@
     "extension_description": {
         "message": "總結和翻譯網頁。使用 Claude 作為後端。"
     },
+    "popup_button_copy": {
+        "message": "複製"
+    },
+    "popup_copied": {
+        "message": "已複製。"
+    },
     "popup_button_run": {
         "message": "再次執行"
     },
@@ -18,19 +24,19 @@
         "message": "總結中"
     },
     "popup_summarizing_captions": {
-        "message": "總結字幕中"
+        "message": "正在總結字幕"
     },
     "popup_summarizing_image": {
-        "message": "總結圖片中"
+        "message": "正在總結圖片"
     },
     "popup_translating": {
         "message": "翻譯中"
     },
     "popup_translating_captions": {
-        "message": "翻譯字幕中"
+        "message": "正在翻譯字幕"
     },
     "popup_translating_image": {
-        "message": "翻譯圖片中"
+        "message": "正在翻譯圖片"
     },
     "popup_processing": {
         "message": "處理中"
@@ -69,7 +75,7 @@
         "message": "Anthropic API 金鑰"
     },
     "options_apikey_hint": {
-        "message": "您可以在以下頁面取得 Anthropic API 金鑰。"
+        "message": "您可以在以下頁面獲取 Anthropic API 金鑰。"
     },
     "options_model": {
         "message": "語言模型"
@@ -81,13 +87,13 @@
         "message": "使用者指定的語言"
     },
     "options_language_notes": {
-        "message": "自訂動作中會忽略語言設定。"
+        "message": "在自訂動作中，語言設定將被忽略。"
     },
     "options_no_text_action": {
         "message": "當未選取文字時，執行以下動作"
     },
     "options_no_text_summarize": {
-        "message": "總結 (預設)"
+        "message": "總結（預設）"
     },
     "options_no_text_translate": {
         "message": "翻譯"
@@ -102,13 +108,13 @@
         "message": "總結"
     },
     "options_text_translate": {
-        "message": "翻譯 (預設)"
+        "message": "翻譯（預設）"
     },
     "options_text_custom": {
         "message": "自訂動作"
     },
     "options_streaming": {
-        "message": "來自語言模型的串流輸出"
+        "message": "從語言模型串流輸出"
     },
     "options_theme": {
         "message": "主題"
