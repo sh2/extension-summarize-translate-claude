@@ -213,7 +213,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
                 type: "base64",
                 media_type: mediaType,
                 data: mediaData
-              },
+              }
             },
             {
               type: "text",

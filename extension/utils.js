@@ -72,7 +72,7 @@ export const getModelId = (languageModel, mediaType) => {
     "3.5-haiku": "claude-3-5-haiku-latest",
     "3-opus": "claude-3-opus-latest",
     "3-sonnet": "claude-3-sonnet-20240229",
-    "3-haiku": "claude-3-haiku-20240307",
+    "3-haiku": "claude-3-haiku-20240307"
   };
 
   if (languageModel === "3.5-haiku" && mediaType === "image") {
