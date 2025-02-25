@@ -106,6 +106,12 @@ const getCharacterLimit = (modelId, actionType) => {
   // noTextCustom: The same as Summarize
   // textCustom: The same as Summarize
   const characterLimits = {
+    "claude-3-7-sonnet-latest": {
+      summarize: 200000,
+      translate: 8192,
+      noTextCustom: 200000,
+      textCustom: 200000
+    },
     "claude-3-5-sonnet-latest": {
       summarize: 200000,
       translate: 8192,
@@ -178,7 +184,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
     if (request.message === "chunk") {
       // Split the task input
       const { actionType, taskInput, languageModel } = request;
-      const modelId = getModelId(languageModel, "text");
+      const modelId = getModelId(languageModel);
       const chunkSize = getCharacterLimit(modelId, actionType);
       const taskInputChunks = chunkText(taskInput, chunkSize);
       sendResponse(taskInputChunks);
@@ -186,7 +192,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       // Generate content
       const { actionType, mediaType, taskInput, languageModel, languageCode } = request;
       const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
-      const modelId = getModelId(languageModel, mediaType);
+      const modelId = getModelId(languageModel);
       const maxOutputTokens = getMaxOutputTokens(modelId);
 
       const systemPrompt = await getSystemPrompt(

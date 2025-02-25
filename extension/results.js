@@ -87,7 +87,7 @@ const askQuestion = async () => {
   // Generate the response
   const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
   const languageModel = document.getElementById("languageModel").value;
-  const modelId = getModelId(languageModel, result.requestMediaType);
+  const modelId = getModelId(languageModel);
   const maxOutputTokens = getMaxOutputTokens(modelId);
   let response = null;
 
