@@ -1,3 +1,5 @@
+/* globals DOMPurify, marked */
+
 const tryParseJson = (text) => {
   try {
     return JSON.parse(text);
@@ -64,6 +66,26 @@ export const displayLoadingMessage = (elementId, loadingMessage) => {
     default:
       status.textContent = `${loadingMessage}.`;
   }
+};
+
+export const convertMarkdownToHtml = (content, breaks) => {
+  // Disable links when converting from Markdown to HTML
+  marked.use({ renderer: { link: ({ text }) => text } });
+
+  const markdownDiv = document.createElement("div");
+  markdownDiv.textContent = content;
+  const htmlDiv = document.createElement("div");
+  htmlDiv.innerHTML = DOMPurify.sanitize(marked.parse(markdownDiv.innerHTML, { breaks: breaks }));
+
+  // Replace the HTML entities with the original characters in the code blocks
+  htmlDiv.querySelectorAll("code").forEach(codeBlock => {
+    codeBlock.innerHTML = codeBlock.innerHTML
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&amp;/g, "&");
+  });
+
+  return htmlDiv.innerHTML;
 };
 
 export const getModelId = (languageModel) => {

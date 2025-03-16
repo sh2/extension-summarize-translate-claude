@@ -20,7 +20,7 @@
   </header>
 
   <p>
-    <label for="apiKey" data-i18n="options_apikey">Anthropic API Key</label>
+    <span data-i18n="options_apikey">Anthropic API Key</span>
     <br>
     <input type="password" id="apiKey" size="39">
     <br>
@@ -30,18 +30,22 @@
     </small>
   </p>
 
+  <hr>
+
   <p>
-    <label for="languageModel" data-i18n="options_model">Language Model</label>
+    <span data-i18n="options_model">Language Model</span>
     <br>
     <span id="languageModelContainer"></span>
   </p>
 
+  <hr>
+
   <p>
-    <label for="languageCode" data-i18n="options_language">Summarize in / Translate to</label>
+    <span data-i18n="options_language">Summarize in / Translate to</span>
     <br>
     <span id="languageCodeContainer"></span>
     <br>
-    <label for="userLanguage" data-i18n="options_language_user">User-specified Language</label>
+    <span data-i18n="options_language_user">User-specified Language</span>
     <br>
     <input id="userLanguage" size="39">
     <br>
@@ -49,6 +53,8 @@
       <span data-i18n="options_language_notes">The language setting is disregarded in custom actions.</span>
     </small>
   </p>
+
+  <hr>
 
   <p>
     <span data-i18n="options_no_text_action">When no text is selected, do the following action</span>
@@ -66,6 +72,8 @@
       placeholder="(Example)&#10;Summarize the entire text as up to 3-item Markdown numbered list in English and reply only with the list.&#10;&lt;example&gt;&#10;1. First point.&#10;2. Second point.&#10;3. Third point.&#10;&lt;/example&gt;"></textarea>
   </p>
 
+  <hr>
+
   <p>
     <span data-i18n="options_text_action">When text is selected, do the following action</span>
     <br>
@@ -82,11 +90,14 @@
       placeholder="(Example)&#10;Translate the entire text into English and reply only with the translated result."></textarea>
   </p>
 
+  <hr>
+
   <p>
-    <span data-i18n="options_streaming">Streaming output from the language model</span>
-    <br>
     <input id="streaming" type="checkbox">
+    <label for="streaming" data-i18n="options_streaming">Streaming output from the language model</label>
   </p>
+
+  <hr>
 
   <p>
     <span data-i18n="options_theme">Theme</span>

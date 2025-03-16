@@ -1,4 +1,9 @@
-import { getModelId, getMaxOutputTokens, generateContent, streamGenerateContent } from "./utils.js";
+import {
+  getModelId,
+  getMaxOutputTokens,
+  generateContent,
+  streamGenerateContent
+} from "./utils.js";
 
 const getSystemPrompt = async (actionType, mediaType, languageCode, taskInputLength) => {
   const languageNames = {
@@ -47,6 +52,11 @@ const getSystemPrompt = async (actionType, mediaType, languageCode, taskInputLen
     systemPrompt = (await chrome.storage.local.get({ noTextCustomPrompt: "" })).noTextCustomPrompt;
   } else if (actionType === "textCustom") {
     systemPrompt = (await chrome.storage.local.get({ textCustomPrompt: "" })).textCustomPrompt;
+  }
+
+  if (!systemPrompt) {
+    systemPrompt = `Respond to the user in ${languageNames[languageCode]} that no custom action is set. ` +
+      "Do not process any data user provided.";
   }
 
   return systemPrompt;

@@ -1,6 +1,14 @@
-/* global DOMPurify, marked */
-
-import { applyTheme, adjustLayoutForScreenSize, loadTemplate, displayLoadingMessage, getModelId, getMaxOutputTokens, generateContent, streamGenerateContent } from "./utils.js";
+import {
+  applyTheme,
+  adjustLayoutForScreenSize,
+  loadTemplate,
+  displayLoadingMessage,
+  convertMarkdownToHtml,
+  getModelId,
+  getMaxOutputTokens,
+  generateContent,
+  streamGenerateContent
+} from "./utils.js";
 
 const conversation = [];
 let result = {};
@@ -61,17 +69,13 @@ const askQuestion = async () => {
   apiContents.push({ role: "user", content: question });
   console.log(apiContents);
 
-  // Create a new div element with the question
-  const questionDiv = document.createElement("div");
-  questionDiv.textContent = question;
-
   // Create a new div element with the formatted question
   const formattedQuestionDiv = document.createElement("div");
   formattedQuestionDiv.style.backgroundColor = "var(--nc-bg-3)";
   formattedQuestionDiv.style.borderRadius = "1rem";
   formattedQuestionDiv.style.margin = "1.5rem";
   formattedQuestionDiv.style.padding = "1rem 1rem .1rem";
-  formattedQuestionDiv.innerHTML = DOMPurify.sanitize(marked.parse(questionDiv.innerHTML, { breaks: true }));
+  formattedQuestionDiv.innerHTML = convertMarkdownToHtml(question, true);
 
   // Append the formatted question to the conversation
   document.getElementById("conversation").appendChild(formattedQuestionDiv);
@@ -96,12 +100,10 @@ const askQuestion = async () => {
 
     // Stream the content
     const streamIntervalId = setInterval(async () => {
-      const { streamContent } = (await chrome.storage.session.get("streamContent"));
+      const { streamContent } = await chrome.storage.session.get({ streamContent: "" });
 
       if (streamContent) {
-        const streamDiv = document.createElement("div");
-        streamDiv.textContent = `${streamContent}\n\n`;
-        formattedAnswerDiv.innerHTML = DOMPurify.sanitize(marked.parse(streamDiv.innerHTML));
+        formattedAnswerDiv.innerHTML = convertMarkdownToHtml(`${streamContent}\n\n`, false);
       }
     }, 1000);
 
@@ -143,12 +145,8 @@ const askQuestion = async () => {
   document.getElementById("languageModel").disabled = false;
   document.getElementById("send").disabled = false;
 
-  // Create a new div element with the answer
-  const answerDiv = document.createElement("div");
-  answerDiv.textContent = answer;
-
   // Update the formatted answer in the conversation
-  formattedAnswerDiv.innerHTML = DOMPurify.sanitize(marked.parse(answerDiv.innerHTML));
+  formattedAnswerDiv.innerHTML = convertMarkdownToHtml(answer, false);
 
   // Scroll to the bottom of the page
   if (!streaming) {
@@ -160,9 +158,6 @@ const askQuestion = async () => {
 };
 
 const initialize = async () => {
-  // Disable links when converting from Markdown to HTML
-  marked.use({ renderer: { link: ({ text }) => text } });
-
   // Apply the theme
   applyTheme((await chrome.storage.local.get({ theme: "system" })).theme);
 
@@ -196,9 +191,7 @@ const initialize = async () => {
   result = (await chrome.storage.session.get({ [`r_${resultIndex}`]: "" }))[`r_${resultIndex}`];
 
   // Convert the content from Markdown to HTML
-  const div = document.createElement("div");
-  div.textContent = result.responseContent;
-  document.getElementById("content").innerHTML = DOMPurify.sanitize(marked.parse(div.innerHTML));
+  document.getElementById("content").innerHTML = convertMarkdownToHtml(result.responseContent, false);
 };
 
 document.addEventListener("DOMContentLoaded", initialize);

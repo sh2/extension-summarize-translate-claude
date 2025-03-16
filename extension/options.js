@@ -1,4 +1,8 @@
-import { applyTheme, adjustLayoutForScreenSize, loadTemplate } from "./utils.js";
+import {
+  applyTheme,
+  adjustLayoutForScreenSize,
+  loadTemplate
+} from "./utils.js";
 
 const restoreOptions = async () => {
   const options = await chrome.storage.local.get({
@@ -47,10 +51,10 @@ const saveOptions = async () => {
 
   await chrome.storage.local.set(options);
   await chrome.storage.session.set({ responseCacheQueue: [] });
+  applyTheme((await chrome.storage.local.get({ theme: "system" })).theme);
   const status = document.getElementById("status");
   status.textContent = chrome.i18n.getMessage("options_saved");
   setTimeout(() => status.textContent = "", 1000);
-  applyTheme((await chrome.storage.local.get({ theme: "system" })).theme);
 };
 
 const initialize = async () => {

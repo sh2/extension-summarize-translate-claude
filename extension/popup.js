@@ -1,6 +1,12 @@
-/* globals DOMPurify, Readability, marked */
+/* globals Readability */
 
-import { applyTheme, adjustLayoutForScreenSize, loadTemplate, displayLoadingMessage } from "./utils.js";
+import {
+  applyTheme,
+  adjustLayoutForScreenSize,
+  loadTemplate,
+  displayLoadingMessage,
+  convertMarkdownToHtml
+} from "./utils.js";
 
 let resultIndex = 0;
 let content = "";
@@ -264,12 +270,11 @@ const main = async (useCache) => {
         if (streaming) {
           // Stream the content
           streamIntervalId = setInterval(async () => {
-            const { streamContent } = await chrome.storage.session.get("streamContent");
+            const { streamContent } = await chrome.storage.session.get({ streamContent: "" });
 
             if (streamContent) {
-              const div = document.createElement("div");
-              div.textContent = `${content}\n\n${streamContent}\n\n`;
-              document.getElementById("content").innerHTML = DOMPurify.sanitize(marked.parse(div.innerHTML));
+              document.getElementById("content").innerHTML =
+                convertMarkdownToHtml(`${content}\n\n${streamContent}\n\n`, false);
             }
           }, 1000);
         }
@@ -288,9 +293,7 @@ const main = async (useCache) => {
         if (response.body.content) {
           // A normal response was returned
           content += `${response.body.content[0].text}\n\n`;
-          const div = document.createElement("div");
-          div.textContent = content;
-          document.getElementById("content").innerHTML = DOMPurify.sanitize(marked.parse(div.innerHTML));
+          document.getElementById("content").innerHTML = convertMarkdownToHtml(content, false);
 
           // Scroll to the bottom of the page
           if (!streaming) {
@@ -325,9 +328,7 @@ const main = async (useCache) => {
     document.getElementById("results").disabled = false;
 
     // Convert the content from Markdown to HTML
-    const div = document.createElement("div");
-    div.textContent = content;
-    document.getElementById("content").innerHTML = DOMPurify.sanitize(marked.parse(div.innerHTML));
+    document.getElementById("content").innerHTML = convertMarkdownToHtml(content, false);
 
     // Save the content to the session storage
     await chrome.storage.session.set({
@@ -342,9 +343,6 @@ const main = async (useCache) => {
 };
 
 const initialize = async () => {
-  // Disable links when converting from Markdown to HTML
-  marked.use({ renderer: { link: ({ text }) => text } });
-
   // Apply the theme
   applyTheme((await chrome.storage.local.get({ theme: "system" })).theme);
 
@@ -368,7 +366,9 @@ const initialize = async () => {
   });
 
   // Restore the language model and language code from the local storage
-  const { languageModel, languageCode } = await chrome.storage.local.get({ languageModel: "3-haiku", languageCode: "en" });
+  const { languageModel, languageCode } =
+    await chrome.storage.local.get({ languageModel: "3-haiku", languageCode: "en" });
+
   document.getElementById("languageModel").value = languageModel;
   document.getElementById("languageCode").value = languageCode;
 
