@@ -3,7 +3,6 @@
 import {
   applyTheme,
   applyFontSize,
-  adjustLayoutForScreenSize,
   loadTemplate,
   displayLoadingMessage,
   convertMarkdownToHtml
@@ -350,9 +349,6 @@ const initialize = async () => {
   // Apply font size
   applyFontSize((await chrome.storage.local.get({ fontSize: "medium" })).fontSize);
 
-  // Check if the screen is narrow
-  adjustLayoutForScreenSize();
-
   // Load the language model template
   const languageModelTemplate = await loadTemplate("languageModelTemplate");
   document.getElementById("languageModelContainer").appendChild(languageModelTemplate);
@@ -403,5 +399,3 @@ document.getElementById("options").addEventListener("click", () => {
     window.close();
   });
 });
-
-window.addEventListener("resize", adjustLayoutForScreenSize);

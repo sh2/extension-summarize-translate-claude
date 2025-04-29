@@ -1,7 +1,6 @@
 import {
   applyTheme,
   applyFontSize,
-  adjustLayoutForScreenSize,
   loadTemplate
 } from "./utils.js";
 
@@ -69,9 +68,6 @@ const initialize = async () => {
   // Apply font size
   applyFontSize((await chrome.storage.local.get({ fontSize: "medium" })).fontSize);
 
-  // Check if the screen is narrow
-  adjustLayoutForScreenSize();
-
   // Load the language model template
   const languageModelTemplate = await loadTemplate("languageModelTemplate");
   document.getElementById("languageModelContainer").appendChild(languageModelTemplate);
@@ -93,4 +89,3 @@ const initialize = async () => {
 
 document.addEventListener("DOMContentLoaded", initialize);
 document.getElementById("save").addEventListener("click", saveOptions);
-window.addEventListener("resize", adjustLayoutForScreenSize);
