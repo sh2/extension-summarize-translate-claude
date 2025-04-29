@@ -3,7 +3,7 @@
         "message": "Resumir e Traduzir com Claude"
     },
     "extension_description": {
-        "message": "Resuma e traduza páginas da web. Usa Claude como backend."
+        "message": "Resume e traduza páginas da web. Utiliza Claude como backend."
     },
     "popup_button_copy": {
         "message": "Copiar"
@@ -72,10 +72,10 @@
         "message": "Opções - Resumir e Traduzir com Claude"
     },
     "options_apikey": {
-        "message": "Chave da API Anthropic"
+        "message": "Chave de API da Anthropic"
     },
     "options_apikey_hint": {
-        "message": "Você pode obter uma chave da API Anthropic na seguinte página."
+        "message": "Você pode obter uma chave de API da Anthropic na seguinte página."
     },
     "options_model": {
         "message": "Modelo de Linguagem"
@@ -118,6 +118,9 @@
     },
     "options_theme": {
         "message": "Tema"
+    },
+    "options_font_size": {
+        "message": "Tamanho da fonte"
     },
     "options_button_save": {
         "message": "Salvar opções"

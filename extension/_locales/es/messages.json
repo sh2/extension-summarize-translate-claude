@@ -3,7 +3,7 @@
         "message": "Resumir y Traducir con Claude"
     },
     "extension_description": {
-        "message": "Resumir y traducir páginas web. Utiliza Claude como backend."
+        "message": "Resuma y traduzca páginas web. Utiliza Claude como backend."
     },
     "popup_button_copy": {
         "message": "Copiar"
@@ -15,10 +15,10 @@
         "message": "Ejecutar de nuevo"
     },
     "popup_button_results": {
-        "message": "Abrir resultados en una nueva pestaña"
+        "message": "Abrir los resultados en una nueva pestaña"
     },
     "popup_button_options": {
-        "message": "Abrir página de opciones"
+        "message": "Abrir la página de opciones"
     },
     "popup_summarizing": {
         "message": "Resumiendo"
@@ -45,13 +45,13 @@
         "message": "Ocurrió un error desconocido. Por favor, revise el registro de la consola."
     },
     "popup_miscellaneous_error": {
-        "message": "Esta página no puede ser resumida o traducida."
+        "message": "Esta página no puede ser resumida ni traducida."
     },
     "results_title": {
         "message": "Resultados - Resumir y Traducir con Claude"
     },
     "results_button_clear": {
-        "message": "Limpiar conversación"
+        "message": "Borrar conversación"
     },
     "results_button_copy": {
         "message": "Copiar"
@@ -87,10 +87,10 @@
         "message": "Idioma especificado por el usuario"
     },
     "options_language_notes": {
-        "message": "La configuración de idioma se ignora en acciones personalizadas."
+        "message": "La configuración de idioma se ignora en las acciones personalizadas."
     },
     "options_no_text_action": {
-        "message": "Cuando no se selecciona texto, realizar la siguiente acción"
+        "message": "Cuando no se selecciona texto, realice la siguiente acción"
     },
     "options_no_text_summarize": {
         "message": "Resumir (predeterminado)"
@@ -102,7 +102,7 @@
         "message": "Acción personalizada"
     },
     "options_text_action": {
-        "message": "Cuando se selecciona texto, realizar la siguiente acción"
+        "message": "Cuando se selecciona texto, realice la siguiente acción"
     },
     "options_text_summarize": {
         "message": "Resumir"
@@ -114,10 +114,13 @@
         "message": "Acción personalizada"
     },
     "options_streaming": {
-        "message": "Salida de transmisión del modelo de lenguaje"
+        "message": "Salida de transmisión desde el modelo de lenguaje"
     },
     "options_theme": {
         "message": "Tema"
+    },
+    "options_font_size": {
+        "message": "Tamaño de fuente"
     },
     "options_button_save": {
         "message": "Guardar opciones"

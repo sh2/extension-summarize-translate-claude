@@ -15,7 +15,7 @@
         "message": "Chạy lại"
     },
     "popup_button_results": {
-        "message": "Mở kết quả trong tab mới"
+        "message": "Mở kết quả trong một tab mới"
     },
     "popup_button_options": {
         "message": "Mở trang tùy chọn"
@@ -81,7 +81,7 @@
         "message": "Mô hình ngôn ngữ"
     },
     "options_language": {
-        "message": "Tóm tắt bằng / Dịch sang"
+        "message": "Tóm tắt thành / Dịch sang"
     },
     "options_language_user": {
         "message": "Ngôn ngữ do người dùng chỉ định"
@@ -117,7 +117,10 @@
         "message": "Truyền trực tuyến đầu ra từ mô hình ngôn ngữ"
     },
     "options_theme": {
-        "message": "Chủ đề"
+        "message": "Giao diện"
+    },
+    "options_font_size": {
+        "message": "Cỡ chữ"
     },
     "options_button_save": {
         "message": "Lưu tùy chọn"

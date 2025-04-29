@@ -39,7 +39,7 @@
         "message": "छवि का अनुवाद किया जा रहा है"
     },
     "popup_processing": {
-        "message": "प्रसंस्करण"
+        "message": "प्रसंस्करण किया जा रहा है"
     },
     "popup_unexpected_response": {
         "message": "एक अज्ञात त्रुटि हुई। कृपया कंसोल लॉग की जाँच करें।"
@@ -51,7 +51,7 @@
         "message": "परिणाम - Claude के साथ संक्षेप और अनुवाद करें"
     },
     "results_button_clear": {
-        "message": "बातचीत साफ़ करें"
+        "message": "वार्तालाप साफ़ करें"
     },
     "results_button_copy": {
         "message": "कॉपी करें"
@@ -72,25 +72,25 @@
         "message": "विकल्प - Claude के साथ संक्षेप और अनुवाद करें"
     },
     "options_apikey": {
-        "message": "Anthropic API Key"
+        "message": "Anthropic API कुंजी"
     },
     "options_apikey_hint": {
-        "message": "आप निम्नलिखित पृष्ठ पर एक Anthropic API Key प्राप्त कर सकते हैं।"
+        "message": "आप निम्नलिखित पृष्ठ पर एक Anthropic API कुंजी प्राप्त कर सकते हैं।"
     },
     "options_model": {
         "message": "भाषा मॉडल"
     },
     "options_language": {
-        "message": "में संक्षेप करें / में अनुवाद करें"
+        "message": "इसमें संक्षेप करें / इसमें अनुवाद करें"
     },
     "options_language_user": {
-        "message": "उपयोगकर्ता-निर्दिष्ट भाषा"
+        "message": "उपयोगकर्ता द्वारा निर्दिष्ट भाषा"
     },
     "options_language_notes": {
         "message": "कस्टम क्रियाओं में भाषा सेटिंग को अनदेखा किया जाता है।"
     },
     "options_no_text_action": {
-        "message": "जब कोई टेक्स्ट चयनित नहीं है, तो निम्नलिखित क्रिया करें"
+        "message": "जब कोई पाठ चयनित नहीं है, तो निम्नलिखित क्रिया करें"
     },
     "options_no_text_summarize": {
         "message": "संक्षेप करें (डिफ़ॉल्ट)"
@@ -102,7 +102,7 @@
         "message": "कस्टम क्रिया"
     },
     "options_text_action": {
-        "message": "जब टेक्स्ट चयनित है, तो निम्नलिखित क्रिया करें"
+        "message": "जब पाठ चयनित है, तो निम्नलिखित क्रिया करें"
     },
     "options_text_summarize": {
         "message": "संक्षेप करें"
@@ -118,6 +118,9 @@
     },
     "options_theme": {
         "message": "थीम"
+    },
+    "options_font_size": {
+        "message": "फ़ॉन्ट आकार"
     },
     "options_button_save": {
         "message": "विकल्प सहेजें"

@@ -30,16 +30,16 @@
         "message": "Riassumendo l'immagine"
     },
     "popup_translating": {
-        "message": "Traducendo"
+        "message": "Traduco"
     },
     "popup_translating_captions": {
-        "message": "Traducendo le didascalie"
+        "message": "Traduco le didascalie"
     },
     "popup_translating_image": {
-        "message": "Traducendo l'immagine"
+        "message": "Traduco l'immagine"
     },
     "popup_processing": {
-        "message": "Elaborando"
+        "message": "Elaborazione in corso"
     },
     "popup_unexpected_response": {
         "message": "Si è verificato un errore sconosciuto. Si prega di controllare il log della console."
@@ -75,10 +75,10 @@
         "message": "Chiave API Anthropic"
     },
     "options_apikey_hint": {
-        "message": "È possibile ottenere una chiave API Anthropic alla seguente pagina."
+        "message": "È possibile ottenere una chiave API Anthropic alla pagina seguente."
     },
     "options_model": {
-        "message": "Modello Linguistico"
+        "message": "Modello linguistico"
     },
     "options_language": {
         "message": "Riassumi in / Traduci in"
@@ -118,6 +118,9 @@
     },
     "options_theme": {
         "message": "Tema"
+    },
+    "options_font_size": {
+        "message": "Dimensione carattere"
     },
     "options_button_save": {
         "message": "Salva opzioni"
