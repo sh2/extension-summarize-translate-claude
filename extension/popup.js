@@ -2,6 +2,7 @@
 
 import {
   applyTheme,
+  applyFontSize,
   adjustLayoutForScreenSize,
   loadTemplate,
   displayLoadingMessage,
@@ -345,6 +346,9 @@ const main = async (useCache) => {
 const initialize = async () => {
   // Apply the theme
   applyTheme((await chrome.storage.local.get({ theme: "system" })).theme);
+
+  // Apply font size
+  applyFontSize((await chrome.storage.local.get({ fontSize: "medium" })).fontSize);
 
   // Check if the screen is narrow
   adjustLayoutForScreenSize();

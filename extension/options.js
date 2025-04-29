@@ -1,5 +1,6 @@
 import {
   applyTheme,
+  applyFontSize,
   adjustLayoutForScreenSize,
   loadTemplate
 } from "./utils.js";
@@ -15,7 +16,8 @@ const restoreOptions = async () => {
     textAction: "translate",
     textCustomPrompt: "",
     streaming: false,
-    theme: "system"
+    theme: "system",
+    fontSize: "medium"
   });
 
   document.getElementById("apiKey").value = options.apiKey;
@@ -28,6 +30,7 @@ const restoreOptions = async () => {
   document.getElementById("textCustomPrompt").value = options.textCustomPrompt;
   document.getElementById("streaming").checked = options.streaming;
   document.getElementById("theme").value = options.theme;
+  document.getElementById("fontSize").value = options.fontSize;
 
   // Set the default language model if the language model is not set
   if (!document.getElementById("languageModel").value) {
@@ -46,12 +49,14 @@ const saveOptions = async () => {
     textAction: document.querySelector('input[name="textAction"]:checked').value,
     textCustomPrompt: document.getElementById("textCustomPrompt").value,
     streaming: document.getElementById("streaming").checked,
-    theme: document.getElementById("theme").value
+    theme: document.getElementById("theme").value,
+    fontSize: document.getElementById("fontSize").value
   };
 
   await chrome.storage.local.set(options);
   await chrome.storage.session.set({ responseCacheQueue: [] });
   applyTheme((await chrome.storage.local.get({ theme: "system" })).theme);
+  applyFontSize((await chrome.storage.local.get({ fontSize: "medium" })).fontSize);
   const status = document.getElementById("status");
   status.textContent = chrome.i18n.getMessage("options_saved");
   setTimeout(() => status.textContent = "", 1000);
@@ -61,7 +66,10 @@ const initialize = async () => {
   // Apply the theme
   applyTheme((await chrome.storage.local.get({ theme: "system" })).theme);
 
-  // Check if the screen is narrow  
+  // Apply font size
+  applyFontSize((await chrome.storage.local.get({ fontSize: "medium" })).fontSize);
+
+  // Check if the screen is narrow
   adjustLayoutForScreenSize();
 
   // Load the language model template
