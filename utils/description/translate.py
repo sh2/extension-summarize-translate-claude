@@ -31,8 +31,8 @@ def main():
         print(languageCode, languageName)
         time.sleep(5)
 
-        system_instruction = f"Translate the following content to {languageName} in a formal tone. " \
-            "The word \"Anthropic\" and \"Claude\" must be left in English. " \
+        system_instruction = f"Translate the following content into {languageName} using a formal tone. " \
+            "Keep the word Anthropic and Claude in English. " \
             "Output in plain text without using Markdown."
 
         model = google.generativeai.GenerativeModel(
