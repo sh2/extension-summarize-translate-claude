@@ -4,20 +4,55 @@ import {
   loadTemplate
 } from "./utils.js";
 
-const restoreOptions = async () => {
-  const options = await chrome.storage.local.get({
-    apiKey: "",
-    languageModel: "3-haiku",
-    languageCode: "en",
-    userLanguage: "Turkish",
-    noTextAction: "summarize",
-    noTextCustomPrompt: "",
-    textAction: "translate",
-    textCustomPrompt: "",
-    streaming: false,
-    theme: "system",
-    fontSize: "medium"
-  });
+const INITIAL_OPTIONS = {
+  apiKey: "",
+  languageModel: "3-haiku",
+  languageCode: "en",
+  userLanguage: "Turkish",
+  noTextAction: "summarize",
+  noTextCustomPrompt: "",
+  textAction: "translate",
+  textCustomPrompt: "",
+  streaming: false,
+  theme: "system",
+  fontSize: "medium"
+};
+
+const showStatusMessage = (message, duration) => {
+  const status = document.getElementById("status");
+  status.textContent = message;
+
+  setTimeout(() => {
+    if (status.textContent === message) {
+      status.textContent = "";
+    }
+  }, duration);
+};
+
+const getOptionsFromForm = (includeApiKey) => {
+  const options = {
+    version: chrome.runtime.getManifest().version,
+    languageModel: document.getElementById("languageModel").value,
+    languageCode: document.getElementById("languageCode").value,
+    userLanguage: document.getElementById("userLanguage").value,
+    noTextAction: document.querySelector('input[name="noTextAction"]:checked').value,
+    noTextCustomPrompt: document.getElementById("noTextCustomPrompt").value,
+    textAction: document.querySelector('input[name="textAction"]:checked').value,
+    textCustomPrompt: document.getElementById("textCustomPrompt").value,
+    streaming: document.getElementById("streaming").checked,
+    theme: document.getElementById("theme").value,
+    fontSize: document.getElementById("fontSize").value
+  };
+
+  if (includeApiKey) {
+    options.apiKey = document.getElementById("apiKey").value;
+  }
+
+  return options;
+};
+
+const setOptionsToForm = async () => {
+  const options = await chrome.storage.local.get(INITIAL_OPTIONS);
 
   document.getElementById("apiKey").value = options.apiKey;
   document.getElementById("languageModel").value = options.languageModel;
@@ -38,27 +73,12 @@ const restoreOptions = async () => {
 };
 
 const saveOptions = async () => {
-  const options = {
-    apiKey: document.getElementById("apiKey").value,
-    languageModel: document.getElementById("languageModel").value,
-    languageCode: document.getElementById("languageCode").value,
-    userLanguage: document.getElementById("userLanguage").value,
-    noTextAction: document.querySelector('input[name="noTextAction"]:checked').value,
-    noTextCustomPrompt: document.getElementById("noTextCustomPrompt").value,
-    textAction: document.querySelector('input[name="textAction"]:checked').value,
-    textCustomPrompt: document.getElementById("textCustomPrompt").value,
-    streaming: document.getElementById("streaming").checked,
-    theme: document.getElementById("theme").value,
-    fontSize: document.getElementById("fontSize").value
-  };
+  const options = getOptionsFromForm(true);
 
   await chrome.storage.local.set(options);
   await chrome.storage.session.set({ responseCacheQueue: [] });
   applyTheme((await chrome.storage.local.get({ theme: "system" })).theme);
   applyFontSize((await chrome.storage.local.get({ fontSize: "medium" })).fontSize);
-  const status = document.getElementById("status");
-  status.textContent = chrome.i18n.getMessage("options_saved");
-  setTimeout(() => status.textContent = "", 1000);
 };
 
 const initialize = async () => {
@@ -84,8 +104,12 @@ const initialize = async () => {
     element.textContent = chrome.i18n.getMessage(element.getAttribute("data-i18n"));
   });
 
-  restoreOptions();
+  setOptionsToForm();
 };
 
 document.addEventListener("DOMContentLoaded", initialize);
-document.getElementById("save").addEventListener("click", saveOptions);
+
+document.getElementById("save").addEventListener("click", async () => {
+  await saveOptions();
+  showStatusMessage(chrome.i18n.getMessage("options_saved"), 1000);
+});
