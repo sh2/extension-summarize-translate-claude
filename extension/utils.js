@@ -91,11 +91,12 @@ export const convertMarkdownToHtml = (content, breaks) => {
 
 export const getModelId = (languageModel) => {
   const modelMappings = {
+    "4-opus": "claude-opus-4-0",
+    "3-opus": "claude-3-opus-latest",
+    "4-sonnet": "claude-sonnet-4-0",
     "3.7-sonnet": "claude-3-7-sonnet-latest",
     "3.5-sonnet": "claude-3-5-sonnet-latest",
     "3.5-haiku": "claude-3-5-haiku-latest",
-    "3-opus": "claude-3-opus-latest",
-    "3-sonnet": "claude-3-sonnet-20240229",
     "3-haiku": "claude-3-haiku-20240307"
   };
 
@@ -104,11 +105,12 @@ export const getModelId = (languageModel) => {
 
 export const getMaxOutputTokens = (modelId) => {
   const maxOutputTokens = {
-    "claude-3-7-sonnet-latest": 8192,
+    "claude-opus-4-0": 32000,
+    "claude-3-opus-latest": 4096,
+    "claude-sonnet-4-0": 64000,
+    "claude-3-7-sonnet-latest": 64000,
     "claude-3-5-sonnet-latest": 8192,
     "claude-3-5-haiku-latest": 8192,
-    "claude-3-opus-latest": 4096,
-    "claude-3-sonnet-20240229": 4096,
     "claude-3-haiku-20240307": 4096
   };
 

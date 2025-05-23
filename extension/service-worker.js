@@ -116,9 +116,27 @@ const getCharacterLimit = (modelId, actionType) => {
   // noTextCustom: The same as Summarize
   // textCustom: The same as Summarize
   const characterLimits = {
+    "claude-opus-4-0": {
+      summarize: 200000,
+      translate: 32000,
+      noTextCustom: 200000,
+      textCustom: 200000
+    },
+    "claude-3-opus-latest": {
+      summarize: 200000,
+      translate: 4096,
+      noTextCustom: 200000,
+      textCustom: 200000
+    },
+    "claude-sonnet-4-0": {
+      summarize: 200000,
+      translate: 64000,
+      noTextCustom: 200000,
+      textCustom: 200000
+    },
     "claude-3-7-sonnet-latest": {
       summarize: 200000,
-      translate: 8192,
+      translate: 64000,
       noTextCustom: 200000,
       textCustom: 200000
     },
@@ -131,18 +149,6 @@ const getCharacterLimit = (modelId, actionType) => {
     "claude-3-5-haiku-latest": {
       summarize: 200000,
       translate: 8192,
-      noTextCustom: 200000,
-      textCustom: 200000
-    },
-    "claude-3-opus-latest": {
-      summarize: 200000,
-      translate: 4096,
-      noTextCustom: 200000,
-      textCustom: 200000
-    },
-    "claude-3-sonnet-20240229": {
-      summarize: 200000,
-      translate: 4096,
       noTextCustom: 200000,
       textCustom: 200000
     },
