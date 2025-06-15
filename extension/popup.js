@@ -1,4 +1,4 @@
-/* globals Readability */
+/* globals protobuf Readability */
 
 import {
   applyTheme,
@@ -42,7 +42,20 @@ const getWholeText = () => {
 };
 
 const getCaptions = async (videoUrl, languageCode) => {
-  // Return the captions of the YouTube video
+  const encodeToBase64 = (metadataObj) => {
+    // Encode the metadata object to a base64 string using protobuf
+    const VideoMetadata = protobuf.roots["default"].VideoMetadata;
+    const message = VideoMetadata.create(metadataObj);
+    const buffer = VideoMetadata.encode(message).finish();
+    let binaryString = "";
+
+    for (let i = 0; i < buffer.byteLength; i++) {
+      binaryString += String.fromCharCode(buffer[i]);
+    }
+
+    return btoa(binaryString);
+  };
+
   const languageCodeForCaptions = {
     en: "en",
     de: "de",
@@ -63,7 +76,8 @@ const getCaptions = async (videoUrl, languageCode) => {
   };
 
   const preferredLanguages = [languageCodeForCaptions[languageCode], "en"];
-  const videoResponse = await fetch(videoUrl);
+  const videoId = new URLSearchParams(new URL(videoUrl).search).get("v");
+  const videoResponse = await fetch(videoUrl, { credentials: "omit", });
   const videoBody = await videoResponse.text();
   const captionsConfigJson = videoBody.match(/"captions":(.*?),"videoDetails":/s);
   let captions = "";
@@ -88,12 +102,50 @@ const getCaptions = async (videoUrl, languageCode) => {
         return valueA - valueB;
       });
 
-      const captionsUrl = captionTracks[0].baseUrl;
-      const captionsResponse = await fetch(captionsUrl);
-      const captionsXml = await captionsResponse.text();
-      const xmlDocument = new DOMParser().parseFromString(captionsXml, "application/xml");
-      const textElements = xmlDocument.getElementsByTagName("text");
-      captions = Array.from(textElements).map(element => element.textContent).join("\n");
+      const payload = {
+        context: {
+          client: {
+            clientName: "WEB",
+            clientVersion: "2.20250613.00.00",
+          }
+        },
+        params: encodeToBase64({
+          param1: videoId,
+          param2: encodeToBase64({
+            param1: captionTracks[0].kind ? captionTracks[0].kind : "",
+            param2: captionTracks[0].languageCode
+          })
+        })
+      };
+
+      const captionsResponse = await fetch("https://www.youtube.com/youtubei/v1/get_transcript", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload),
+        credentials: "omit"
+      });
+
+      const captionsJson = await captionsResponse.json();
+
+      const initialSegments = captionsJson?.actions?.[0]?.
+        updateEngagementPanelAction?.content?.transcriptRenderer?.content?.
+        transcriptSearchPanelRenderer?.body?.transcriptSegmentListRenderer?.initialSegments;
+
+      let texts = [];
+
+      if (initialSegments) {
+        for (const segment of initialSegments) {
+          const text = segment?.transcriptSegmentRenderer?.snippet?.runs?.[0]?.text;
+
+          if (text) {
+            texts.push(text);
+          }
+        }
+
+        captions = texts.join(" ");
+      }
     } else {
       console.log("No captionTracks found.");
     }
@@ -133,6 +185,16 @@ const extractTaskInformation = async (languageCode) => {
       mediaType = "captions";
 
       try {
+        await chrome.scripting.executeScript({
+          target: { tabId: tab.id },
+          files: ["lib/protobuf.min.js"]
+        });
+
+        await chrome.scripting.executeScript({
+          target: { tabId: tab.id },
+          files: ["lib/video-metadata.js"]
+        });
+
         taskInput = (await chrome.scripting.executeScript({
           target: { tabId: tab.id },
           func: getCaptions,
