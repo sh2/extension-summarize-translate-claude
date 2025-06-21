@@ -20,11 +20,14 @@
     "popup_button_options": {
         "message": "Apri la pagina delle opzioni"
     },
+    "popup_retrieving_captions": {
+        "message": "Tentativo di recupero sottotitoli"
+    },
     "popup_summarizing": {
         "message": "Riassumendo"
     },
     "popup_summarizing_captions": {
-        "message": "Riassumendo le didascalie"
+        "message": "Riassumendo i sottotitoli"
     },
     "popup_summarizing_image": {
         "message": "Riassumendo l'immagine"
@@ -33,7 +36,7 @@
         "message": "Traduco"
     },
     "popup_translating_captions": {
-        "message": "Traduco le didascalie"
+        "message": "Traduco i sottotitoli"
     },
     "popup_translating_image": {
         "message": "Traduco l'immagine"
@@ -42,10 +45,10 @@
         "message": "Elaborazione in corso"
     },
     "popup_unexpected_response": {
-        "message": "Si è verificato un errore sconosciuto. Si prega di controllare il log della console."
+        "message": "Si è verificato un errore imprevisto. Controllare la console per i dettagli."
     },
     "popup_miscellaneous_error": {
-        "message": "Questa pagina non può essere riassunta o tradotta."
+        "message": "Impossibile riassumere o tradurre questa pagina."
     },
     "results_title": {
         "message": "Risultati - Riassumi e Traduci con Claude"
@@ -63,10 +66,10 @@
         "message": "Invia"
     },
     "results_waiting_response": {
-        "message": "In attesa di una risposta"
+        "message": "In attesa di risposta"
     },
     "results_unexpected_response": {
-        "message": "Si è verificato un errore sconosciuto. Si prega di controllare il log della console."
+        "message": "Si è verificato un errore imprevisto. Controllare la console per i dettagli."
     },
     "options_title": {
         "message": "Opzioni - Riassumi e Traduci con Claude"
@@ -75,19 +78,19 @@
         "message": "Chiave API Anthropic"
     },
     "options_apikey_hint": {
-        "message": "È possibile ottenere una chiave API Anthropic alla pagina seguente."
+        "message": "È possibile ottenere una chiave API Anthropic dalla pagina seguente."
     },
     "options_model": {
         "message": "Modello linguistico"
     },
     "options_language": {
-        "message": "Riassumi in / Traduci in"
+        "message": "Lingua per riassunto e traduzione"
     },
     "options_language_user": {
         "message": "Lingua specificata dall'utente"
     },
     "options_language_notes": {
-        "message": "L'impostazione della lingua viene ignorata nelle azioni personalizzate."
+        "message": "Nota: questa impostazione della lingua non influisce sulle azioni personalizzate."
     },
     "options_no_text_action": {
         "message": "Quando non è selezionato alcun testo, esegui la seguente azione"
@@ -114,7 +117,7 @@
         "message": "Azione personalizzata"
     },
     "options_streaming": {
-        "message": "Output in streaming dal modello linguistico"
+        "message": "Abilita l'output in streaming dal modello linguistico"
     },
     "options_theme": {
         "message": "Tema"

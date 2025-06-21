@@ -3,7 +3,7 @@
         "message": "Resumir e Traduzir com Claude"
     },
     "extension_description": {
-        "message": "Resume e traduza páginas da web. Utiliza Claude como backend."
+        "message": "Resume e traduz páginas da web. Utiliza Claude como backend."
     },
     "popup_button_copy": {
         "message": "Copiar"
@@ -20,11 +20,14 @@
     "popup_button_options": {
         "message": "Abrir página de opções"
     },
+    "popup_retrieving_captions": {
+        "message": "Tentando recuperar legendas"
+    },
     "popup_summarizing": {
         "message": "Resumindo"
     },
     "popup_summarizing_captions": {
-        "message": "Resumindo as legendas"
+        "message": "Resumindo legendas"
     },
     "popup_summarizing_image": {
         "message": "Resumindo a imagem"
@@ -33,7 +36,7 @@
         "message": "Traduzindo"
     },
     "popup_translating_captions": {
-        "message": "Traduzindo as legendas"
+        "message": "Traduzindo legendas"
     },
     "popup_translating_image": {
         "message": "Traduzindo a imagem"
@@ -42,10 +45,10 @@
         "message": "Processando"
     },
     "popup_unexpected_response": {
-        "message": "Ocorreu um erro desconhecido. Por favor, verifique o log do console."
+        "message": "Ocorreu um erro inesperado. Verifique o console para obter detalhes."
     },
     "popup_miscellaneous_error": {
-        "message": "Esta página não pode ser resumida ou traduzida."
+        "message": "Não foi possível resumir ou traduzir esta página."
     },
     "results_title": {
         "message": "Resultados - Resumir e Traduzir com Claude"
@@ -63,34 +66,34 @@
         "message": "Enviar"
     },
     "results_waiting_response": {
-        "message": "Aguardando uma resposta"
+        "message": "Aguardando resposta"
     },
     "results_unexpected_response": {
-        "message": "Ocorreu um erro desconhecido. Por favor, verifique o log do console."
+        "message": "Ocorreu um erro inesperado. Verifique o console para obter detalhes."
     },
     "options_title": {
         "message": "Opções - Resumir e Traduzir com Claude"
     },
     "options_apikey": {
-        "message": "Chave de API da Anthropic"
+        "message": "Chave da API Anthropic"
     },
     "options_apikey_hint": {
-        "message": "Você pode obter uma chave de API da Anthropic na seguinte página."
+        "message": "Você pode obter uma chave da API Anthropic na seguinte página."
     },
     "options_model": {
-        "message": "Modelo de Linguagem"
+        "message": "Modelo de linguagem"
     },
     "options_language": {
-        "message": "Resumir em / Traduzir para"
+        "message": "Idioma para Resumo e Tradução"
     },
     "options_language_user": {
         "message": "Idioma especificado pelo usuário"
     },
     "options_language_notes": {
-        "message": "A configuração de idioma é desconsiderada em ações personalizadas."
+        "message": "Nota: Esta configuração de idioma não afeta ações personalizadas."
     },
     "options_no_text_action": {
-        "message": "Quando nenhum texto é selecionado, execute a seguinte ação"
+        "message": "Quando nenhum texto é selecionado, realizar a seguinte ação"
     },
     "options_no_text_summarize": {
         "message": "Resumir (padrão)"
@@ -102,7 +105,7 @@
         "message": "Ação personalizada"
     },
     "options_text_action": {
-        "message": "Quando o texto é selecionado, execute a seguinte ação"
+        "message": "Quando o texto é selecionado, realizar a seguinte ação"
     },
     "options_text_summarize": {
         "message": "Resumir"
@@ -114,7 +117,7 @@
         "message": "Ação personalizada"
     },
     "options_streaming": {
-        "message": "Saída de streaming do modelo de linguagem"
+        "message": "Habilitar saída de streaming do modelo de linguagem"
     },
     "options_theme": {
         "message": "Tema"

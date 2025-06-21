@@ -12,7 +12,7 @@
         "message": "Copied."
     },
     "popup_button_run": {
-        "message": "Run it again"
+        "message": "Run again"
     },
     "popup_button_results": {
         "message": "Open results in a new tab"
@@ -20,11 +20,14 @@
     "popup_button_options": {
         "message": "Open options page"
     },
+    "popup_retrieving_captions": {
+        "message": "Attempting to retrieve captions"
+    },
     "popup_summarizing": {
         "message": "Summarizing"
     },
     "popup_summarizing_captions": {
-        "message": "Summarizing the captions"
+        "message": "Summarizing captions"
     },
     "popup_summarizing_image": {
         "message": "Summarizing the image"
@@ -33,7 +36,7 @@
         "message": "Translating"
     },
     "popup_translating_captions": {
-        "message": "Translating the captions"
+        "message": "Translating captions"
     },
     "popup_translating_image": {
         "message": "Translating the image"
@@ -42,10 +45,10 @@
         "message": "Processing"
     },
     "popup_unexpected_response": {
-        "message": "An unknown error occurred. Please check the console log."
+        "message": "An unexpected error occurred. Please check the console for details."
     },
     "popup_miscellaneous_error": {
-        "message": "This page cannot be summarized or translated."
+        "message": "Unable to summarize or translate this page."
     },
     "results_title": {
         "message": "Results - Summarize and Translate with Claude"
@@ -63,34 +66,34 @@
         "message": "Send"
     },
     "results_waiting_response": {
-        "message": "Waiting for a response"
+        "message": "Waiting for response"
     },
     "results_unexpected_response": {
-        "message": "An unknown error occurred. Please check the console log."
+        "message": "An unexpected error occurred. Please check the console for details."
     },
     "options_title": {
         "message": "Options - Summarize and Translate with Claude"
     },
     "options_apikey": {
-        "message": "Anthropic API Key"
+        "message": "Anthropic API key"
     },
     "options_apikey_hint": {
-        "message": "You can obtain a Anthropic API Key at the following page."
+        "message": "You can obtain a Anthropic API key from the following page."
     },
     "options_model": {
-        "message": "Language Model"
+        "message": "Language model"
     },
     "options_language": {
-        "message": "Summarize in / Translate to"
+        "message": "Language for Summarization and Translation"
     },
     "options_language_user": {
-        "message": "User-specified Language"
+        "message": "User-specified language"
     },
     "options_language_notes": {
-        "message": "The language setting is disregarded in custom actions."
+        "message": "Note: This language setting does not affect custom actions."
     },
     "options_no_text_action": {
-        "message": "When no text is selected, do the following action"
+        "message": "When no text is selected, perform the following action"
     },
     "options_no_text_summarize": {
         "message": "Summarize (default)"
@@ -102,7 +105,7 @@
         "message": "Custom action"
     },
     "options_text_action": {
-        "message": "When text is selected, do the following action"
+        "message": "When text is selected, perform the following action"
     },
     "options_text_summarize": {
         "message": "Summarize"
@@ -114,13 +117,13 @@
         "message": "Custom action"
     },
     "options_streaming": {
-        "message": "Streaming output from the language model"
+        "message": "Enable streaming output from the language model"
     },
     "options_theme": {
         "message": "Theme"
     },
     "options_font_size": {
-        "message": "Font Size"
+        "message": "Font size"
     },
     "options_button_save": {
         "message": "Save options"

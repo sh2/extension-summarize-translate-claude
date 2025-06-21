@@ -3,7 +3,7 @@
         "message": "Resumir y Traducir con Claude"
     },
     "extension_description": {
-        "message": "Resuma y traduzca páginas web. Utiliza Claude como backend."
+        "message": "Resume y traduce páginas web. Utiliza Claude como backend."
     },
     "popup_button_copy": {
         "message": "Copiar"
@@ -15,16 +15,19 @@
         "message": "Ejecutar de nuevo"
     },
     "popup_button_results": {
-        "message": "Abrir los resultados en una nueva pestaña"
+        "message": "Abrir resultados en una nueva pestaña"
     },
     "popup_button_options": {
         "message": "Abrir la página de opciones"
+    },
+    "popup_retrieving_captions": {
+        "message": "Intentando recuperar subtítulos"
     },
     "popup_summarizing": {
         "message": "Resumiendo"
     },
     "popup_summarizing_captions": {
-        "message": "Resumiendo los subtítulos"
+        "message": "Resumiendo subtítulos"
     },
     "popup_summarizing_image": {
         "message": "Resumiendo la imagen"
@@ -33,7 +36,7 @@
         "message": "Traduciendo"
     },
     "popup_translating_captions": {
-        "message": "Traduciendo los subtítulos"
+        "message": "Traduciendo subtítulos"
     },
     "popup_translating_image": {
         "message": "Traduciendo la imagen"
@@ -42,10 +45,10 @@
         "message": "Procesando"
     },
     "popup_unexpected_response": {
-        "message": "Ocurrió un error desconocido. Por favor, revise el registro de la consola."
+        "message": "Ocurrió un error inesperado. Por favor, revise la consola para más detalles."
     },
     "popup_miscellaneous_error": {
-        "message": "Esta página no puede ser resumida ni traducida."
+        "message": "No se puede resumir o traducir esta página."
     },
     "results_title": {
         "message": "Resultados - Resumir y Traducir con Claude"
@@ -63,10 +66,10 @@
         "message": "Enviar"
     },
     "results_waiting_response": {
-        "message": "Esperando una respuesta"
+        "message": "Esperando respuesta"
     },
     "results_unexpected_response": {
-        "message": "Ocurrió un error desconocido. Por favor, revise el registro de la consola."
+        "message": "Ocurrió un error inesperado. Por favor, revise la consola para más detalles."
     },
     "options_title": {
         "message": "Opciones - Resumir y Traducir con Claude"
@@ -78,19 +81,19 @@
         "message": "Puede obtener una clave de API de Anthropic en la siguiente página."
     },
     "options_model": {
-        "message": "Modelo de Lenguaje"
+        "message": "Modelo de lenguaje"
     },
     "options_language": {
-        "message": "Resumir en / Traducir a"
+        "message": "Idioma para Resumen y Traducción"
     },
     "options_language_user": {
         "message": "Idioma especificado por el usuario"
     },
     "options_language_notes": {
-        "message": "La configuración de idioma se ignora en las acciones personalizadas."
+        "message": "Nota: Esta configuración de idioma no afecta a las acciones personalizadas."
     },
     "options_no_text_action": {
-        "message": "Cuando no se selecciona texto, realice la siguiente acción"
+        "message": "Cuando no se selecciona texto, realizar la siguiente acción"
     },
     "options_no_text_summarize": {
         "message": "Resumir (predeterminado)"
@@ -102,7 +105,7 @@
         "message": "Acción personalizada"
     },
     "options_text_action": {
-        "message": "Cuando se selecciona texto, realice la siguiente acción"
+        "message": "Cuando se selecciona texto, realizar la siguiente acción"
     },
     "options_text_summarize": {
         "message": "Resumir"
@@ -114,7 +117,7 @@
         "message": "Acción personalizada"
     },
     "options_streaming": {
-        "message": "Salida de transmisión desde el modelo de lenguaje"
+        "message": "Habilitar la salida de transmisión desde el modelo de lenguaje"
     },
     "options_theme": {
         "message": "Tema"

@@ -12,13 +12,16 @@
         "message": "कॉपी किया गया।"
     },
     "popup_button_run": {
-        "message": "इसे फिर से चलाएँ"
+        "message": "फिर से चलाएँ"
     },
     "popup_button_results": {
-        "message": "परिणामों को एक नए टैब में खोलें"
+        "message": "परिणाम एक नए टैब में खोलें"
     },
     "popup_button_options": {
         "message": "विकल्प पृष्ठ खोलें"
+    },
+    "popup_retrieving_captions": {
+        "message": "कैप्शन प्राप्त करने का प्रयास किया जा रहा है"
     },
     "popup_summarizing": {
         "message": "संक्षेप किया जा रहा है"
@@ -42,16 +45,16 @@
         "message": "प्रसंस्करण किया जा रहा है"
     },
     "popup_unexpected_response": {
-        "message": "एक अज्ञात त्रुटि हुई। कृपया कंसोल लॉग की जाँच करें।"
+        "message": "एक अप्रत्याशित त्रुटि हुई। कृपया विवरण के लिए कंसोल की जाँच करें।"
     },
     "popup_miscellaneous_error": {
-        "message": "इस पृष्ठ का संक्षेप या अनुवाद नहीं किया जा सकता है।"
+        "message": "इस पृष्ठ का संक्षेप या अनुवाद करने में असमर्थ।"
     },
     "results_title": {
         "message": "परिणाम - Claude के साथ संक्षेप और अनुवाद करें"
     },
     "results_button_clear": {
-        "message": "वार्तालाप साफ़ करें"
+        "message": "बातचीत साफ़ करें"
     },
     "results_button_copy": {
         "message": "कॉपी करें"
@@ -66,7 +69,7 @@
         "message": "प्रतिक्रिया की प्रतीक्षा की जा रही है"
     },
     "results_unexpected_response": {
-        "message": "एक अज्ञात त्रुटि हुई। कृपया कंसोल लॉग की जाँच करें।"
+        "message": "एक अप्रत्याशित त्रुटि हुई। कृपया विवरण के लिए कंसोल की जाँच करें।"
     },
     "options_title": {
         "message": "विकल्प - Claude के साथ संक्षेप और अनुवाद करें"
@@ -75,19 +78,19 @@
         "message": "Anthropic API कुंजी"
     },
     "options_apikey_hint": {
-        "message": "आप निम्नलिखित पृष्ठ पर एक Anthropic API कुंजी प्राप्त कर सकते हैं।"
+        "message": "आप निम्नलिखित पृष्ठ से एक Anthropic API कुंजी प्राप्त कर सकते हैं।"
     },
     "options_model": {
         "message": "भाषा मॉडल"
     },
     "options_language": {
-        "message": "इसमें संक्षेप करें / इसमें अनुवाद करें"
+        "message": "संक्षेपण और अनुवाद के लिए भाषा"
     },
     "options_language_user": {
         "message": "उपयोगकर्ता द्वारा निर्दिष्ट भाषा"
     },
     "options_language_notes": {
-        "message": "कस्टम क्रियाओं में भाषा सेटिंग को अनदेखा किया जाता है।"
+        "message": "ध्यान दें: यह भाषा सेटिंग कस्टम क्रियाओं को प्रभावित नहीं करती है।"
     },
     "options_no_text_action": {
         "message": "जब कोई पाठ चयनित नहीं है, तो निम्नलिखित क्रिया करें"
@@ -114,7 +117,7 @@
         "message": "कस्टम क्रिया"
     },
     "options_streaming": {
-        "message": "भाषा मॉडल से स्ट्रीमिंग आउटपुट"
+        "message": "भाषा मॉडल से स्ट्रीमिंग आउटपुट सक्षम करें"
     },
     "options_theme": {
         "message": "थीम"

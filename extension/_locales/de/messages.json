@@ -15,34 +15,37 @@
         "message": "Erneut ausführen"
     },
     "popup_button_results": {
-        "message": "Ergebnisse in einem neuen Tab öffnen"
+        "message": "Ergebnisse in neuem Tab öffnen"
     },
     "popup_button_options": {
         "message": "Optionsseite öffnen"
+    },
+    "popup_retrieving_captions": {
+        "message": "Versuche, Untertitel abzurufen"
     },
     "popup_summarizing": {
         "message": "Zusammenfassen"
     },
     "popup_summarizing_captions": {
-        "message": "Die Bildunterschriften werden zusammengefasst"
+        "message": "Untertitel zusammenfassen"
     },
     "popup_summarizing_image": {
-        "message": "Das Bild wird zusammengefasst"
+        "message": "Das Bild zusammenfassen"
     },
     "popup_translating": {
         "message": "Übersetzen"
     },
     "popup_translating_captions": {
-        "message": "Die Bildunterschriften werden übersetzt"
+        "message": "Untertitel übersetzen"
     },
     "popup_translating_image": {
-        "message": "Das Bild wird übersetzt"
+        "message": "Das Bild übersetzen"
     },
     "popup_processing": {
         "message": "Verarbeitung"
     },
     "popup_unexpected_response": {
-        "message": "Ein unbekannter Fehler ist aufgetreten. Bitte überprüfen Sie das Konsolenprotokoll."
+        "message": "Ein unerwarteter Fehler ist aufgetreten. Bitte überprüfen Sie die Konsole für Details."
     },
     "popup_miscellaneous_error": {
         "message": "Diese Seite kann nicht zusammengefasst oder übersetzt werden."
@@ -63,10 +66,10 @@
         "message": "Senden"
     },
     "results_waiting_response": {
-        "message": "Warten auf eine Antwort"
+        "message": "Warte auf Antwort"
     },
     "results_unexpected_response": {
-        "message": "Ein unbekannter Fehler ist aufgetreten. Bitte überprüfen Sie das Konsolenprotokoll."
+        "message": "Ein unerwarteter Fehler ist aufgetreten. Bitte überprüfen Sie die Konsole für Details."
     },
     "options_title": {
         "message": "Optionen - Zusammenfassen und Übersetzen mit Claude"
@@ -81,16 +84,16 @@
         "message": "Sprachmodell"
     },
     "options_language": {
-        "message": "Zusammenfassen in / Übersetzen nach"
+        "message": "Sprache für Zusammenfassung und Übersetzung"
     },
     "options_language_user": {
         "message": "Benutzerdefinierte Sprache"
     },
     "options_language_notes": {
-        "message": "Die Spracheinstellung wird bei benutzerdefinierten Aktionen ignoriert."
+        "message": "Hinweis: Diese Spracheinstellung hat keine Auswirkungen auf benutzerdefinierte Aktionen."
     },
     "options_no_text_action": {
-        "message": "Wenn kein Text ausgewählt ist, führe die folgende Aktion aus"
+        "message": "Wenn kein Text ausgewählt ist, führe folgende Aktion aus"
     },
     "options_no_text_summarize": {
         "message": "Zusammenfassen (Standard)"
@@ -102,7 +105,7 @@
         "message": "Benutzerdefinierte Aktion"
     },
     "options_text_action": {
-        "message": "Wenn Text ausgewählt ist, führe die folgende Aktion aus"
+        "message": "Wenn Text ausgewählt ist, führe folgende Aktion aus"
     },
     "options_text_summarize": {
         "message": "Zusammenfassen"
@@ -114,10 +117,10 @@
         "message": "Benutzerdefinierte Aktion"
     },
     "options_streaming": {
-        "message": "Streaming-Ausgabe vom Sprachmodell"
+        "message": "Streaming-Ausgabe vom Sprachmodell aktivieren"
     },
     "options_theme": {
-        "message": "Thema"
+        "message": "Theme"
     },
     "options_font_size": {
         "message": "Schriftgröße"

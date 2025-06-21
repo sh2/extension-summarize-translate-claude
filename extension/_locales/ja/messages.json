@@ -20,6 +20,9 @@
     "popup_button_options": {
         "message": "オプションページを開く"
     },
+    "popup_retrieving_captions": {
+        "message": "字幕の取得を試みています"
+    },
     "popup_summarizing": {
         "message": "要約しています"
     },
@@ -42,7 +45,7 @@
         "message": "処理しています"
     },
     "popup_unexpected_response": {
-        "message": "不明なエラーが発生しました。コンソールログを確認してください。"
+        "message": "予期せぬエラーが発生しました。詳細はコンソールを確認してください。"
     },
     "popup_miscellaneous_error": {
         "message": "このページは要約や翻訳ができません。"
@@ -66,7 +69,7 @@
         "message": "応答を待っています"
     },
     "results_unexpected_response": {
-        "message": "不明なエラーが発生しました。コンソールログを確認してください。"
+        "message": "予期せぬエラーが発生しました。詳細はコンソールを確認してください。"
     },
     "options_title": {
         "message": "オプション - Claudeによる要約と翻訳"
@@ -75,19 +78,19 @@
         "message": "Anthropic APIキー"
     },
     "options_apikey_hint": {
-        "message": "Anthropic APIキーは、以下のページから取得できます。"
+        "message": "Anthropic APIキーは以下のページから取得できます。"
     },
     "options_model": {
         "message": "言語モデル"
     },
     "options_language": {
-        "message": "以下の言語で要約/翻訳する"
+        "message": "要約と翻訳に用いる言語"
     },
     "options_language_user": {
         "message": "ユーザー指定言語"
     },
     "options_language_notes": {
-        "message": "カスタムアクションでは、言語設定は無視されます。"
+        "message": "注意: この言語設定はカスタムアクションには影響しません。"
     },
     "options_no_text_action": {
         "message": "テキストが選択されなかったときは、以下のアクションを実行する"
@@ -114,7 +117,7 @@
         "message": "カスタムアクション"
     },
     "options_streaming": {
-        "message": "言語モデルからの出力をストリーミングする"
+        "message": "言語モデルからのストリーミング出力を有効にする"
     },
     "options_theme": {
         "message": "テーマ"

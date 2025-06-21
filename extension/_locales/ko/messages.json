@@ -1,6 +1,6 @@
 {
     "extension_name": {
-        "message": "Claude로 요약 및 번역하기"
+        "message": "Claude로 요약 및 번역"
     },
     "extension_description": {
         "message": "웹 페이지를 요약하고 번역합니다. 백엔드로 Claude를 사용합니다."
@@ -9,7 +9,7 @@
         "message": "복사"
     },
     "popup_copied": {
-        "message": "복사되었습니다."
+        "message": "복사됨."
     },
     "popup_button_run": {
         "message": "다시 실행"
@@ -19,6 +19,9 @@
     },
     "popup_button_options": {
         "message": "옵션 페이지 열기"
+    },
+    "popup_retrieving_captions": {
+        "message": "캡션 검색 시도 중"
     },
     "popup_summarizing": {
         "message": "요약 중"
@@ -42,13 +45,13 @@
         "message": "처리 중"
     },
     "popup_unexpected_response": {
-        "message": "알 수 없는 오류가 발생했습니다. 콘솔 로그를 확인하십시오."
+        "message": "예상치 못한 오류가 발생했습니다. 콘솔에서 자세한 내용을 확인하십시오."
     },
     "popup_miscellaneous_error": {
-        "message": "이 페이지는 요약하거나 번역할 수 없습니다."
+        "message": "이 페이지를 요약하거나 번역할 수 없습니다."
     },
     "results_title": {
-        "message": "결과 - Claude로 요약 및 번역하기"
+        "message": "결과 - Claude로 요약 및 번역"
     },
     "results_button_clear": {
         "message": "대화 내용 지우기"
@@ -57,7 +60,7 @@
         "message": "복사"
     },
     "results_copied": {
-        "message": "복사되었습니다."
+        "message": "복사됨."
     },
     "results_button_send": {
         "message": "보내기"
@@ -66,10 +69,10 @@
         "message": "응답 대기 중"
     },
     "results_unexpected_response": {
-        "message": "알 수 없는 오류가 발생했습니다. 콘솔 로그를 확인하십시오."
+        "message": "예상치 못한 오류가 발생했습니다. 콘솔에서 자세한 내용을 확인하십시오."
     },
     "options_title": {
-        "message": "옵션 - Claude로 요약 및 번역하기"
+        "message": "옵션 - Claude로 요약 및 번역"
     },
     "options_apikey": {
         "message": "Anthropic API 키"
@@ -81,13 +84,13 @@
         "message": "언어 모델"
     },
     "options_language": {
-        "message": "요약/번역할 언어"
+        "message": "요약 및 번역 언어"
     },
     "options_language_user": {
         "message": "사용자 지정 언어"
     },
     "options_language_notes": {
-        "message": "언어 설정은 사용자 정의 작업에서 무시됩니다."
+        "message": "참고: 이 언어 설정은 사용자 지정 작업에 영향을 주지 않습니다."
     },
     "options_no_text_action": {
         "message": "텍스트가 선택되지 않았을 때 다음 작업 수행"
@@ -99,7 +102,7 @@
         "message": "번역"
     },
     "options_no_text_custom": {
-        "message": "사용자 정의 작업"
+        "message": "사용자 지정 작업"
     },
     "options_text_action": {
         "message": "텍스트가 선택되었을 때 다음 작업 수행"
@@ -111,10 +114,10 @@
         "message": "번역 (기본)"
     },
     "options_text_custom": {
-        "message": "사용자 정의 작업"
+        "message": "사용자 지정 작업"
     },
     "options_streaming": {
-        "message": "언어 모델에서 스트리밍 출력"
+        "message": "언어 모델에서 스트리밍 출력 활성화"
     },
     "options_theme": {
         "message": "테마"
@@ -126,6 +129,6 @@
         "message": "옵션 저장"
     },
     "options_saved": {
-        "message": "저장되었습니다."
+        "message": "저장됨."
     }
 }

@@ -3,7 +3,7 @@
         "message": "Résumer et traduire avec Claude"
     },
     "extension_description": {
-        "message": "Résumez et traduisez des pages web. Utilise Claude comme backend."
+        "message": "Résume et traduit les pages web. Utilise Claude comme backend."
     },
     "popup_button_copy": {
         "message": "Copier"
@@ -20,32 +20,35 @@
     "popup_button_options": {
         "message": "Ouvrir la page d'options"
     },
+    "popup_retrieving_captions": {
+        "message": "Tentative de récupération des légendes"
+    },
     "popup_summarizing": {
-        "message": "Résumé en cours"
+        "message": "Résumisation en cours"
     },
     "popup_summarizing_captions": {
-        "message": "Résumé des légendes"
+        "message": "Résumisation des légendes en cours"
     },
     "popup_summarizing_image": {
-        "message": "Résumé de l'image"
+        "message": "Résumisation de l'image en cours"
     },
     "popup_translating": {
         "message": "Traduction en cours"
     },
     "popup_translating_captions": {
-        "message": "Traduction des légendes"
+        "message": "Traduction des légendes en cours"
     },
     "popup_translating_image": {
-        "message": "Traduction de l'image"
+        "message": "Traduction de l'image en cours"
     },
     "popup_processing": {
         "message": "Traitement en cours"
     },
     "popup_unexpected_response": {
-        "message": "Une erreur inconnue s'est produite. Veuillez consulter le journal de la console."
+        "message": "Une erreur inattendue s'est produite. Veuillez consulter la console pour plus de détails."
     },
     "popup_miscellaneous_error": {
-        "message": "Cette page ne peut pas être résumée ou traduite."
+        "message": "Impossible de résumer ou de traduire cette page."
     },
     "results_title": {
         "message": "Résultats - Résumer et traduire avec Claude"
@@ -63,10 +66,10 @@
         "message": "Envoyer"
     },
     "results_waiting_response": {
-        "message": "En attente d'une réponse"
+        "message": "En attente de la réponse"
     },
     "results_unexpected_response": {
-        "message": "Une erreur inconnue s'est produite. Veuillez consulter le journal de la console."
+        "message": "Une erreur inattendue s'est produite. Veuillez consulter la console pour plus de détails."
     },
     "options_title": {
         "message": "Options - Résumer et traduire avec Claude"
@@ -81,13 +84,13 @@
         "message": "Modèle de langage"
     },
     "options_language": {
-        "message": "Résumer en / Traduire vers"
+        "message": "Langue pour la résumisation et la traduction"
     },
     "options_language_user": {
         "message": "Langue spécifiée par l'utilisateur"
     },
     "options_language_notes": {
-        "message": "Le paramètre de langue est ignoré dans les actions personnalisées."
+        "message": "Remarque : Ce paramètre de langue n'affecte pas les actions personnalisées."
     },
     "options_no_text_action": {
         "message": "Lorsqu'aucun texte n'est sélectionné, effectuer l'action suivante"
@@ -114,7 +117,7 @@
         "message": "Action personnalisée"
     },
     "options_streaming": {
-        "message": "Sortie en continu du modèle de langage"
+        "message": "Activer la sortie en continu du modèle de langage"
     },
     "options_theme": {
         "message": "Thème"

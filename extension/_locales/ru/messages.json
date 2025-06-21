@@ -1,9 +1,9 @@
 {
     "extension_name": {
-        "message": "Суммировать и переводить с помощью Claude"
+        "message": "Краткое изложение и перевод с помощью Claude"
     },
     "extension_description": {
-        "message": "Суммирует и переводит веб-страницы. Использует Claude в качестве серверной части."
+        "message": "Краткое изложение и перевод веб-страниц. Использует Claude в качестве серверной части."
     },
     "popup_button_copy": {
         "message": "Копировать"
@@ -20,35 +20,38 @@
     "popup_button_options": {
         "message": "Открыть страницу настроек"
     },
+    "popup_retrieving_captions": {
+        "message": "Попытка получить подписи"
+    },
     "popup_summarizing": {
-        "message": "Суммирование"
+        "message": "Выполняется краткое изложение"
     },
     "popup_summarizing_captions": {
-        "message": "Суммирование подписей"
+        "message": "Выполняется краткое изложение подписей"
     },
     "popup_summarizing_image": {
-        "message": "Суммирование изображения"
+        "message": "Выполняется краткое изложение изображения"
     },
     "popup_translating": {
-        "message": "Перевод"
+        "message": "Выполняется перевод"
     },
     "popup_translating_captions": {
-        "message": "Перевод подписей"
+        "message": "Выполняется перевод подписей"
     },
     "popup_translating_image": {
-        "message": "Перевод изображения"
+        "message": "Выполняется перевод изображения"
     },
     "popup_processing": {
         "message": "Обработка"
     },
     "popup_unexpected_response": {
-        "message": "Произошла неизвестная ошибка. Пожалуйста, проверьте консольный журнал."
+        "message": "Произошла непредвиденная ошибка. Пожалуйста, проверьте консоль для получения подробной информации."
     },
     "popup_miscellaneous_error": {
-        "message": "Эта страница не может быть суммирована или переведена."
+        "message": "Невозможно выполнить краткое изложение или перевод этой страницы."
     },
     "results_title": {
-        "message": "Результаты - Суммировать и переводить с помощью Claude"
+        "message": "Результаты - Краткое изложение и перевод с помощью Claude"
     },
     "results_button_clear": {
         "message": "Очистить разговор"
@@ -66,34 +69,34 @@
         "message": "Ожидание ответа"
     },
     "results_unexpected_response": {
-        "message": "Произошла неизвестная ошибка. Пожалуйста, проверьте консольный журнал."
+        "message": "Произошла непредвиденная ошибка. Пожалуйста, проверьте консоль для получения подробной информации."
     },
     "options_title": {
-        "message": "Настройки - Суммировать и переводить с помощью Claude"
+        "message": "Настройки - Краткое изложение и перевод с помощью Claude"
     },
     "options_apikey": {
-        "message": "Anthropic API Key"
+        "message": "Ключ API Anthropic"
     },
     "options_apikey_hint": {
-        "message": "Вы можете получить Anthropic API Key на следующей странице."
+        "message": "Вы можете получить ключ API Anthropic на следующей странице."
     },
     "options_model": {
         "message": "Языковая модель"
     },
     "options_language": {
-        "message": "Суммировать на / Перевести на"
+        "message": "Язык для краткого изложения и перевода"
     },
     "options_language_user": {
         "message": "Язык, указанный пользователем"
     },
     "options_language_notes": {
-        "message": "Настройка языка игнорируется в пользовательских действиях."
+        "message": "Примечание: Этот параметр языка не влияет на пользовательские действия."
     },
     "options_no_text_action": {
-        "message": "Когда текст не выбран, выполнить следующее действие"
+        "message": "Если текст не выделен, выполнить следующее действие"
     },
     "options_no_text_summarize": {
-        "message": "Суммировать (по умолчанию)"
+        "message": "Краткое изложение (по умолчанию)"
     },
     "options_no_text_translate": {
         "message": "Перевести"
@@ -102,10 +105,10 @@
         "message": "Пользовательское действие"
     },
     "options_text_action": {
-        "message": "Когда текст выбран, выполнить следующее действие"
+        "message": "Если текст выделен, выполнить следующее действие"
     },
     "options_text_summarize": {
-        "message": "Суммировать"
+        "message": "Краткое изложение"
     },
     "options_text_translate": {
         "message": "Перевести (по умолчанию)"
@@ -114,7 +117,7 @@
         "message": "Пользовательское действие"
     },
     "options_streaming": {
-        "message": "Потоковый вывод из языковой модели"
+        "message": "Включить потоковый вывод из языковой модели"
     },
     "options_theme": {
         "message": "Тема"

@@ -15,16 +15,19 @@
         "message": "Chạy lại"
     },
     "popup_button_results": {
-        "message": "Mở kết quả trong một tab mới"
+        "message": "Mở kết quả trong tab mới"
     },
     "popup_button_options": {
         "message": "Mở trang tùy chọn"
+    },
+    "popup_retrieving_captions": {
+        "message": "Đang cố gắng lấy chú thích"
     },
     "popup_summarizing": {
         "message": "Đang tóm tắt"
     },
     "popup_summarizing_captions": {
-        "message": "Đang tóm tắt các chú thích"
+        "message": "Đang tóm tắt chú thích"
     },
     "popup_summarizing_image": {
         "message": "Đang tóm tắt hình ảnh"
@@ -33,7 +36,7 @@
         "message": "Đang dịch"
     },
     "popup_translating_captions": {
-        "message": "Đang dịch các chú thích"
+        "message": "Đang dịch chú thích"
     },
     "popup_translating_image": {
         "message": "Đang dịch hình ảnh"
@@ -42,7 +45,7 @@
         "message": "Đang xử lý"
     },
     "popup_unexpected_response": {
-        "message": "Đã xảy ra lỗi không xác định. Vui lòng kiểm tra nhật ký console."
+        "message": "Đã xảy ra lỗi không mong muốn. Vui lòng kiểm tra bảng điều khiển để biết chi tiết."
     },
     "popup_miscellaneous_error": {
         "message": "Không thể tóm tắt hoặc dịch trang này."
@@ -66,7 +69,7 @@
         "message": "Đang chờ phản hồi"
     },
     "results_unexpected_response": {
-        "message": "Đã xảy ra lỗi không xác định. Vui lòng kiểm tra nhật ký console."
+        "message": "Đã xảy ra lỗi không mong muốn. Vui lòng kiểm tra bảng điều khiển để biết chi tiết."
     },
     "options_title": {
         "message": "Tùy chọn - Tóm tắt và Dịch với Claude"
@@ -75,22 +78,22 @@
         "message": "Khóa API Anthropic"
     },
     "options_apikey_hint": {
-        "message": "Bạn có thể lấy Khóa API Anthropic tại trang sau."
+        "message": "Bạn có thể lấy khóa API Anthropic từ trang sau."
     },
     "options_model": {
         "message": "Mô hình ngôn ngữ"
     },
     "options_language": {
-        "message": "Tóm tắt thành / Dịch sang"
+        "message": "Ngôn ngữ cho Tóm tắt và Dịch"
     },
     "options_language_user": {
         "message": "Ngôn ngữ do người dùng chỉ định"
     },
     "options_language_notes": {
-        "message": "Cài đặt ngôn ngữ không được tính đến trong các hành động tùy chỉnh."
+        "message": "Lưu ý: Cài đặt ngôn ngữ này không ảnh hưởng đến các hành động tùy chỉnh."
     },
     "options_no_text_action": {
-        "message": "Khi không có văn bản nào được chọn, hãy thực hiện hành động sau"
+        "message": "Khi không có văn bản nào được chọn, thực hiện hành động sau"
     },
     "options_no_text_summarize": {
         "message": "Tóm tắt (mặc định)"
@@ -102,7 +105,7 @@
         "message": "Hành động tùy chỉnh"
     },
     "options_text_action": {
-        "message": "Khi văn bản được chọn, hãy thực hiện hành động sau"
+        "message": "Khi văn bản được chọn, thực hiện hành động sau"
     },
     "options_text_summarize": {
         "message": "Tóm tắt"
@@ -114,7 +117,7 @@
         "message": "Hành động tùy chỉnh"
     },
     "options_streaming": {
-        "message": "Truyền trực tuyến đầu ra từ mô hình ngôn ngữ"
+        "message": "Bật truyền trực tuyến đầu ra từ mô hình ngôn ngữ"
     },
     "options_theme": {
         "message": "Giao diện"
