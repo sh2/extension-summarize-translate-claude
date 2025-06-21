@@ -6,7 +6,7 @@ import {
 
 const INITIAL_OPTIONS = {
   apiKey: "",
-  languageModel: "3-haiku",
+  languageModel: "3.5-haiku",
   languageCode: "en",
   userLanguage: "Turkish",
   noTextAction: "summarize",
@@ -68,7 +68,7 @@ const setOptionsToForm = async () => {
 
   // Set the default language model if the language model is not set
   if (!document.getElementById("languageModel").value) {
-    document.getElementById("languageModel").value = "3-haiku";
+    document.getElementById("languageModel").value = "3.5-haiku";
   }
 };
 

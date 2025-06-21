@@ -13,7 +13,7 @@ The following are instructions for manual installation, for development purposes
 4. Open 'Options' page and register the Anthropic API Key, then select the language.
 
 You can obtain a Anthropic API Key from [Claude API \ Anthropic](https://www.anthropic.com/api).
-This extension uses Claude 3 Haiku by default.
+This extension uses Claude 3.5 Haiku by default.
 
 ## Usage
 
