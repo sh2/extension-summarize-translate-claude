@@ -47,6 +47,9 @@
     "popup_unexpected_response": {
         "message": "予期せぬエラーが発生しました。詳細はコンソールを確認してください。"
     },
+        "popup_no_apikey": {
+        "message": "オプションページでAnthropic APIキーを設定してください。"
+    },
     "popup_miscellaneous_error": {
         "message": "このページは要約や翻訳ができません。"
     },

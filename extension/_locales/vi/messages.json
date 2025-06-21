@@ -47,6 +47,9 @@
     "popup_unexpected_response": {
         "message": "Đã xảy ra lỗi không mong muốn. Vui lòng kiểm tra bảng điều khiển để biết chi tiết."
     },
+    "popup_no_apikey": {
+        "message": "Vui lòng thiết lập khóa API Anthropic của bạn trên trang tùy chọn."
+    },
     "popup_miscellaneous_error": {
         "message": "Không thể tóm tắt hoặc dịch trang này."
     },
@@ -117,7 +120,7 @@
         "message": "Hành động tùy chỉnh"
     },
     "options_streaming": {
-        "message": "Bật truyền trực tuyến đầu ra từ mô hình ngôn ngữ"
+        "message": "Bật đầu ra phát trực tuyến từ mô hình ngôn ngữ"
     },
     "options_theme": {
         "message": "Giao diện"

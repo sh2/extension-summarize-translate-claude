@@ -1,9 +1,9 @@
 {
     "extension_name": {
-        "message": "Краткое изложение и перевод с помощью Claude"
+        "message": "Суммировать и переводить с помощью Claude"
     },
     "extension_description": {
-        "message": "Краткое изложение и перевод веб-страниц. Использует Claude в качестве серверной части."
+        "message": "Суммирует и переводит веб-страницы. Использует Claude в качестве серверной части."
     },
     "popup_button_copy": {
         "message": "Копировать"
@@ -24,22 +24,22 @@
         "message": "Попытка получить подписи"
     },
     "popup_summarizing": {
-        "message": "Выполняется краткое изложение"
+        "message": "Суммирование"
     },
     "popup_summarizing_captions": {
-        "message": "Выполняется краткое изложение подписей"
+        "message": "Суммирование подписей"
     },
     "popup_summarizing_image": {
-        "message": "Выполняется краткое изложение изображения"
+        "message": "Суммирование изображения"
     },
     "popup_translating": {
-        "message": "Выполняется перевод"
+        "message": "Перевод"
     },
     "popup_translating_captions": {
-        "message": "Выполняется перевод подписей"
+        "message": "Перевод подписей"
     },
     "popup_translating_image": {
-        "message": "Выполняется перевод изображения"
+        "message": "Перевод изображения"
     },
     "popup_processing": {
         "message": "Обработка"
@@ -47,11 +47,14 @@
     "popup_unexpected_response": {
         "message": "Произошла непредвиденная ошибка. Пожалуйста, проверьте консоль для получения подробной информации."
     },
+    "popup_no_apikey": {
+        "message": "Пожалуйста, укажите свой Anthropic API key на странице настроек."
+    },
     "popup_miscellaneous_error": {
-        "message": "Невозможно выполнить краткое изложение или перевод этой страницы."
+        "message": "Невозможно суммировать или перевести эту страницу."
     },
     "results_title": {
-        "message": "Результаты - Краткое изложение и перевод с помощью Claude"
+        "message": "Результаты - Суммировать и переводить с помощью Claude"
     },
     "results_button_clear": {
         "message": "Очистить разговор"
@@ -72,19 +75,19 @@
         "message": "Произошла непредвиденная ошибка. Пожалуйста, проверьте консоль для получения подробной информации."
     },
     "options_title": {
-        "message": "Настройки - Краткое изложение и перевод с помощью Claude"
+        "message": "Настройки - Суммировать и переводить с помощью Claude"
     },
     "options_apikey": {
-        "message": "Ключ API Anthropic"
+        "message": "Anthropic API key"
     },
     "options_apikey_hint": {
-        "message": "Вы можете получить ключ API Anthropic на следующей странице."
+        "message": "Вы можете получить Anthropic API key на следующей странице."
     },
     "options_model": {
         "message": "Языковая модель"
     },
     "options_language": {
-        "message": "Язык для краткого изложения и перевода"
+        "message": "Язык для суммирования и перевода"
     },
     "options_language_user": {
         "message": "Язык, указанный пользователем"
@@ -96,7 +99,7 @@
         "message": "Если текст не выделен, выполнить следующее действие"
     },
     "options_no_text_summarize": {
-        "message": "Краткое изложение (по умолчанию)"
+        "message": "Суммировать (по умолчанию)"
     },
     "options_no_text_translate": {
         "message": "Перевести"
@@ -108,7 +111,7 @@
         "message": "Если текст выделен, выполнить следующее действие"
     },
     "options_text_summarize": {
-        "message": "Краткое изложение"
+        "message": "Суммировать"
     },
     "options_text_translate": {
         "message": "Перевести (по умолчанию)"
@@ -117,7 +120,7 @@
         "message": "Пользовательское действие"
     },
     "options_streaming": {
-        "message": "Включить потоковый вывод из языковой модели"
+        "message": "Включить потоковый вывод от языковой модели"
     },
     "options_theme": {
         "message": "Тема"

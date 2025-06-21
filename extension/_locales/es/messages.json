@@ -47,6 +47,9 @@
     "popup_unexpected_response": {
         "message": "Ocurrió un error inesperado. Por favor, revise la consola para más detalles."
     },
+    "popup_no_apikey": {
+        "message": "Por favor, configure su clave de API de Anthropic en la página de opciones."
+    },
     "popup_miscellaneous_error": {
         "message": "No se puede resumir o traducir esta página."
     },

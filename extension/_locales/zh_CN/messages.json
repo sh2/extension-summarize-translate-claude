@@ -47,6 +47,9 @@
     "popup_unexpected_response": {
         "message": "发生意外错误。请检查控制台以获取详细信息。"
     },
+    "popup_no_apikey": {
+        "message": "请在选项页面上设置您的 Anthropic API 密钥。"
+    },
     "popup_miscellaneous_error": {
         "message": "无法总结或翻译此页面。"
     },

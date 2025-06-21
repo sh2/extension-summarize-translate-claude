@@ -1,6 +1,6 @@
 {
     "extension_name": {
-        "message": "Riassumi e Traduci con Claude"
+        "message": "Riassumi e traduci con Claude"
     },
     "extension_description": {
         "message": "Riassumi e traduci pagine web. Utilizza Claude come backend."
@@ -21,7 +21,7 @@
         "message": "Apri la pagina delle opzioni"
     },
     "popup_retrieving_captions": {
-        "message": "Tentativo di recupero sottotitoli"
+        "message": "Tentativo di recupero dei sottotitoli"
     },
     "popup_summarizing": {
         "message": "Riassumendo"
@@ -45,13 +45,16 @@
         "message": "Elaborazione in corso"
     },
     "popup_unexpected_response": {
-        "message": "Si è verificato un errore imprevisto. Controllare la console per i dettagli."
+        "message": "Si è verificato un errore imprevisto. Si prega di controllare la console per i dettagli."
+    },
+    "popup_no_apikey": {
+        "message": "Si prega di impostare la chiave API di Anthropic nella pagina delle opzioni."
     },
     "popup_miscellaneous_error": {
         "message": "Impossibile riassumere o tradurre questa pagina."
     },
     "results_title": {
-        "message": "Risultati - Riassumi e Traduci con Claude"
+        "message": "Risultati - Riassumi e traduci con Claude"
     },
     "results_button_clear": {
         "message": "Cancella conversazione"
@@ -69,22 +72,22 @@
         "message": "In attesa di risposta"
     },
     "results_unexpected_response": {
-        "message": "Si è verificato un errore imprevisto. Controllare la console per i dettagli."
+        "message": "Si è verificato un errore imprevisto. Si prega di controllare la console per i dettagli."
     },
     "options_title": {
-        "message": "Opzioni - Riassumi e Traduci con Claude"
+        "message": "Opzioni - Riassumi e traduci con Claude"
     },
     "options_apikey": {
         "message": "Chiave API Anthropic"
     },
     "options_apikey_hint": {
-        "message": "È possibile ottenere una chiave API Anthropic dalla pagina seguente."
+        "message": "È possibile ottenere una chiave API Anthropic dalla seguente pagina."
     },
     "options_model": {
         "message": "Modello linguistico"
     },
     "options_language": {
-        "message": "Lingua per riassunto e traduzione"
+        "message": "Lingua per la sintesi e la traduzione"
     },
     "options_language_user": {
         "message": "Lingua specificata dall'utente"
@@ -123,7 +126,7 @@
         "message": "Tema"
     },
     "options_font_size": {
-        "message": "Dimensione carattere"
+        "message": "Dimensione del font"
     },
     "options_button_save": {
         "message": "Salva opzioni"

@@ -47,6 +47,9 @@
     "popup_unexpected_response": {
         "message": "Ocorreu um erro inesperado. Verifique o console para obter detalhes."
     },
+    "popup_no_apikey": {
+        "message": "Por favor, defina sua chave de API Anthropic na página de opções."
+    },
     "popup_miscellaneous_error": {
         "message": "Não foi possível resumir ou traduzir esta página."
     },
@@ -75,10 +78,10 @@
         "message": "Opções - Resumir e Traduzir com Claude"
     },
     "options_apikey": {
-        "message": "Chave da API Anthropic"
+        "message": "Chave de API Anthropic"
     },
     "options_apikey_hint": {
-        "message": "Você pode obter uma chave da API Anthropic na seguinte página."
+        "message": "Você pode obter uma chave de API Anthropic na seguinte página."
     },
     "options_model": {
         "message": "Modelo de linguagem"
@@ -93,7 +96,7 @@
         "message": "Nota: Esta configuração de idioma não afeta ações personalizadas."
     },
     "options_no_text_action": {
-        "message": "Quando nenhum texto é selecionado, realizar a seguinte ação"
+        "message": "Quando nenhum texto é selecionado, execute a seguinte ação"
     },
     "options_no_text_summarize": {
         "message": "Resumir (padrão)"
@@ -105,7 +108,7 @@
         "message": "Ação personalizada"
     },
     "options_text_action": {
-        "message": "Quando o texto é selecionado, realizar a seguinte ação"
+        "message": "Quando o texto é selecionado, execute a seguinte ação"
     },
     "options_text_summarize": {
         "message": "Resumir"

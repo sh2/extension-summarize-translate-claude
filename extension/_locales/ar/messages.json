@@ -47,6 +47,9 @@
     "popup_unexpected_response": {
         "message": "حدث خطأ غير متوقع. يرجى التحقق من وحدة التحكم للحصول على التفاصيل."
     },
+    "popup_no_apikey": {
+        "message": "يرجى تعيين مفتاح واجهة برمجة تطبيقات Anthropic في صفحة الخيارات."
+    },
     "popup_miscellaneous_error": {
         "message": "تعذر تلخيص هذه الصفحة أو ترجمتها."
     },

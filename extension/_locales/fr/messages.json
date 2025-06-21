@@ -24,13 +24,13 @@
         "message": "Tentative de récupération des légendes"
     },
     "popup_summarizing": {
-        "message": "Résumisation en cours"
+        "message": "Résumé en cours"
     },
     "popup_summarizing_captions": {
-        "message": "Résumisation des légendes en cours"
+        "message": "Résumé des légendes en cours"
     },
     "popup_summarizing_image": {
-        "message": "Résumisation de l'image en cours"
+        "message": "Résumé de l'image en cours"
     },
     "popup_translating": {
         "message": "Traduction en cours"
@@ -46,6 +46,9 @@
     },
     "popup_unexpected_response": {
         "message": "Une erreur inattendue s'est produite. Veuillez consulter la console pour plus de détails."
+    },
+    "popup_no_apikey": {
+        "message": "Veuillez définir votre clé API Anthropic sur la page d'options."
     },
     "popup_miscellaneous_error": {
         "message": "Impossible de résumer ou de traduire cette page."
@@ -84,7 +87,7 @@
         "message": "Modèle de langage"
     },
     "options_language": {
-        "message": "Langue pour la résumisation et la traduction"
+        "message": "Langue pour le résumé et la traduction"
     },
     "options_language_user": {
         "message": "Langue spécifiée par l'utilisateur"

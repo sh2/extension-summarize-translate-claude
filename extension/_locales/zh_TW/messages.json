@@ -47,6 +47,9 @@
     "popup_unexpected_response": {
         "message": "發生未預期的錯誤。請檢查主控台以取得詳細資訊。"
     },
+    "popup_no_apikey": {
+        "message": "請在選項頁面上設定您的 Anthropic API 金鑰。"
+    },
     "popup_miscellaneous_error": {
         "message": "無法摘要或翻譯此頁面。"
     },

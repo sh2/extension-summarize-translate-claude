@@ -1,24 +1,24 @@
 {
     "extension_name": {
-        "message": "Claude-এর সাহায্যে সংক্ষিপ্ত করুন এবং অনুবাদ করুন"
+        "message": "Claude-এর মাধ্যমে সংক্ষিপ্ত করুন এবং অনুবাদ করুন"
     },
     "extension_description": {
-        "message": "ওয়েব পেজগুলির সারসংক্ষেপ করুন এবং অনুবাদ করুন। ব্যাকএন্ড হিসাবে Claude ব্যবহার করে।"
+        "message": "ওয়েব পেজগুলির সারসংক্ষেপ করুন এবং অনুবাদ করুন। ব্যাকএন্ড হিসাবে Claude ব্যবহার করে।"
     },
     "popup_button_copy": {
         "message": "কপি করুন"
     },
     "popup_copied": {
-        "message": "কপি করা হয়েছে।"
+        "message": "কপি করা হয়েছে।"
     },
     "popup_button_run": {
-        "message": "পুনরায় চালান"
+        "message": "পুনরায় চালান"
     },
     "popup_button_results": {
         "message": "নতুন ট্যাবে ফলাফল খুলুন"
     },
     "popup_button_options": {
-        "message": "অপশন পেজ খুলুন"
+        "message": "অপশন পাতা খুলুন"
     },
     "popup_retrieving_captions": {
         "message": "ক্যাপশনগুলি পুনরুদ্ধার করার চেষ্টা চলছে"
@@ -42,16 +42,19 @@
         "message": "ছবিটির অনুবাদ করা হচ্ছে"
     },
     "popup_processing": {
-        "message": "প্রক্রিয়াকরণ করা হচ্ছে"
+        "message": "প্রক্রিয়াকরণ করা হচ্ছে"
     },
     "popup_unexpected_response": {
         "message": "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে। বিস্তারিত জানার জন্য কনসোল দেখুন।"
     },
+    "popup_no_apikey": {
+        "message": "অনুগ্রহ করে অপশন পাতায় আপনার Anthropic API কী সেট করুন।"
+    },
     "popup_miscellaneous_error": {
-        "message": "এই পৃষ্ঠাটির সারসংক্ষেপ বা অনুবাদ করতে অক্ষম।"
+        "message": "এই পৃষ্ঠাটির সারসংক্ষেপ বা অনুবাদ করা সম্ভব নয়।"
     },
     "results_title": {
-        "message": "ফলাফল - Claude-এর সাহায্যে সংক্ষিপ্ত করুন এবং অনুবাদ করুন"
+        "message": "ফলাফল - Claude-এর মাধ্যমে সংক্ষিপ্ত করুন এবং অনুবাদ করুন"
     },
     "results_button_clear": {
         "message": "কথোপকথন পরিষ্কার করুন"
@@ -60,7 +63,7 @@
         "message": "কপি করুন"
     },
     "results_copied": {
-        "message": "কপি করা হয়েছে।"
+        "message": "কপি করা হয়েছে।"
     },
     "results_button_send": {
         "message": "প্রেরণ করুন"
@@ -72,7 +75,7 @@
         "message": "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে। বিস্তারিত জানার জন্য কনসোল দেখুন।"
     },
     "options_title": {
-        "message": "অপশন - Claude-এর সাহায্যে সংক্ষিপ্ত করুন এবং অনুবাদ করুন"
+        "message": "অপশন - Claude-এর মাধ্যমে সংক্ষিপ্ত করুন এবং অনুবাদ করুন"
     },
     "options_apikey": {
         "message": "Anthropic API কী"
@@ -84,16 +87,16 @@
         "message": "ভাষা মডেল"
     },
     "options_language": {
-        "message": "সংক্ষিপ্তসার এবং অনুবাদের জন্য ভাষা"
+        "message": "সারসংক্ষেপ এবং অনুবাদের জন্য ভাষা"
     },
     "options_language_user": {
         "message": "ব্যবহারকারী-নির্দিষ্ট ভাষা"
     },
     "options_language_notes": {
-        "message": "নোট: এই ভাষা সেটিং কাস্টম ক্রিয়াকে প্রভাবিত করে না।"
+        "message": "নোট: এই ভাষা সেটিংস কাস্টম ক্রিয়াগুলিকে প্রভাবিত করে না।"
     },
     "options_no_text_action": {
-        "message": "যখন কোনও পাঠ্য নির্বাচন করা হয় না, তখন নিম্নলিখিত ক্রিয়াটি সম্পাদন করুন"
+        "message": "যখন কোনো টেক্সট নির্বাচন করা না হয়, তখন নিম্নলিখিত ক্রিয়াটি করুন"
     },
     "options_no_text_summarize": {
         "message": "সংক্ষিপ্ত করুন (ডিফল্ট)"
@@ -102,10 +105,10 @@
         "message": "অনুবাদ করুন"
     },
     "options_no_text_custom": {
-        "message": "কাস্টম ক্রিয়া"
+        "message": "কাস্টম ক্রিয়া"
     },
     "options_text_action": {
-        "message": "যখন পাঠ্য নির্বাচন করা হয়, তখন নিম্নলিখিত ক্রিয়াটি সম্পাদন করুন"
+        "message": "যখন টেক্সট নির্বাচন করা হয়, তখন নিম্নলিখিত ক্রিয়াটি করুন"
     },
     "options_text_summarize": {
         "message": "সংক্ষিপ্ত করুন"
@@ -114,7 +117,7 @@
         "message": "অনুবাদ করুন (ডিফল্ট)"
     },
     "options_text_custom": {
-        "message": "কাস্টম ক্রিয়া"
+        "message": "কাস্টম ক্রিয়া"
     },
     "options_streaming": {
         "message": "ভাষা মডেল থেকে স্ট্রিমিং আউটপুট সক্ষম করুন"
@@ -126,9 +129,9 @@
         "message": "ফন্টের আকার"
     },
     "options_button_save": {
-        "message": "অপশন সংরক্ষণ করুন"
+        "message": "অপশনগুলি সংরক্ষণ করুন"
     },
     "options_saved": {
-        "message": "সংরক্ষিত হয়েছে।"
+        "message": "সংরক্ষিত হয়েছে।"
     }
 }

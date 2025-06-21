@@ -47,6 +47,9 @@
     "popup_unexpected_response": {
         "message": "An unexpected error occurred. Please check the console for details."
     },
+    "popup_no_apikey": {
+        "message": "Please set your Anthropic API key on the options page."
+    },
     "popup_miscellaneous_error": {
         "message": "Unable to summarize or translate this page."
     },

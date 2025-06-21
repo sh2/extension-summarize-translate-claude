@@ -47,6 +47,9 @@
     "popup_unexpected_response": {
         "message": "Ein unerwarteter Fehler ist aufgetreten. Bitte überprüfen Sie die Konsole für Details."
     },
+    "popup_no_apikey": {
+        "message": "Bitte geben Sie Ihren Anthropic API-Schlüssel auf der Optionsseite ein."
+    },
     "popup_miscellaneous_error": {
         "message": "Diese Seite kann nicht zusammengefasst oder übersetzt werden."
     },
