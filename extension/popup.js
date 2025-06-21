@@ -184,6 +184,8 @@ const extractTaskInformation = async (languageCode) => {
       // If the page is a YouTube video, get the captions instead of the whole text
       mediaType = "captions";
 
+      const displayIntervalId = setInterval(displayLoadingMessage, 500, "status", chrome.i18n.getMessage("popup_retrieving_captions"));
+
       try {
         await chrome.scripting.executeScript({
           target: { tabId: tab.id },
@@ -202,6 +204,10 @@ const extractTaskInformation = async (languageCode) => {
         }))[0].result;
       } catch (error) {
         console.log(error);
+      } finally {
+        if (displayIntervalId) {
+          clearInterval(displayIntervalId);
+        }
       }
     }
 
