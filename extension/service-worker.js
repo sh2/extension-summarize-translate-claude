@@ -200,7 +200,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       sendResponse(taskInputChunks);
     } else if (request.message === "generate") {
       // Generate content
-      const { actionType, mediaType, taskInput, languageModel, languageCode } = request;
+      const { actionType, mediaType, taskInput, languageModel, languageCode, streamKey } = request;
       const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
       const modelId = getModelId(languageModel);
       const maxOutputTokens = getMaxOutputTokens(modelId);
@@ -246,7 +246,7 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       }
 
       if (streaming) {
-        response = await streamGenerateContent(apiKey, modelId, maxOutputTokens, systemPrompt, apiContents);
+        response = await streamGenerateContent(apiKey, modelId, maxOutputTokens, systemPrompt, apiContents, streamKey);
       } else {
         response = await generateContent(apiKey, modelId, maxOutputTokens, systemPrompt, apiContents);
       }

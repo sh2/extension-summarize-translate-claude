@@ -147,9 +147,9 @@ export const generateContent = async (apiKey, modelId, maxOutputTokens, systemPr
   }
 };
 
-export const streamGenerateContent = async (apiKey, modelId, maxOutputTokens, systemPrompt, apiContents) => {
+export const streamGenerateContent = async (apiKey, modelId, maxOutputTokens, systemPrompt, apiContents, streamKey) => {
   try {
-    await chrome.storage.session.remove("streamContent");
+    await chrome.storage.session.remove(streamKey);
 
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -202,7 +202,7 @@ export const streamGenerateContent = async (apiKey, modelId, maxOutputTokens, sy
               content += json.delta.text;
 
               // Set the stream content to session storage
-              await chrome.storage.session.set({ streamContent: content });
+              await chrome.storage.session.set({ [streamKey]: content });
             }
           }
 
