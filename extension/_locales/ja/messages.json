@@ -8,8 +8,14 @@
     "popup_button_copy": {
         "message": "コピーする"
     },
+    "popup_button_save": {
+        "message": "保存する"
+    },
     "popup_copied": {
         "message": "コピーしました。"
+    },
+    "popup_saved": {
+        "message": "保存しました。"
     },
     "popup_button_run": {
         "message": "もう一度実行する"
@@ -47,7 +53,7 @@
     "popup_unexpected_response": {
         "message": "予期せぬエラーが発生しました。詳細はコンソールを確認してください。"
     },
-        "popup_no_apikey": {
+    "popup_no_apikey": {
         "message": "オプションページでClaude APIキーを設定してください。"
     },
     "popup_miscellaneous_error": {
@@ -62,8 +68,14 @@
     "results_button_copy": {
         "message": "コピーする"
     },
+    "results_button_save": {
+        "message": "保存する"
+    },
     "results_copied": {
         "message": "コピーしました。"
+    },
+    "results_saved": {
+        "message": "保存しました。"
     },
     "results_button_send": {
         "message": "送信する"

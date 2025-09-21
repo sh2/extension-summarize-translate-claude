@@ -237,3 +237,16 @@ export const streamGenerateContent = async (apiKey, modelId, maxOutputTokens, sy
     };
   }
 };
+
+export const exportTextToFile = (text) => {
+  const currentDate = new Date();
+  const adjustedDate = new Date(currentDate.getTime() - currentDate.getTimezoneOffset() * 60000);
+  const localDateTimeString = adjustedDate.toISOString().split(".")[0].replaceAll("T", "_").replaceAll(":", "-");
+  const blob = new Blob([text], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `claude-results_${localDateTimeString}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+};
