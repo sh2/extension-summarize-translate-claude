@@ -3,13 +3,19 @@
         "message": "Zusammenfassen und Übersetzen mit Claude"
     },
     "extension_description": {
-        "message": "Webseiten zusammenfassen und übersetzen. Verwendet Claude als Backend."
+        "message": "Webseiten zusammenfassen und übersetzen. Nutzt Claude als Backend."
     },
     "popup_button_copy": {
         "message": "Kopieren"
     },
+    "popup_button_save": {
+        "message": "Speichern"
+    },
     "popup_copied": {
         "message": "Kopiert."
+    },
+    "popup_saved": {
+        "message": "Gespeichert."
     },
     "popup_button_run": {
         "message": "Erneut ausführen"
@@ -18,10 +24,10 @@
         "message": "Ergebnisse in neuem Tab öffnen"
     },
     "popup_button_options": {
-        "message": "Optionsseite öffnen"
+        "message": "Optionen öffnen"
     },
     "popup_retrieving_captions": {
-        "message": "Versuche, Untertitel abzurufen"
+        "message": "Untertitel werden abgerufen"
     },
     "popup_summarizing": {
         "message": "Zusammenfassen"
@@ -30,7 +36,7 @@
         "message": "Untertitel zusammenfassen"
     },
     "popup_summarizing_image": {
-        "message": "Das Bild zusammenfassen"
+        "message": "Bild zusammenfassen"
     },
     "popup_translating": {
         "message": "Übersetzen"
@@ -39,16 +45,16 @@
         "message": "Untertitel übersetzen"
     },
     "popup_translating_image": {
-        "message": "Das Bild übersetzen"
+        "message": "Bild übersetzen"
     },
     "popup_processing": {
-        "message": "Verarbeitung"
+        "message": "Verarbeiten"
     },
     "popup_unexpected_response": {
-        "message": "Ein unerwarteter Fehler ist aufgetreten. Bitte überprüfen Sie die Konsole für Details."
+        "message": "Ein unerwarteter Fehler ist aufgetreten. Bitte prüfen Sie die Konsole für Details."
     },
     "popup_no_apikey": {
-        "message": "Bitte geben Sie Ihren Anthropic API-Schlüssel auf der Optionsseite ein."
+        "message": "Bitte geben Sie Ihren Claude API-Schlüssel auf der Optionsseite ein."
     },
     "popup_miscellaneous_error": {
         "message": "Diese Seite kann nicht zusammengefasst oder übersetzt werden."
@@ -62,8 +68,14 @@
     "results_button_copy": {
         "message": "Kopieren"
     },
+    "results_button_save": {
+        "message": "Speichern"
+    },
     "results_copied": {
         "message": "Kopiert."
+    },
+    "results_saved": {
+        "message": "Gespeichert."
     },
     "results_button_send": {
         "message": "Senden"
@@ -72,16 +84,16 @@
         "message": "Warte auf Antwort"
     },
     "results_unexpected_response": {
-        "message": "Ein unerwarteter Fehler ist aufgetreten. Bitte überprüfen Sie die Konsole für Details."
+        "message": "Ein unerwarteter Fehler ist aufgetreten. Bitte prüfen Sie die Konsole für Details."
     },
     "options_title": {
         "message": "Optionen - Zusammenfassen und Übersetzen mit Claude"
     },
     "options_apikey": {
-        "message": "Anthropic API-Schlüssel"
+        "message": "Claude API-Schlüssel"
     },
     "options_apikey_hint": {
-        "message": "Sie können einen Anthropic API-Schlüssel auf der folgenden Seite erhalten."
+        "message": "Einen Claude API-Schlüssel erhalten Sie auf der folgenden Seite."
     },
     "options_model": {
         "message": "Sprachmodell"
@@ -93,10 +105,10 @@
         "message": "Benutzerdefinierte Sprache"
     },
     "options_language_notes": {
-        "message": "Hinweis: Diese Spracheinstellung hat keine Auswirkungen auf benutzerdefinierte Aktionen."
+        "message": "Hinweis: Diese Spracheinstellung beeinflusst keine benutzerdefinierten Aktionen."
     },
     "options_no_text_action": {
-        "message": "Wenn kein Text ausgewählt ist, führe folgende Aktion aus"
+        "message": "Wenn kein Text ausgewählt ist, folgende Aktion ausführen"
     },
     "options_no_text_summarize": {
         "message": "Zusammenfassen (Standard)"
@@ -108,7 +120,7 @@
         "message": "Benutzerdefinierte Aktion"
     },
     "options_text_action": {
-        "message": "Wenn Text ausgewählt ist, führe folgende Aktion aus"
+        "message": "Wenn Text ausgewählt ist, folgende Aktion ausführen"
     },
     "options_text_summarize": {
         "message": "Zusammenfassen"
@@ -123,7 +135,7 @@
         "message": "Streaming-Ausgabe vom Sprachmodell aktivieren"
     },
     "options_theme": {
-        "message": "Theme"
+        "message": "Design"
     },
     "options_font_size": {
         "message": "Schriftgröße"

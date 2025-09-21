@@ -1,18 +1,24 @@
 {
     "extension_name": {
-        "message": "使用 Claude 進行摘要和翻譯"
+        "message": "使用 Claude 進行摘要與翻譯"
     },
     "extension_description": {
-        "message": "摘要和翻譯網頁。使用 Claude 作為後端。"
+        "message": "摘要並翻譯網頁內容。使用 Claude 作為後端。"
     },
     "popup_button_copy": {
         "message": "複製"
     },
+    "popup_button_save": {
+        "message": "儲存"
+    },
     "popup_copied": {
         "message": "已複製。"
     },
+    "popup_saved": {
+        "message": "已儲存。"
+    },
     "popup_button_run": {
-        "message": "重新執行"
+        "message": "再次執行"
     },
     "popup_button_results": {
         "message": "在新分頁中開啟結果"
@@ -21,40 +27,40 @@
         "message": "開啟選項頁面"
     },
     "popup_retrieving_captions": {
-        "message": "嘗試擷取字幕"
+        "message": "正在嘗試擷取字幕"
     },
     "popup_summarizing": {
-        "message": "摘要中"
+        "message": "正在摘要"
     },
     "popup_summarizing_captions": {
-        "message": "摘要字幕中"
+        "message": "正在摘要字幕"
     },
     "popup_summarizing_image": {
-        "message": "摘要圖片中"
+        "message": "正在摘要圖片"
     },
     "popup_translating": {
-        "message": "翻譯中"
+        "message": "正在翻譯"
     },
     "popup_translating_captions": {
-        "message": "翻譯字幕中"
+        "message": "正在翻譯字幕"
     },
     "popup_translating_image": {
-        "message": "翻譯圖片中"
+        "message": "正在翻譯圖片"
     },
     "popup_processing": {
-        "message": "處理中"
+        "message": "正在處理"
     },
     "popup_unexpected_response": {
-        "message": "發生未預期的錯誤。請檢查主控台以取得詳細資訊。"
+        "message": "發生意外錯誤。請檢查主控台以獲取詳細資訊。"
     },
     "popup_no_apikey": {
-        "message": "請在選項頁面上設定您的 Anthropic API 金鑰。"
+        "message": "請在選項頁面設定您的 Claude API 金鑰。"
     },
     "popup_miscellaneous_error": {
         "message": "無法摘要或翻譯此頁面。"
     },
     "results_title": {
-        "message": "結果 - 使用 Claude 進行摘要和翻譯"
+        "message": "結果 - 使用 Claude 進行摘要與翻譯"
     },
     "results_button_clear": {
         "message": "清除對話"
@@ -62,8 +68,14 @@
     "results_button_copy": {
         "message": "複製"
     },
+    "results_button_save": {
+        "message": "儲存"
+    },
     "results_copied": {
         "message": "已複製。"
+    },
+    "results_saved": {
+        "message": "已儲存。"
     },
     "results_button_send": {
         "message": "傳送"
@@ -72,28 +84,28 @@
         "message": "等待回應"
     },
     "results_unexpected_response": {
-        "message": "發生未預期的錯誤。請檢查主控台以取得詳細資訊。"
+        "message": "發生意外錯誤。請檢查主控台以獲取詳細資訊。"
     },
     "options_title": {
-        "message": "選項 - 使用 Claude 進行摘要和翻譯"
+        "message": "選項 - 使用 Claude 進行摘要與翻譯"
     },
     "options_apikey": {
-        "message": "Anthropic API 金鑰"
+        "message": "Claude API 金鑰"
     },
     "options_apikey_hint": {
-        "message": "您可以從以下頁面取得 Anthropic API 金鑰。"
+        "message": "您可以從以下頁面取得 Claude API 金鑰。"
     },
     "options_model": {
         "message": "語言模型"
     },
     "options_language": {
-        "message": "摘要和翻譯的語言"
+        "message": "摘要與翻譯語言"
     },
     "options_language_user": {
-        "message": "使用者指定的語言"
+        "message": "使用者指定語言"
     },
     "options_language_notes": {
-        "message": "注意：此語言設定不會影響自訂動作。"
+        "message": "注意：此語言設定不影響自訂動作。"
     },
     "options_no_text_action": {
         "message": "未選取文字時，執行以下動作"
@@ -120,7 +132,7 @@
         "message": "自訂動作"
     },
     "options_streaming": {
-        "message": "啟用來自語言模型的串流輸出"
+        "message": "啟用語言模型串流輸出"
     },
     "options_theme": {
         "message": "主題"

@@ -3,13 +3,19 @@
         "message": "Résumer et traduire avec Claude"
     },
     "extension_description": {
-        "message": "Résume et traduit les pages web. Utilise Claude comme backend."
+        "message": "Résume et traduit les pages web. Utilise Claude comme moteur."
     },
     "popup_button_copy": {
         "message": "Copier"
     },
+    "popup_button_save": {
+        "message": "Enregistrer"
+    },
     "popup_copied": {
         "message": "Copié."
+    },
+    "popup_saved": {
+        "message": "Enregistré."
     },
     "popup_button_run": {
         "message": "Exécuter à nouveau"
@@ -18,7 +24,7 @@
         "message": "Ouvrir les résultats dans un nouvel onglet"
     },
     "popup_button_options": {
-        "message": "Ouvrir la page d'options"
+        "message": "Ouvrir les options"
     },
     "popup_retrieving_captions": {
         "message": "Tentative de récupération des légendes"
@@ -45,10 +51,10 @@
         "message": "Traitement en cours"
     },
     "popup_unexpected_response": {
-        "message": "Une erreur inattendue s'est produite. Veuillez consulter la console pour plus de détails."
+        "message": "Une erreur inattendue est survenue. Veuillez consulter la console pour plus de détails."
     },
     "popup_no_apikey": {
-        "message": "Veuillez définir votre clé API Anthropic sur la page d'options."
+        "message": "Veuillez définir votre clé API Claude sur la page des options."
     },
     "popup_miscellaneous_error": {
         "message": "Impossible de résumer ou de traduire cette page."
@@ -62,29 +68,35 @@
     "results_button_copy": {
         "message": "Copier"
     },
+    "results_button_save": {
+        "message": "Enregistrer"
+    },
     "results_copied": {
         "message": "Copié."
+    },
+    "results_saved": {
+        "message": "Enregistré."
     },
     "results_button_send": {
         "message": "Envoyer"
     },
     "results_waiting_response": {
-        "message": "En attente de la réponse"
+        "message": "En attente de réponse"
     },
     "results_unexpected_response": {
-        "message": "Une erreur inattendue s'est produite. Veuillez consulter la console pour plus de détails."
+        "message": "Une erreur inattendue est survenue. Veuillez consulter la console pour plus de détails."
     },
     "options_title": {
         "message": "Options - Résumer et traduire avec Claude"
     },
     "options_apikey": {
-        "message": "Clé API Anthropic"
+        "message": "Clé API Claude"
     },
     "options_apikey_hint": {
-        "message": "Vous pouvez obtenir une clé API Anthropic sur la page suivante."
+        "message": "Vous pouvez obtenir une clé API Claude sur la page suivante."
     },
     "options_model": {
-        "message": "Modèle de langage"
+        "message": "Modèle linguistique"
     },
     "options_language": {
         "message": "Langue pour le résumé et la traduction"
@@ -108,7 +120,7 @@
         "message": "Action personnalisée"
     },
     "options_text_action": {
-        "message": "Lorsque du texte est sélectionné, effectuer l'action suivante"
+        "message": "Lorsqu'un texte est sélectionné, effectuer l'action suivante"
     },
     "options_text_summarize": {
         "message": "Résumer"
@@ -120,7 +132,7 @@
         "message": "Action personnalisée"
     },
     "options_streaming": {
-        "message": "Activer la sortie en continu du modèle de langage"
+        "message": "Activer la diffusion en continu de la sortie du modèle linguistique"
     },
     "options_theme": {
         "message": "Thème"

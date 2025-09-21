@@ -8,8 +8,14 @@
     "popup_button_copy": {
         "message": "복사"
     },
+    "popup_button_save": {
+        "message": "저장"
+    },
     "popup_copied": {
-        "message": "복사됨."
+        "message": "복사되었습니다."
+    },
+    "popup_saved": {
+        "message": "저장되었습니다."
     },
     "popup_button_run": {
         "message": "다시 실행"
@@ -21,7 +27,7 @@
         "message": "옵션 페이지 열기"
     },
     "popup_retrieving_captions": {
-        "message": "캡션 검색 시도 중"
+        "message": "캡션 가져오는 중"
     },
     "popup_summarizing": {
         "message": "요약 중"
@@ -45,10 +51,10 @@
         "message": "처리 중"
     },
     "popup_unexpected_response": {
-        "message": "예상치 못한 오류가 발생했습니다. 콘솔에서 자세한 내용을 확인하십시오."
+        "message": "예기치 않은 오류가 발생했습니다. 자세한 내용은 콘솔을 확인하십시오."
     },
     "popup_no_apikey": {
-        "message": "옵션 페이지에서 Anthropic API 키를 설정하십시오."
+        "message": "옵션 페이지에서 Claude API 키를 설정하십시오."
     },
     "popup_miscellaneous_error": {
         "message": "이 페이지를 요약하거나 번역할 수 없습니다."
@@ -57,13 +63,19 @@
         "message": "결과 - Claude로 요약 및 번역"
     },
     "results_button_clear": {
-        "message": "대화 내용 지우기"
+        "message": "대화 지우기"
     },
     "results_button_copy": {
         "message": "복사"
     },
+    "results_button_save": {
+        "message": "저장"
+    },
     "results_copied": {
-        "message": "복사됨."
+        "message": "복사되었습니다."
+    },
+    "results_saved": {
+        "message": "저장되었습니다."
     },
     "results_button_send": {
         "message": "보내기"
@@ -72,16 +84,16 @@
         "message": "응답 대기 중"
     },
     "results_unexpected_response": {
-        "message": "예상치 못한 오류가 발생했습니다. 콘솔에서 자세한 내용을 확인하십시오."
+        "message": "예기치 않은 오류가 발생했습니다. 자세한 내용은 콘솔을 확인하십시오."
     },
     "options_title": {
         "message": "옵션 - Claude로 요약 및 번역"
     },
     "options_apikey": {
-        "message": "Anthropic API 키"
+        "message": "Claude API 키"
     },
     "options_apikey_hint": {
-        "message": "다음 페이지에서 Anthropic API 키를 얻을 수 있습니다."
+        "message": "다음 페이지에서 Claude API 키를 얻을 수 있습니다."
     },
     "options_model": {
         "message": "언어 모델"
@@ -93,13 +105,13 @@
         "message": "사용자 지정 언어"
     },
     "options_language_notes": {
-        "message": "참고: 이 언어 설정은 사용자 지정 작업에 영향을 미치지 않습니다."
+        "message": "참고: 이 언어 설정은 사용자 지정 작업에 영향을 주지 않습니다."
     },
     "options_no_text_action": {
-        "message": "텍스트가 선택되지 않았을 때 다음 작업 수행"
+        "message": "텍스트가 선택되지 않은 경우 다음 작업 수행"
     },
     "options_no_text_summarize": {
-        "message": "요약 (기본)"
+        "message": "요약 (기본값)"
     },
     "options_no_text_translate": {
         "message": "번역"
@@ -108,19 +120,19 @@
         "message": "사용자 지정 작업"
     },
     "options_text_action": {
-        "message": "텍스트가 선택되었을 때 다음 작업 수행"
+        "message": "텍스트가 선택된 경우 다음 작업 수행"
     },
     "options_text_summarize": {
         "message": "요약"
     },
     "options_text_translate": {
-        "message": "번역 (기본)"
+        "message": "번역 (기본값)"
     },
     "options_text_custom": {
         "message": "사용자 지정 작업"
     },
     "options_streaming": {
-        "message": "언어 모델에서 스트리밍 출력 활성화"
+        "message": "언어 모델의 스트리밍 출력 활성화"
     },
     "options_theme": {
         "message": "테마"
@@ -132,6 +144,6 @@
         "message": "옵션 저장"
     },
     "options_saved": {
-        "message": "저장됨."
+        "message": "저장되었습니다."
     }
 }

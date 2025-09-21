@@ -1,15 +1,21 @@
 {
     "extension_name": {
-        "message": "Суммировать и переводить с помощью Claude"
+        "message": "Суммировать и переводить с Claude"
     },
     "extension_description": {
-        "message": "Суммирует и переводит веб-страницы. Использует Claude в качестве серверной части."
+        "message": "Суммируйте и переводите веб-страницы. Использует Claude в качестве бэкенда."
     },
     "popup_button_copy": {
         "message": "Копировать"
     },
+    "popup_button_save": {
+        "message": "Сохранить"
+    },
     "popup_copied": {
         "message": "Скопировано."
+    },
+    "popup_saved": {
+        "message": "Сохранено."
     },
     "popup_button_run": {
         "message": "Запустить снова"
@@ -21,13 +27,13 @@
         "message": "Открыть страницу настроек"
     },
     "popup_retrieving_captions": {
-        "message": "Попытка получить подписи"
+        "message": "Попытка получить субтитры"
     },
     "popup_summarizing": {
         "message": "Суммирование"
     },
     "popup_summarizing_captions": {
-        "message": "Суммирование подписей"
+        "message": "Суммирование субтитров"
     },
     "popup_summarizing_image": {
         "message": "Суммирование изображения"
@@ -36,7 +42,7 @@
         "message": "Перевод"
     },
     "popup_translating_captions": {
-        "message": "Перевод подписей"
+        "message": "Перевод субтитров"
     },
     "popup_translating_image": {
         "message": "Перевод изображения"
@@ -45,25 +51,31 @@
         "message": "Обработка"
     },
     "popup_unexpected_response": {
-        "message": "Произошла непредвиденная ошибка. Пожалуйста, проверьте консоль для получения подробной информации."
+        "message": "Произошла непредвиденная ошибка. Пожалуйста, проверьте консоль для получения подробностей."
     },
     "popup_no_apikey": {
-        "message": "Пожалуйста, укажите свой Anthropic API key на странице настроек."
+        "message": "Пожалуйста, установите ваш ключ API Claude на странице настроек."
     },
     "popup_miscellaneous_error": {
         "message": "Невозможно суммировать или перевести эту страницу."
     },
     "results_title": {
-        "message": "Результаты - Суммировать и переводить с помощью Claude"
+        "message": "Результаты - Суммировать и переводить с Claude"
     },
     "results_button_clear": {
-        "message": "Очистить разговор"
+        "message": "Очистить беседу"
     },
     "results_button_copy": {
         "message": "Копировать"
     },
+    "results_button_save": {
+        "message": "Сохранить"
+    },
     "results_copied": {
         "message": "Скопировано."
+    },
+    "results_saved": {
+        "message": "Сохранено."
     },
     "results_button_send": {
         "message": "Отправить"
@@ -72,16 +84,16 @@
         "message": "Ожидание ответа"
     },
     "results_unexpected_response": {
-        "message": "Произошла непредвиденная ошибка. Пожалуйста, проверьте консоль для получения подробной информации."
+        "message": "Произошла непредвиденная ошибка. Пожалуйста, проверьте консоль для получения подробностей."
     },
     "options_title": {
-        "message": "Настройки - Суммировать и переводить с помощью Claude"
+        "message": "Настройки - Суммировать и переводить с Claude"
     },
     "options_apikey": {
-        "message": "Anthropic API key"
+        "message": "Ключ API Claude"
     },
     "options_apikey_hint": {
-        "message": "Вы можете получить Anthropic API key на следующей странице."
+        "message": "Вы можете получить ключ API Claude на следующей странице."
     },
     "options_model": {
         "message": "Языковая модель"
@@ -93,10 +105,10 @@
         "message": "Язык, указанный пользователем"
     },
     "options_language_notes": {
-        "message": "Примечание: Этот параметр языка не влияет на пользовательские действия."
+        "message": "Примечание: Эта настройка языка не влияет на пользовательские действия."
     },
     "options_no_text_action": {
-        "message": "Если текст не выделен, выполнить следующее действие"
+        "message": "Если текст не выбран, выполнить следующее действие"
     },
     "options_no_text_summarize": {
         "message": "Суммировать (по умолчанию)"
@@ -108,7 +120,7 @@
         "message": "Пользовательское действие"
     },
     "options_text_action": {
-        "message": "Если текст выделен, выполнить следующее действие"
+        "message": "Если текст выбран, выполнить следующее действие"
     },
     "options_text_summarize": {
         "message": "Суммировать"

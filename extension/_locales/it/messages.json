@@ -1,60 +1,66 @@
 {
     "extension_name": {
-        "message": "Riassumi e traduci con Claude"
+        "message": "Riassumi e Traduci con Claude"
     },
     "extension_description": {
-        "message": "Riassumi e traduci pagine web. Utilizza Claude come backend."
+        "message": "Riassume e traduce pagine web. Utilizza Claude come backend."
     },
     "popup_button_copy": {
         "message": "Copia"
     },
+    "popup_button_save": {
+        "message": "Salva"
+    },
     "popup_copied": {
         "message": "Copiato."
+    },
+    "popup_saved": {
+        "message": "Salvato."
     },
     "popup_button_run": {
         "message": "Esegui di nuovo"
     },
     "popup_button_results": {
-        "message": "Apri i risultati in una nuova scheda"
+        "message": "Apri risultati in una nuova scheda"
     },
     "popup_button_options": {
-        "message": "Apri la pagina delle opzioni"
+        "message": "Apri pagina opzioni"
     },
     "popup_retrieving_captions": {
-        "message": "Tentativo di recupero dei sottotitoli"
+        "message": "Tentativo di recupero didascalie"
     },
     "popup_summarizing": {
         "message": "Riassumendo"
     },
     "popup_summarizing_captions": {
-        "message": "Riassumendo i sottotitoli"
+        "message": "Riassumendo didascalie"
     },
     "popup_summarizing_image": {
         "message": "Riassumendo l'immagine"
     },
     "popup_translating": {
-        "message": "Traduco"
+        "message": "Traducendo"
     },
     "popup_translating_captions": {
-        "message": "Traduco i sottotitoli"
+        "message": "Traducendo didascalie"
     },
     "popup_translating_image": {
-        "message": "Traduco l'immagine"
+        "message": "Traducendo l'immagine"
     },
     "popup_processing": {
         "message": "Elaborazione in corso"
     },
     "popup_unexpected_response": {
-        "message": "Si è verificato un errore imprevisto. Si prega di controllare la console per i dettagli."
+        "message": "Si è verificato un errore imprevisto. Controllare la console per i dettagli."
     },
     "popup_no_apikey": {
-        "message": "Si prega di impostare la chiave API di Anthropic nella pagina delle opzioni."
+        "message": "Impostare la chiave API di Claude nella pagina delle opzioni."
     },
     "popup_miscellaneous_error": {
         "message": "Impossibile riassumere o tradurre questa pagina."
     },
     "results_title": {
-        "message": "Risultati - Riassumi e traduci con Claude"
+        "message": "Risultati - Riassumi e Traduci con Claude"
     },
     "results_button_clear": {
         "message": "Cancella conversazione"
@@ -62,8 +68,14 @@
     "results_button_copy": {
         "message": "Copia"
     },
+    "results_button_save": {
+        "message": "Salva"
+    },
     "results_copied": {
         "message": "Copiato."
+    },
+    "results_saved": {
+        "message": "Salvato."
     },
     "results_button_send": {
         "message": "Invia"
@@ -72,22 +84,22 @@
         "message": "In attesa di risposta"
     },
     "results_unexpected_response": {
-        "message": "Si è verificato un errore imprevisto. Si prega di controllare la console per i dettagli."
+        "message": "Si è verificato un errore imprevisto. Controllare la console per i dettagli."
     },
     "options_title": {
-        "message": "Opzioni - Riassumi e traduci con Claude"
+        "message": "Opzioni - Riassumi e Traduci con Claude"
     },
     "options_apikey": {
-        "message": "Chiave API Anthropic"
+        "message": "Chiave API di Claude"
     },
     "options_apikey_hint": {
-        "message": "È possibile ottenere una chiave API Anthropic dalla seguente pagina."
+        "message": "È possibile ottenere una chiave API di Claude dalla seguente pagina."
     },
     "options_model": {
         "message": "Modello linguistico"
     },
     "options_language": {
-        "message": "Lingua per la sintesi e la traduzione"
+        "message": "Lingua per Riassunto e Traduzione"
     },
     "options_language_user": {
         "message": "Lingua specificata dall'utente"
@@ -96,7 +108,7 @@
         "message": "Nota: questa impostazione della lingua non influisce sulle azioni personalizzate."
     },
     "options_no_text_action": {
-        "message": "Quando non è selezionato alcun testo, esegui la seguente azione"
+        "message": "Quando nessun testo è selezionato, eseguire la seguente azione"
     },
     "options_no_text_summarize": {
         "message": "Riassumi (predefinito)"
@@ -108,7 +120,7 @@
         "message": "Azione personalizzata"
     },
     "options_text_action": {
-        "message": "Quando è selezionato del testo, esegui la seguente azione"
+        "message": "Quando il testo è selezionato, eseguire la seguente azione"
     },
     "options_text_summarize": {
         "message": "Riassumi"
@@ -120,13 +132,13 @@
         "message": "Azione personalizzata"
     },
     "options_streaming": {
-        "message": "Abilita l'output in streaming dal modello linguistico"
+        "message": "Abilita output in streaming dal modello linguistico"
     },
     "options_theme": {
         "message": "Tema"
     },
     "options_font_size": {
-        "message": "Dimensione del font"
+        "message": "Dimensione carattere"
     },
     "options_button_save": {
         "message": "Salva opzioni"

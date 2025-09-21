@@ -3,22 +3,28 @@
         "message": "Resumir y Traducir con Claude"
     },
     "extension_description": {
-        "message": "Resume y traduce páginas web. Utiliza Claude como backend."
+        "message": "Resume y traduce páginas web. Utiliza Claude como motor."
     },
     "popup_button_copy": {
         "message": "Copiar"
     },
+    "popup_button_save": {
+        "message": "Guardar"
+    },
     "popup_copied": {
         "message": "Copiado."
+    },
+    "popup_saved": {
+        "message": "Guardado."
     },
     "popup_button_run": {
         "message": "Ejecutar de nuevo"
     },
     "popup_button_results": {
-        "message": "Abrir resultados en una nueva pestaña"
+        "message": "Abrir resultados en nueva pestaña"
     },
     "popup_button_options": {
-        "message": "Abrir la página de opciones"
+        "message": "Abrir página de opciones"
     },
     "popup_retrieving_captions": {
         "message": "Intentando recuperar subtítulos"
@@ -45,13 +51,13 @@
         "message": "Procesando"
     },
     "popup_unexpected_response": {
-        "message": "Ocurrió un error inesperado. Por favor, revise la consola para más detalles."
+        "message": "Ocurrió un error inesperado. Consulte la consola para más detalles."
     },
     "popup_no_apikey": {
-        "message": "Por favor, configure su clave de API de Anthropic en la página de opciones."
+        "message": "Configure su clave API de Claude en la página de opciones."
     },
     "popup_miscellaneous_error": {
-        "message": "No se puede resumir o traducir esta página."
+        "message": "No se pudo resumir o traducir esta página."
     },
     "results_title": {
         "message": "Resultados - Resumir y Traducir con Claude"
@@ -62,8 +68,14 @@
     "results_button_copy": {
         "message": "Copiar"
     },
+    "results_button_save": {
+        "message": "Guardar"
+    },
     "results_copied": {
         "message": "Copiado."
+    },
+    "results_saved": {
+        "message": "Guardado."
     },
     "results_button_send": {
         "message": "Enviar"
@@ -72,16 +84,16 @@
         "message": "Esperando respuesta"
     },
     "results_unexpected_response": {
-        "message": "Ocurrió un error inesperado. Por favor, revise la consola para más detalles."
+        "message": "Ocurrió un error inesperado. Consulte la consola para más detalles."
     },
     "options_title": {
         "message": "Opciones - Resumir y Traducir con Claude"
     },
     "options_apikey": {
-        "message": "Clave de API de Anthropic"
+        "message": "Clave API de Claude"
     },
     "options_apikey_hint": {
-        "message": "Puede obtener una clave de API de Anthropic en la siguiente página."
+        "message": "Puede obtener una clave API de Claude en la siguiente página."
     },
     "options_model": {
         "message": "Modelo de lenguaje"
@@ -96,7 +108,7 @@
         "message": "Nota: Esta configuración de idioma no afecta a las acciones personalizadas."
     },
     "options_no_text_action": {
-        "message": "Cuando no se selecciona texto, realizar la siguiente acción"
+        "message": "Cuando no hay texto seleccionado, realizar la siguiente acción"
     },
     "options_no_text_summarize": {
         "message": "Resumir (predeterminado)"
@@ -108,7 +120,7 @@
         "message": "Acción personalizada"
     },
     "options_text_action": {
-        "message": "Cuando se selecciona texto, realizar la siguiente acción"
+        "message": "Cuando hay texto seleccionado, realizar la siguiente acción"
     },
     "options_text_summarize": {
         "message": "Resumir"
@@ -120,7 +132,7 @@
         "message": "Acción personalizada"
     },
     "options_streaming": {
-        "message": "Habilitar la salida de transmisión desde el modelo de lenguaje"
+        "message": "Habilitar salida de streaming del modelo de lenguaje"
     },
     "options_theme": {
         "message": "Tema"

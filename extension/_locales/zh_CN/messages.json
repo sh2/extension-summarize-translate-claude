@@ -3,22 +3,28 @@
         "message": "使用 Claude 总结和翻译"
     },
     "extension_description": {
-        "message": "总结和翻译网页。使用 Claude 作为后端。"
+        "message": "总结和翻译网页内容。使用 Claude 作为后端。"
     },
     "popup_button_copy": {
         "message": "复制"
     },
+    "popup_button_save": {
+        "message": "保存"
+    },
     "popup_copied": {
         "message": "已复制。"
     },
+    "popup_saved": {
+        "message": "已保存。"
+    },
     "popup_button_run": {
-        "message": "重新运行"
+        "message": "再次运行"
     },
     "popup_button_results": {
         "message": "在新标签页中打开结果"
     },
     "popup_button_options": {
-        "message": "打开选项页面"
+        "message": "打开选项页"
     },
     "popup_retrieving_captions": {
         "message": "正在尝试检索字幕"
@@ -30,7 +36,7 @@
         "message": "正在总结字幕"
     },
     "popup_summarizing_image": {
-        "message": "正在总结图像"
+        "message": "正在总结图片"
     },
     "popup_translating": {
         "message": "正在翻译"
@@ -39,16 +45,16 @@
         "message": "正在翻译字幕"
     },
     "popup_translating_image": {
-        "message": "正在翻译图像"
+        "message": "正在翻译图片"
     },
     "popup_processing": {
         "message": "正在处理"
     },
     "popup_unexpected_response": {
-        "message": "发生意外错误。请检查控制台以获取详细信息。"
+        "message": "发生意外错误。请查看控制台获取详情。"
     },
     "popup_no_apikey": {
-        "message": "请在选项页面上设置您的 Anthropic API 密钥。"
+        "message": "请在选项页设置您的 Claude API 密钥。"
     },
     "popup_miscellaneous_error": {
         "message": "无法总结或翻译此页面。"
@@ -62,8 +68,14 @@
     "results_button_copy": {
         "message": "复制"
     },
+    "results_button_save": {
+        "message": "保存"
+    },
     "results_copied": {
         "message": "已复制。"
+    },
+    "results_saved": {
+        "message": "已保存。"
     },
     "results_button_send": {
         "message": "发送"
@@ -72,25 +84,25 @@
         "message": "等待响应"
     },
     "results_unexpected_response": {
-        "message": "发生意外错误。请检查控制台以获取详细信息。"
+        "message": "发生意外错误。请查看控制台获取详情。"
     },
     "options_title": {
         "message": "选项 - 使用 Claude 总结和翻译"
     },
     "options_apikey": {
-        "message": "Anthropic API 密钥"
+        "message": "Claude API 密钥"
     },
     "options_apikey_hint": {
-        "message": "您可以从以下页面获取 Anthropic API 密钥。"
+        "message": "您可以从以下页面获取 Claude API 密钥。"
     },
     "options_model": {
         "message": "语言模型"
     },
     "options_language": {
-        "message": "总结和翻译的语言"
+        "message": "总结和翻译语言"
     },
     "options_language_user": {
-        "message": "用户指定的语言"
+        "message": "用户指定语言"
     },
     "options_language_notes": {
         "message": "注意：此语言设置不影响自定义操作。"
@@ -120,7 +132,7 @@
         "message": "自定义操作"
     },
     "options_streaming": {
-        "message": "启用来自语言模型的流式输出"
+        "message": "启用语言模型流式输出"
     },
     "options_theme": {
         "message": "主题"
