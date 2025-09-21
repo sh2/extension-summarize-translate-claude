@@ -81,9 +81,9 @@ export const convertMarkdownToHtml = (content, breaks) => {
   // Replace the HTML entities with the original characters in the code blocks
   htmlDiv.querySelectorAll("code").forEach(codeBlock => {
     codeBlock.innerHTML = codeBlock.innerHTML
-      .replace(/&lt;/g, "<")
-      .replace(/&gt;/g, ">")
-      .replace(/&amp;/g, "&");
+      .replaceAll("&lt;", "<")
+      .replaceAll("&gt;", ">")
+      .replaceAll("&amp;", "&");
   });
 
   return htmlDiv.innerHTML;
