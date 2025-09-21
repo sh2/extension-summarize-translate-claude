@@ -10,9 +10,9 @@ The following are instructions for manual installation, for development purposes
 1. Open 'Manage Extensions' page in Google Chrome browser.
 2. Enable 'Developer mode'.
 3. Click 'Load unpacked' and select `extension` directory.
-4. Open 'Options' page and register the Anthropic API Key, then select the language.
+4. Open 'Options' page and register the Claude API Key, then select the language.
 
-You can obtain a Anthropic API Key from [Claude API \ Anthropic](https://www.anthropic.com/api).
+You can obtain a Claude API Key from [Claude Developer Platform | Claude](https://claude.com/platform/api).
 This extension uses Claude 3.5 Haiku by default.
 
 ## Usage

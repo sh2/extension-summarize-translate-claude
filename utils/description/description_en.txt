@@ -12,5 +12,5 @@ A shortcut key (Alt+C by default) is also available.
 If a YouTube video has captions, this extension will summarize the captions.
 If an image file or PDF file is opened, this extension will summarize the currently displayed image.
 
-An Anthropic API key is required to use this extension.
-You can obtain an Anthropic API key from Build with Claude \ Anthropic page.
+A Claude API key is required to use this extension.
+You can obtain a Claude API key from Claude Developer Platform | Claude page.

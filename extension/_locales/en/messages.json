@@ -48,7 +48,7 @@
         "message": "An unexpected error occurred. Please check the console for details."
     },
     "popup_no_apikey": {
-        "message": "Please set your Anthropic API key on the options page."
+        "message": "Please set your Claude API key on the options page."
     },
     "popup_miscellaneous_error": {
         "message": "Unable to summarize or translate this page."
@@ -78,10 +78,10 @@
         "message": "Options - Summarize and Translate with Claude"
     },
     "options_apikey": {
-        "message": "Anthropic API key"
+        "message": "Claude API key"
     },
     "options_apikey_hint": {
-        "message": "You can obtain a Anthropic API key from the following page."
+        "message": "You can obtain a Claude API key from the following page."
     },
     "options_model": {
         "message": "Language model"

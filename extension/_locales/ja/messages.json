@@ -48,7 +48,7 @@
         "message": "予期せぬエラーが発生しました。詳細はコンソールを確認してください。"
     },
         "popup_no_apikey": {
-        "message": "オプションページでAnthropic APIキーを設定してください。"
+        "message": "オプションページでClaude APIキーを設定してください。"
     },
     "popup_miscellaneous_error": {
         "message": "このページは要約や翻訳ができません。"
@@ -78,10 +78,10 @@
         "message": "オプション - Claudeによる要約と翻訳"
     },
     "options_apikey": {
-        "message": "Anthropic APIキー"
+        "message": "Claude APIキー"
     },
     "options_apikey_hint": {
-        "message": "Anthropic APIキーは以下のページから取得できます。"
+        "message": "Claude APIキーは以下のページから取得できます。"
     },
     "options_model": {
         "message": "言語モデル"
