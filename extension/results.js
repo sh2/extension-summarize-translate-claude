@@ -12,7 +12,7 @@ import {
 } from "./utils.js";
 
 const conversation = [];
-let resultIndex = null;
+let resultIndex = 0;
 let result = {};
 
 const clearConversation = () => {
