@@ -128,6 +128,12 @@ const getCharacterLimit = (modelId, actionType) => {
       noTextCustom: 200000,
       textCustom: 200000
     },
+    "claude-sonnet-4-5": {
+      summarize: 200000,
+      translate: 64000,
+      noTextCustom: 200000,
+      textCustom: 200000
+    },
     "claude-sonnet-4-0": {
       summarize: 200000,
       translate: 64000,
@@ -135,6 +141,12 @@ const getCharacterLimit = (modelId, actionType) => {
       textCustom: 200000
     },
     "claude-3-7-sonnet-latest": {
+      summarize: 200000,
+      translate: 64000,
+      noTextCustom: 200000,
+      textCustom: 200000
+    },
+    "claude-haiku-4-5": {
       summarize: 200000,
       translate: 64000,
       noTextCustom: 200000,

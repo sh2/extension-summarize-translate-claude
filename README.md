@@ -13,7 +13,7 @@ The following are instructions for manual installation, for development purposes
 4. Open 'Options' page and register the Claude API Key, then select the language.
 
 You can obtain a Claude API Key from [Claude Developer Platform | Claude](https://claude.com/platform/api).
-This extension uses Claude 3.5 Haiku by default.
+This extension uses Claude Haiku 4.5 by default.
 
 ## Usage
 

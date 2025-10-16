@@ -194,12 +194,12 @@ const initialize = async () => {
   });
 
   // Restore the language model from the local storage
-  const { languageModel } = await chrome.storage.local.get({ languageModel: "3.5-haiku" });
+  const { languageModel } = await chrome.storage.local.get({ languageModel: "4.5-haiku" });
   document.getElementById("languageModel").value = languageModel;
 
   // Set the default language model if the language model is not set
   if (!document.getElementById("languageModel").value) {
-    document.getElementById("languageModel").value = "3.5-haiku";
+    document.getElementById("languageModel").value = "4.5-haiku";
   }
 
   // Restore the content from the session storage

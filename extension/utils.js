@@ -93,8 +93,10 @@ export const getModelId = (languageModel) => {
   const modelMappings = {
     "4.1-opus": "claude-opus-4-1",
     "4-opus": "claude-opus-4-0",
+    "4.5-sonnet": "claude-sonnet-4-5",
     "4-sonnet": "claude-sonnet-4-0",
     "3.7-sonnet": "claude-3-7-sonnet-latest",
+    "4.5-haiku": "claude-haiku-4-5",
     "3.5-haiku": "claude-3-5-haiku-latest",
     "3-haiku": "claude-3-haiku-20240307"
   };
@@ -106,8 +108,10 @@ export const getMaxOutputTokens = (modelId) => {
   const maxOutputTokens = {
     "claude-opus-4-1": 32000,
     "claude-opus-4-0": 32000,
+    "claude-sonnet-4-5": 64000,
     "claude-sonnet-4-0": 64000,
     "claude-3-7-sonnet-latest": 64000,
+    "claude-haiku-4-5": 64000,
     "claude-3-5-haiku-latest": 8192,
     "claude-3-haiku-20240307": 4096
   };
