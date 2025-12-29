@@ -62,51 +62,6 @@ const getSystemPrompt = async (actionType, mediaType, languageCode, taskInputLen
   return systemPrompt;
 };
 
-const getPrefill = (actionType, languageCode) => {
-  const prefills = {
-    summarize: {
-      en: "Summary:",
-      de: "Zusammenfassung:",
-      es: "Resumen:",
-      fr: "Résumé:",
-      it: "Sommario:",
-      pt_br: "Resumo:",
-      vi: "Tóm tắt:",
-      ru: "Резюме:",
-      ar: "ملخص:",
-      hi: "सारांश:",
-      bn: "সারংশ:",
-      zh_cn: "摘要:",
-      zh_tw: "摘要:",
-      ja: "要約:",
-      ko: "요약:"
-    },
-    translate: {
-      en: "Translation:",
-      de: "Übersetzung:",
-      es: "Traducción:",
-      fr: "Traduction:",
-      it: "Traduzione:",
-      pt_br: "Tradução:",
-      vi: "Dịch:",
-      ru: "Перевод:",
-      ar: "ترجمة:",
-      hi: "अनुवाद:",
-      bn: "অনুবাদ:",
-      zh_cn: "翻译:",
-      zh_tw: "翻譯:",
-      ja: "翻訳:",
-      ko: "번역:"
-    }
-  };
-
-  if (actionType === "summarize" || actionType === "translate") {
-    return prefills[actionType][languageCode];
-  } else {
-    return "";
-  }
-};
-
 const getCharacterLimit = (modelId, actionType) => {
   // Limit on the number of characters handled at one time
   // so as not to exceed the maximum number of tokens sent and received by the API.
@@ -218,7 +173,6 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
         taskInput.length
       );
 
-      const prefill = getPrefill(actionType, languageCode);
       let apiContents = [];
       let response = null;
 
@@ -245,10 +199,6 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
         });
       } else {
         apiContents.push({ role: "user", content: `Text: ${taskInput}` });
-      }
-
-      if (prefill) {
-        apiContents.push({ role: "assistant", content: prefill });
       }
 
       if (streaming) {
