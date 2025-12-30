@@ -7,6 +7,11 @@ import {
 const INITIAL_OPTIONS = {
   apiKey: "",
   languageModel: "4.5-haiku",
+  foundryResourceName: "",
+  foundryApiKey: "",
+  foundryDeployment1: "",
+  foundryDeployment2: "",
+  foundryDeployment3: "",
   languageCode: "en",
   userLanguage: "Turkish",
   noTextAction: "summarize",
@@ -33,6 +38,11 @@ const getOptionsFromForm = (includeApiKey) => {
   const options = {
     version: chrome.runtime.getManifest().version,
     languageModel: document.getElementById("languageModel").value,
+    foundryResourceName: document.getElementById("foundryResourceName").value,
+    foundryApiKey: document.getElementById("foundryApiKey").value,
+    foundryDeployment1: document.getElementById("foundryDeployment1").value,
+    foundryDeployment2: document.getElementById("foundryDeployment2").value,
+    foundryDeployment3: document.getElementById("foundryDeployment3").value,
     languageCode: document.getElementById("languageCode").value,
     userLanguage: document.getElementById("userLanguage").value,
     noTextAction: document.querySelector('input[name="noTextAction"]:checked').value,
@@ -56,6 +66,11 @@ const setOptionsToForm = async () => {
 
   document.getElementById("apiKey").value = options.apiKey;
   document.getElementById("languageModel").value = options.languageModel;
+  document.getElementById("foundryResourceName").value = options.foundryResourceName;
+  document.getElementById("foundryApiKey").value = options.foundryApiKey;
+  document.getElementById("foundryDeployment1").value = options.foundryDeployment1;
+  document.getElementById("foundryDeployment2").value = options.foundryDeployment2;
+  document.getElementById("foundryDeployment3").value = options.foundryDeployment3;
   document.getElementById("languageCode").value = options.languageCode;
   document.getElementById("userLanguage").value = options.userLanguage;
   document.querySelector(`input[name="noTextAction"][value="${options.noTextAction}"]`).checked = true;

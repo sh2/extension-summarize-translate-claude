@@ -4,8 +4,9 @@ import {
   loadTemplate,
   displayLoadingMessage,
   convertMarkdownToHtml,
+  getApiEndpoint,
+  getApiKey,
   getModelId,
-  getMaxOutputTokens,
   generateContent,
   streamGenerateContent,
   exportTextToFile
@@ -109,15 +110,33 @@ const askQuestion = async () => {
   window.scrollTo(0, document.body.scrollHeight);
 
   // Generate the response
-  const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
+  const {
+    apiKey: claudeApiKey,
+    foundryResourceName,
+    foundryApiKey,
+    foundryDeployment1,
+    foundryDeployment2,
+    foundryDeployment3,
+    streaming
+  } = await chrome.storage.local.get({
+    apiKey: "",
+    foundryResourceName: "",
+    foundryApiKey: "",
+    foundryDeployment1: "",
+    foundryDeployment2: "",
+    foundryDeployment3: "",
+    streaming: false
+  });
+
   const languageModel = document.getElementById("languageModel").value;
-  const modelId = getModelId(languageModel);
-  const maxOutputTokens = getMaxOutputTokens(modelId);
+  const apiEndpoint = getApiEndpoint(languageModel, foundryResourceName);
+  const apiKey = getApiKey(languageModel, claudeApiKey, foundryApiKey);
+  const modelId = getModelId(languageModel, foundryDeployment1, foundryDeployment2, foundryDeployment3);
   let response = null;
 
   if (streaming) {
     const streamKey = `streamContent_${resultIndex}`;
-    const responsePromise = streamGenerateContent(apiKey, modelId, maxOutputTokens, result.requestSystemPrompt, apiContents, streamKey);
+    const responsePromise = streamGenerateContent(apiEndpoint, apiKey, modelId, result.requestSystemPrompt, apiContents, streamKey);
 
     // Stream the content
     const streamIntervalId = setInterval(async () => {
@@ -135,7 +154,7 @@ const askQuestion = async () => {
       clearInterval(streamIntervalId);
     }
   } else {
-    response = await generateContent(apiKey, modelId, maxOutputTokens, result.requestSystemPrompt, apiContents);
+    response = await generateContent(apiEndpoint, apiKey, modelId, result.requestSystemPrompt, apiContents);
   }
 
   console.log(response);
