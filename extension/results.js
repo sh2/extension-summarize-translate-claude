@@ -5,7 +5,6 @@ import {
   displayLoadingMessage,
   convertMarkdownToHtml,
   getModelId,
-  getMaxOutputTokens,
   generateContent,
   streamGenerateContent,
   exportTextToFile
@@ -112,12 +111,11 @@ const askQuestion = async () => {
   const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
   const languageModel = document.getElementById("languageModel").value;
   const modelId = getModelId(languageModel);
-  const maxOutputTokens = getMaxOutputTokens(modelId);
   let response = null;
 
   if (streaming) {
     const streamKey = `streamContent_${resultIndex}`;
-    const responsePromise = streamGenerateContent(apiKey, modelId, maxOutputTokens, result.requestSystemPrompt, apiContents, streamKey);
+    const responsePromise = streamGenerateContent(apiKey, modelId, result.requestSystemPrompt, apiContents, streamKey);
 
     // Stream the content
     const streamIntervalId = setInterval(async () => {
@@ -135,7 +133,7 @@ const askQuestion = async () => {
       clearInterval(streamIntervalId);
     }
   } else {
-    response = await generateContent(apiKey, modelId, maxOutputTokens, result.requestSystemPrompt, apiContents);
+    response = await generateContent(apiKey, modelId, result.requestSystemPrompt, apiContents);
   }
 
   console.log(response);

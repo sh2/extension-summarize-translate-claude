@@ -103,21 +103,7 @@ export const getModelId = (languageModel) => {
   return modelMappings[languageModel];
 };
 
-export const getMaxOutputTokens = (modelId) => {
-  const maxOutputTokens = {
-    "claude-opus-4-5": 64000,
-    "claude-opus-4-1": 32000,
-    "claude-opus-4-0": 32000,
-    "claude-sonnet-4-5": 64000,
-    "claude-sonnet-4-0": 64000,
-    "claude-haiku-4-5": 64000,
-    "claude-3-haiku-20240307": 4000
-  };
-
-  return maxOutputTokens[modelId];
-};
-
-export const generateContent = async (apiKey, modelId, maxOutputTokens, systemPrompt, apiContents) => {
+export const generateContent = async (apiKey, modelId, systemPrompt, apiContents) => {
   try {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -129,7 +115,7 @@ export const generateContent = async (apiKey, modelId, maxOutputTokens, systemPr
       },
       body: JSON.stringify({
         model: modelId,
-        max_tokens: maxOutputTokens,
+        max_tokens: 4096,
         system: systemPrompt,
         messages: apiContents
       })
@@ -149,7 +135,7 @@ export const generateContent = async (apiKey, modelId, maxOutputTokens, systemPr
   }
 };
 
-export const streamGenerateContent = async (apiKey, modelId, maxOutputTokens, systemPrompt, apiContents, streamKey) => {
+export const streamGenerateContent = async (apiKey, modelId, systemPrompt, apiContents, streamKey) => {
   try {
     await chrome.storage.session.remove(streamKey);
 
@@ -163,7 +149,7 @@ export const streamGenerateContent = async (apiKey, modelId, maxOutputTokens, sy
       },
       body: JSON.stringify({
         model: modelId,
-        max_tokens: maxOutputTokens,
+        max_tokens: 4096,
         system: systemPrompt,
         messages: apiContents,
         stream: true

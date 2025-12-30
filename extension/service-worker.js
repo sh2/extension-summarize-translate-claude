@@ -1,6 +1,5 @@
 import {
   getModelId,
-  getMaxOutputTokens,
   generateContent,
   streamGenerateContent
 } from "./utils.js";
@@ -62,60 +61,17 @@ const getSystemPrompt = async (actionType, mediaType, languageCode, taskInputLen
   return systemPrompt;
 };
 
-const getCharacterLimit = (modelId, actionType) => {
+const getCharacterLimit = (actionType) => {
   // Limit on the number of characters handled at one time
   // so as not to exceed the maximum number of tokens sent and received by the API.
-  // In Claude, the calculation is performed in the following way
-  // Summarize: Number of characters equal to the maximum number of tokens in the context window
-  // Translate: Number of characters equal to the maximum number of output tokens in the model
-  // noTextCustom: The same as Summarize
-  // textCustom: The same as Summarize
   const characterLimits = {
-    "claude-opus-4-5": {
-      summarize: 200000,
-      translate: 64000,
-      noTextCustom: 200000,
-      textCustom: 200000
-    },
-    "claude-opus-4-1": {
-      summarize: 200000,
-      translate: 32000,
-      noTextCustom: 200000,
-      textCustom: 200000
-    },
-    "claude-opus-4-0": {
-      summarize: 200000,
-      translate: 32000,
-      noTextCustom: 200000,
-      textCustom: 200000
-    },
-    "claude-sonnet-4-5": {
-      summarize: 200000,
-      translate: 64000,
-      noTextCustom: 200000,
-      textCustom: 200000
-    },
-    "claude-sonnet-4-0": {
-      summarize: 200000,
-      translate: 64000,
-      noTextCustom: 200000,
-      textCustom: 200000
-    },
-    "claude-haiku-4-5": {
-      summarize: 200000,
-      translate: 64000,
-      noTextCustom: 200000,
-      textCustom: 200000
-    },
-    "claude-3-haiku-20240307": {
-      summarize: 200000,
-      translate: 4000,
-      noTextCustom: 200000,
-      textCustom: 200000
-    }
+    summarize: 200000,
+    translate: 4096,
+    noTextCustom: 200000,
+    textCustom: 200000
   };
 
-  return characterLimits[modelId][actionType];
+  return characterLimits[actionType];
 };
 
 const chunkText = (text, chunkSize) => {
@@ -154,9 +110,8 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   (async () => {
     if (request.message === "chunk") {
       // Split the task input
-      const { actionType, taskInput, languageModel } = request;
-      const modelId = getModelId(languageModel);
-      const chunkSize = getCharacterLimit(modelId, actionType);
+      const { actionType, taskInput } = request;
+      const chunkSize = getCharacterLimit(actionType);
       const taskInputChunks = chunkText(taskInput, chunkSize);
       sendResponse(taskInputChunks);
     } else if (request.message === "generate") {
@@ -164,7 +119,6 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       const { actionType, mediaType, taskInput, languageModel, languageCode, streamKey } = request;
       const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
       const modelId = getModelId(languageModel);
-      const maxOutputTokens = getMaxOutputTokens(modelId);
 
       const systemPrompt = await getSystemPrompt(
         actionType,
@@ -202,9 +156,9 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       }
 
       if (streaming) {
-        response = await streamGenerateContent(apiKey, modelId, maxOutputTokens, systemPrompt, apiContents, streamKey);
+        response = await streamGenerateContent(apiKey, modelId, systemPrompt, apiContents, streamKey);
       } else {
-        response = await generateContent(apiKey, modelId, maxOutputTokens, systemPrompt, apiContents);
+        response = await generateContent(apiKey, modelId, systemPrompt, apiContents);
       }
 
       // Add the system prompt and the user input to the response

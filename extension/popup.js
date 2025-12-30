@@ -244,8 +244,7 @@ const main = async (useCache) => {
       taskInputChunks = await chrome.runtime.sendMessage({
         message: "chunk",
         actionType: actionType,
-        taskInput: taskInput,
-        languageModel: languageModel
+        taskInput: taskInput
       });
 
       console.log(taskInputChunks);
