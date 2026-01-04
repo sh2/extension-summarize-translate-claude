@@ -61,60 +61,9 @@ const getSystemPrompt = async (actionType, mediaType, languageCode, taskInputLen
   return systemPrompt;
 };
 
-const getCharacterLimit = (actionType) => {
-  // Limit on the number of characters handled at one time
-  // so as not to exceed the maximum number of tokens sent and received by the API.
-  const characterLimits = {
-    summarize: 200000,
-    translate: 4096,
-    noTextCustom: 200000,
-    textCustom: 200000
-  };
-
-  return characterLimits[actionType];
-};
-
-const chunkText = (text, chunkSize) => {
-  const chunks = [];
-  // ।: U+0964 Devanagari Danda
-  const sentenceBreaks = ["\n\n", "।", "。", "．", ".", "\n", " "];
-  let remainingText = text.replace(/\r\n?/g, "\n");
-
-  while (remainingText.length > chunkSize) {
-    const currentChunk = remainingText.substring(0, chunkSize);
-    let index = -1;
-
-    // Look for sentence breaks at 80% of the chunk size or later
-    for (const sentenceBreak of sentenceBreaks) {
-      index = currentChunk.indexOf(sentenceBreak, Math.floor(chunkSize * 0.8));
-
-      if (index !== -1) {
-        index += sentenceBreak.length;
-        break;
-      }
-    }
-
-    if (index === -1) {
-      index = chunkSize;
-    }
-
-    chunks.push(remainingText.substring(0, index));
-    remainingText = remainingText.substring(index);
-  }
-
-  chunks.push(remainingText);
-  return chunks;
-};
-
 chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   (async () => {
-    if (request.message === "chunk") {
-      // Split the task input
-      const { actionType, taskInput } = request;
-      const chunkSize = getCharacterLimit(actionType);
-      const taskInputChunks = chunkText(taskInput, chunkSize);
-      sendResponse(taskInputChunks);
-    } else if (request.message === "generate") {
+    if (request.message === "generate") {
       // Generate content
       const { actionType, mediaType, taskInput, languageModel, languageCode, streamKey } = request;
       const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
@@ -127,14 +76,14 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
         taskInput.length
       );
 
-      let apiContents = [];
+      let apiContent = {};
       let response = null;
 
       if (mediaType === "image") {
         const [mediaInfo, mediaData] = taskInput.split(",");
         const mediaType = mediaInfo.split(":")[1].split(";")[0];
 
-        apiContents.push({
+        apiContent = {
           role: "user",
           content: [
             {
@@ -150,21 +99,21 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
               text: "Here is the image."
             }
           ]
-        });
+        };
       } else {
-        apiContents.push({ role: "user", content: `Text: ${taskInput}` });
+        apiContent = { role: "user", content: `Text: ${taskInput}` };
       }
 
       if (streaming) {
-        response = await streamGenerateContent(apiKey, modelId, systemPrompt, apiContents, streamKey);
+        response = await streamGenerateContent(apiKey, systemPrompt, [apiContent], modelId, streamKey);
       } else {
-        response = await generateContent(apiKey, modelId, systemPrompt, apiContents);
+        response = await generateContent(apiKey, systemPrompt, [apiContent], modelId);
       }
 
       // Add the system prompt and the user input to the response
       response.requestMediaType = mediaType;
       response.requestSystemPrompt = systemPrompt;
-      response.requestApiContent = apiContents[0];
+      response.requestApiContent = apiContent;
 
       if (response.ok) {
         // Update the cache

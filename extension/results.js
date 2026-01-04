@@ -22,11 +22,11 @@ const clearConversation = () => {
 
 const copyContent = async () => {
   const operationStatus = document.getElementById("operation-status");
-  let clipboardContent = result.responseContent.replace(/\n+$/, "") + "\n\n";
+  let clipboardContent = `${result.responseContent.replace(/\n+$/, "")}\n\n`;
 
   conversation.forEach((item) => {
-    clipboardContent += item.question.replace(/\n+$/, "") + "\n\n";
-    clipboardContent += item.answer.replace(/\n+$/, "") + "\n\n";
+    clipboardContent += `${item.question.replace(/\n+$/, "")}\n\n`;
+    clipboardContent += `${item.answer.replace(/\n+$/, "")}\n\n`;
   });
 
   // Copy the content to the clipboard
@@ -39,15 +39,15 @@ const copyContent = async () => {
 
 const saveContent = () => {
   const operationStatus = document.getElementById("operation-status");
-  let content = result.responseContent.replace(/\n+$/, "") + "\n\n";
+  let content = `${result.responseContent.replace(/\n+$/, "")}\n\n`;
 
   conversation.forEach((item) => {
-    content += item.question.replace(/\n+$/, "") + "\n\n";
-    content += item.answer.replace(/\n+$/, "") + "\n\n";
+    content += `${item.question.replace(/\n+$/, "")}\n\n`;
+    content += `${item.answer.replace(/\n+$/, "")}\n\n`;
   });
 
   // Save the content to a text file
-  exportTextToFile(result.url + "\n\n" + content);
+  exportTextToFile(`${result.url}\n\n${content}`);
 
   // Display a message indicating that the content was saved
   operationStatus.textContent = chrome.i18n.getMessage("results_saved");
@@ -86,7 +86,6 @@ const askQuestion = async () => {
 
   // Add the new question to the conversation
   apiContents.push({ role: "user", content: question });
-  console.log(apiContents);
 
   // Create a new div element with the formatted question
   const formattedQuestionDiv = document.createElement("div");
@@ -115,14 +114,20 @@ const askQuestion = async () => {
 
   if (streaming) {
     const streamKey = `streamContent_${resultIndex}`;
-    const responsePromise = streamGenerateContent(apiKey, modelId, result.requestSystemPrompt, apiContents, streamKey);
+    const responsePromise = streamGenerateContent(apiKey, result.requestSystemPrompt, apiContents, modelId, streamKey);
+
+    console.log("Request:", {
+      apiContents,
+      modelId,
+      streamKey
+    });
 
     // Stream the content
     const streamIntervalId = setInterval(async () => {
       const streamContent = (await chrome.storage.session.get({ [streamKey]: "" }))[streamKey];
 
       if (streamContent) {
-        formattedAnswerDiv.innerHTML = convertMarkdownToHtml(`${streamContent}\n\n`, false);
+        formattedAnswerDiv.innerHTML = convertMarkdownToHtml(streamContent, false);
       }
     }, 1000);
 
@@ -133,10 +138,10 @@ const askQuestion = async () => {
       clearInterval(streamIntervalId);
     }
   } else {
-    response = await generateContent(apiKey, modelId, result.requestSystemPrompt, apiContents);
+    response = await generateContent(apiKey, result.requestSystemPrompt, apiContents, modelId);
   }
 
-  console.log(response);
+  console.log("Response:", response);
 
   if (response.ok) {
     if (response.body.content) {

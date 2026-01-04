@@ -14,7 +14,7 @@ let content = "";
 
 const copyContent = async () => {
   const operationStatus = document.getElementById("operation-status");
-  let clipboardContent = content.replace(/\n+$/, "") + "\n\n";
+  let clipboardContent = `${content.replace(/\n+$/, "")}\n\n`;
 
   // Copy the content to the clipboard
   await navigator.clipboard.writeText(clipboardContent);
@@ -29,7 +29,7 @@ const saveContent = async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   // Save the content to a text file
-  exportTextToFile(tab.url + "\n\n" + content);
+  exportTextToFile(`${tab.url}\n\n${content}`);
 
   // Display a message indicating that the content was saved
   operationStatus.textContent = chrome.i18n.getMessage("popup_saved");
@@ -218,7 +218,6 @@ const main = async (useCache) => {
     const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
     const languageModel = document.getElementById("languageModel").value;
     const languageCode = document.getElementById("languageCode").value;
-    let taskInputChunks = [];
 
     // Disable the buttons and input fields
     document.getElementById("content").textContent = "";
@@ -236,85 +235,76 @@ const main = async (useCache) => {
     // Display a loading message
     displayIntervalId = setInterval(displayLoadingMessage, 500, "status", getLoadingMessage(actionType, mediaType));
 
-    // Split the task input
-    if (mediaType === "image") {
-      // If the task input is an image, do not split it
-      taskInputChunks = [taskInput];
+    // Check the cache
+    const { responseCacheQueue } = await chrome.storage.session.get({ responseCacheQueue: [] });
+    const cacheIdentifier = JSON.stringify({ actionType, mediaType, taskInput, languageModel, languageCode });
+    const responseCache = responseCacheQueue.find(item => item.key === cacheIdentifier);
+
+    if (useCache && responseCache) {
+      // Use the cached response
+      response = responseCache.value;
     } else {
-      taskInputChunks = await chrome.runtime.sendMessage({
-        message: "chunk",
+      // Generate content
+      const streamKey = `streamContent_${resultIndex}`;
+      let streamIntervalId = 0;
+
+      const responsePromise = chrome.runtime.sendMessage({
+        message: "generate",
         actionType: actionType,
-        taskInput: taskInput
+        mediaType: mediaType,
+        taskInput: taskInput,
+        languageModel: languageModel,
+        languageCode: languageCode,
+        streamKey: streamKey
       });
 
-      console.log(taskInputChunks);
-    }
+      console.log("Request:", {
+        actionType: actionType,
+        mediaType: mediaType,
+        taskInput: taskInput,
+        languageModel: languageModel,
+        languageCode: languageCode,
+        streamKey: streamKey
+      });
 
-    for (const taskInputChunk of taskInputChunks) {
-      const { responseCacheQueue } = await chrome.storage.session.get({ responseCacheQueue: [] });
-      const cacheIdentifier = JSON.stringify({ actionType, mediaType, taskInput: taskInputChunk, languageModel, languageCode });
-      const responseCache = responseCacheQueue.find(item => item.key === cacheIdentifier);
+      if (streaming) {
+        // Stream the content
+        streamIntervalId = setInterval(async () => {
+          const streamContent = (await chrome.storage.session.get({ [streamKey]: "" }))[streamKey];
 
-      if (useCache && responseCache) {
-        // Use the cached response
-        response = responseCache.value;
-      } else {
-        // Generate content
-        const streamKey = `streamContent_${resultIndex}`;
-        let streamIntervalId = 0;
-
-        const responsePromise = chrome.runtime.sendMessage({
-          message: "generate",
-          actionType: actionType,
-          mediaType: mediaType,
-          taskInput: taskInputChunk,
-          languageModel: languageModel,
-          languageCode: languageCode,
-          streamKey: streamKey
-        });
-
-        if (streaming) {
-          // Stream the content
-          streamIntervalId = setInterval(async () => {
-            const streamContent = (await chrome.storage.session.get({ [streamKey]: "" }))[streamKey];
-
-            if (streamContent) {
-              document.getElementById("content").innerHTML =
-                convertMarkdownToHtml(`${content}\n\n${streamContent}\n\n`, false);
-            }
-          }, 1000);
-        }
-
-        // Wait for responsePromise
-        response = await responsePromise;
-
-        if (streamIntervalId) {
-          clearInterval(streamIntervalId);
-        }
+          if (streamContent) {
+            document.getElementById("content").innerHTML =
+              convertMarkdownToHtml(streamContent, false);
+          }
+        }, 1000);
       }
 
-      console.log(response);
+      // Wait for responsePromise
+      response = await responsePromise;
 
-      if (response.ok) {
-        if (response.body.content) {
-          // A normal response was returned
-          content += `${response.body.content[0].text}\n\n`;
-          document.getElementById("content").innerHTML = convertMarkdownToHtml(content, false);
-        } else {
-          // The expected response was not returned
-          content = chrome.i18n.getMessage("popup_unexpected_response");
-          break;
-        }
+      if (streamIntervalId) {
+        clearInterval(streamIntervalId);
+      }
+    }
+
+    console.log("Response:", response);
+
+    if (response.ok) {
+      if (response.body.content) {
+        // A normal response was returned
+        content = response.body.content[0].text;
+        document.getElementById("content").innerHTML = convertMarkdownToHtml(content, false);
       } else {
-        // A response error occurred
-        content = `Error: ${response.status}\n\n${response.body.error.message}`;
+        // The expected response was not returned
+        content = chrome.i18n.getMessage("popup_unexpected_response");
+      }
+    } else {
+      // A response error occurred
+      content = `Error: ${response.status}\n\n${response.body.error.message}`;
 
-        if (!apiKey) {
-          // If the API Key is not set, add a message to prompt the user to set it
-          content += `\n\n${chrome.i18n.getMessage("popup_no_apikey")}`;
-        }
-
-        break;
+      if (!apiKey) {
+        // If the API Key is not set, add a message to prompt the user to set it
+        content += `\n\n${chrome.i18n.getMessage("popup_no_apikey")}`;
       }
     }
   } catch (error) {

@@ -103,7 +103,7 @@ export const getModelId = (languageModel) => {
   return modelMappings[languageModel];
 };
 
-export const generateContent = async (apiKey, modelId, systemPrompt, apiContents) => {
+export const generateContent = async (apiKey, systemPrompt, apiContents, modelId) => {
   try {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -135,7 +135,7 @@ export const generateContent = async (apiKey, modelId, systemPrompt, apiContents
   }
 };
 
-export const streamGenerateContent = async (apiKey, modelId, systemPrompt, apiContents, streamKey) => {
+export const streamGenerateContent = async (apiKey, systemPrompt, apiContents, modelId, streamKey) => {
   try {
     await chrome.storage.session.remove(streamKey);
 
