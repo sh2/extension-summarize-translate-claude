@@ -273,8 +273,7 @@ const main = async (useCache) => {
           const streamContent = (await chrome.storage.session.get({ [streamKey]: "" }))[streamKey];
 
           if (streamContent) {
-            document.getElementById("content").innerHTML =
-              convertMarkdownToHtml(streamContent, false);
+            document.getElementById("content").innerHTML = convertMarkdownToHtml(streamContent, false);
           }
         }, 1000);
       }
@@ -293,7 +292,6 @@ const main = async (useCache) => {
       if (response.body.content) {
         // A normal response was returned
         content = response.body.content[0].text;
-        document.getElementById("content").innerHTML = convertMarkdownToHtml(content, false);
       } else {
         // The expected response was not returned
         content = chrome.i18n.getMessage("popup_unexpected_response");
