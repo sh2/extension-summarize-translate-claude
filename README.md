@@ -43,4 +43,4 @@ Follow-up questions can be asked on the results page.
 ## License
 
 MIT License  
-Copyright (c) 2024-2025 Sadao Hiratsuka
+Copyright (c) 2024-2026 Sadao Hiratsuka
