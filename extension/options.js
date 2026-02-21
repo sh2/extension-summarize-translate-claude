@@ -1,4 +1,5 @@
 import {
+  DEFAULT_LANGUAGE_MODEL,
   applyTheme,
   applyFontSize,
   loadTemplate
@@ -6,7 +7,7 @@ import {
 
 const INITIAL_OPTIONS = {
   apiKey: "",
-  languageModel: "4.5-haiku",
+  languageModel: DEFAULT_LANGUAGE_MODEL,
   languageCode: "en",
   userLanguage: "Turkish",
   noTextAction: "summarize",
@@ -68,7 +69,7 @@ const setOptionsToForm = async () => {
 
   // Set the default language model if the language model is not set
   if (!document.getElementById("languageModel").value) {
-    document.getElementById("languageModel").value = "4.5-haiku";
+    document.getElementById("languageModel").value = DEFAULT_LANGUAGE_MODEL;
   }
 };
 

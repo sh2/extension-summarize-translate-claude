@@ -1,5 +1,7 @@
 /* globals DOMPurify, marked */
 
+export const DEFAULT_LANGUAGE_MODEL = "4.5-haiku";
+
 const tryParseJson = (text) => {
   try {
     return JSON.parse(text);
@@ -91,9 +93,11 @@ export const convertMarkdownToHtml = (content, breaks) => {
 
 export const getModelId = (languageModel) => {
   const modelMappings = {
+    "4.6-opus": "claude-opus-4-6",
     "4.5-opus": "claude-opus-4-5",
     "4.1-opus": "claude-opus-4-1",
     "4-opus": "claude-opus-4-0",
+    "4.6-sonnet": "claude-sonnet-4-6",
     "4.5-sonnet": "claude-sonnet-4-5",
     "4-sonnet": "claude-sonnet-4-0",
     "4.5-haiku": "claude-haiku-4-5",

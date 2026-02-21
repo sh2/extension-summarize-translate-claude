@@ -1,4 +1,5 @@
 import {
+  DEFAULT_LANGUAGE_MODEL,
   applyTheme,
   applyFontSize,
   loadTemplate,
@@ -197,12 +198,12 @@ const initialize = async () => {
   });
 
   // Restore the language model from the local storage
-  const { languageModel } = await chrome.storage.local.get({ languageModel: "4.5-haiku" });
+  const { languageModel } = await chrome.storage.local.get({ languageModel: DEFAULT_LANGUAGE_MODEL });
   document.getElementById("languageModel").value = languageModel;
 
   // Set the default language model if the language model is not set
   if (!document.getElementById("languageModel").value) {
-    document.getElementById("languageModel").value = "4.5-haiku";
+    document.getElementById("languageModel").value = DEFAULT_LANGUAGE_MODEL;
   }
 
   // Restore the content from the session storage
