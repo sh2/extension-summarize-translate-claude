@@ -135,9 +135,8 @@ const askQuestion = async () => {
     // Wait for responsePromise
     response = await responsePromise;
 
-    if (streamIntervalId) {
-      clearInterval(streamIntervalId);
-    }
+    // Stop streaming
+    clearInterval(streamIntervalId);
   } else {
     response = await generateContent(apiKey, result.requestSystemPrompt, apiContents, modelId);
   }
@@ -157,10 +156,8 @@ const askQuestion = async () => {
     answer = `Error: ${response.status}\n\n${response.body.error.message}`;
   }
 
-  // Clear the loading message
-  if (displayIntervalId) {
-    clearInterval(displayIntervalId);
-  }
+  // Stop displaying the loading message
+  clearInterval(displayIntervalId);
 
   // Update the formatted answer in the conversation
   formattedAnswerDiv.innerHTML = convertMarkdownToHtml(answer, false);

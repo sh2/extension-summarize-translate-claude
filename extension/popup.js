@@ -173,9 +173,8 @@ const extractTaskInformation = async () => {
       } catch (error) {
         console.log(error);
       } finally {
-        if (displayIntervalId) {
-          clearInterval(displayIntervalId);
-        }
+        // Stop displaying the loading message
+        clearInterval(displayIntervalId);
       }
     }
 
@@ -313,9 +312,8 @@ const main = async (useCache) => {
       // Wait for responsePromise
       response = await responsePromise;
 
-      if (streamIntervalId) {
-        clearInterval(streamIntervalId);
-      }
+      // Stop streaming
+      clearInterval(streamIntervalId);
     }
 
     console.log("Response:", response);
@@ -341,10 +339,8 @@ const main = async (useCache) => {
     content = chrome.i18n.getMessage("popup_miscellaneous_error");
     console.error(error);
   } finally {
-    // Clear the loading message
-    if (displayIntervalId) {
-      clearInterval(displayIntervalId);
-    }
+    // Stop displaying the loading message
+    clearInterval(displayIntervalId);
 
     // Convert the content from Markdown to HTML
     document.getElementById("content").innerHTML = convertMarkdownToHtml(content, false);
