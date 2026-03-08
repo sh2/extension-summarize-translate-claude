@@ -230,6 +230,30 @@ export const streamGenerateContent = async (apiKey, systemPrompt, apiContents, m
   }
 };
 
+export const getResponseContent = (response, hasApiKey) => {
+  let responseContent = "";
+
+  if (response.ok) {
+    if (response.body.content) {
+      // A normal response was returned
+      responseContent = response.body.content[0].text;
+    } else {
+      // The expected response was not returned
+      responseContent = chrome.i18n.getMessage("response_unexpected_response");
+    }
+  } else {
+    // A response error occurred
+    responseContent = `Error: ${response.status}\n\n${response.body.error.message}`;
+
+    if (!hasApiKey) {
+      // If the API Key is not set, add a message to prompt the user to set it
+      responseContent += `\n\n${chrome.i18n.getMessage("response_no_apikey")}`;
+    }
+  }
+
+  return responseContent;
+};
+
 export const exportTextToFile = (text) => {
   const currentDate = new Date();
   const adjustedDate = new Date(currentDate.getTime() - currentDate.getTimezoneOffset() * 60000);

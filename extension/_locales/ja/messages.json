@@ -50,14 +50,11 @@
     "popup_processing": {
         "message": "処理しています"
     },
-    "popup_unexpected_response": {
-        "message": "予期せぬエラーが発生しました。詳細はコンソールを確認してください。"
-    },
-    "popup_no_apikey": {
-        "message": "オプションページでClaude APIキーを設定してください。"
-    },
     "popup_miscellaneous_error": {
         "message": "このページは要約や翻訳ができません。"
+    },
+    "popup_taking_long": {
+        "message": "時間がかかっています。ここをクリックして新しいタブで結果を確認できます。"
     },
     "results_title": {
         "message": "結果 - Claudeによる要約と翻訳"
@@ -83,8 +80,14 @@
     "results_waiting_response": {
         "message": "応答を待っています"
     },
-    "results_unexpected_response": {
+    "results_waiting_for_result": {
+        "message": "結果を待っています"
+    },
+    "response_unexpected_response": {
         "message": "予期せぬエラーが発生しました。詳細はコンソールを確認してください。"
+    },
+    "response_no_apikey": {
+        "message": "オプションページでClaude APIキーを設定してください。"
     },
     "options_title": {
         "message": "オプション - Claudeによる要約と翻訳"

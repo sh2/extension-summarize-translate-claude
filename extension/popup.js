@@ -7,6 +7,7 @@ import {
   loadTemplate,
   displayLoadingMessage,
   convertMarkdownToHtml,
+  getResponseContent,
   exportTextToFile
 } from "./utils.js";
 
@@ -232,7 +233,7 @@ const getLoadingMessage = (actionType, mediaType) => {
 
 const main = async (useCache) => {
   let displayIntervalId = 0;
-  let response = {};
+  let responseContent = "";
 
   // Clear the content
   content = "";
@@ -242,8 +243,12 @@ const main = async (useCache) => {
   resultIndex = (resultIndex + 1) % 10;
   await chrome.storage.session.set({ resultIndex: resultIndex });
 
+  // Clear stale result to prevent results.html from picking up old data
+  await chrome.storage.session.remove(`result_${resultIndex}`);
+
   try {
     const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     const languageModel = document.getElementById("languageModel").value;
     const languageCode = document.getElementById("languageCode").value;
 
@@ -270,7 +275,18 @@ const main = async (useCache) => {
 
     if (useCache && responseCache) {
       // Use the cached response
-      response = responseCache.value;
+      const { requestMediaType, requestSystemPrompt, requestApiContent, responseContent: cachedResponseContent } = responseCache.value;
+      responseContent = cachedResponseContent;
+
+      await chrome.storage.session.set({
+        [`result_${resultIndex}`]: {
+          requestMediaType,
+          requestSystemPrompt,
+          requestApiContent,
+          responseContent: cachedResponseContent,
+          url: tab.url
+        }
+      });
     } else {
       // Generate content
       const streamKey = `streamContent_${resultIndex}`;
@@ -283,7 +299,9 @@ const main = async (useCache) => {
         taskInput: taskInput,
         languageModel: languageModel,
         languageCode: languageCode,
-        streamKey: streamKey
+        streamKey: streamKey,
+        resultIndex: resultIndex,
+        url: tab.url
       });
 
       console.log("Request:", {
@@ -292,7 +310,9 @@ const main = async (useCache) => {
         taskInput: taskInput,
         languageModel: languageModel,
         languageCode: languageCode,
-        streamKey: streamKey
+        streamKey: streamKey,
+        resultIndex: resultIndex,
+        url: tab.url
       });
 
       if (streaming) {
@@ -306,32 +326,23 @@ const main = async (useCache) => {
         }, 1000);
       }
 
+      // Display the "View Results" link if the response is not received within 5 seconds
+      const timeoutId = setTimeout(() => { document.getElementById("results-link").style.display = "block"; }, 5000);
+
       // Wait for responsePromise
-      response = await responsePromise;
+      const response = await responsePromise;
+      console.log("Response:", response);
+      responseContent = getResponseContent(response, Boolean(apiKey));
+
+      // Clear the timeout for displaying the "View Results" link
+      clearTimeout(timeoutId);
+      document.getElementById("results-link").style.display = "none";
 
       // Stop streaming
       clearInterval(streamIntervalId);
     }
 
-    console.log("Response:", response);
-
-    if (response.ok) {
-      if (response.body.content) {
-        // A normal response was returned
-        content = response.body.content[0].text;
-      } else {
-        // The expected response was not returned
-        content = chrome.i18n.getMessage("popup_unexpected_response");
-      }
-    } else {
-      // A response error occurred
-      content = `Error: ${response.status}\n\n${response.body.error.message}`;
-
-      if (!apiKey) {
-        // If the API Key is not set, add a message to prompt the user to set it
-        content += `\n\n${chrome.i18n.getMessage("popup_no_apikey")}`;
-      }
-    }
+    content = responseContent;
   } catch (error) {
     content = chrome.i18n.getMessage("popup_miscellaneous_error");
     console.error(error);
@@ -341,19 +352,6 @@ const main = async (useCache) => {
 
     // Convert the content from Markdown to HTML
     document.getElementById("content").innerHTML = convertMarkdownToHtml(content, false);
-
-    // Save the content to the session storage
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
-    await chrome.storage.session.set({
-      [`result_${resultIndex}`]: {
-        requestMediaType: response.requestMediaType,
-        requestSystemPrompt: response.requestSystemPrompt,
-        requestApiContent: response.requestApiContent,
-        responseContent: content,
-        url: tab.url
-      }
-    });
 
     // Enable the buttons and input fields
     document.getElementById("status").textContent = "";
@@ -414,6 +412,12 @@ document.getElementById("copy").addEventListener("click", copyContent);
 document.getElementById("save").addEventListener("click", saveContent);
 
 document.getElementById("results").addEventListener("click", () => {
+  chrome.tabs.create({ url: chrome.runtime.getURL(`results.html?i=${resultIndex}`) }, () => {
+    window.close();
+  });
+});
+
+document.getElementById("results-link").addEventListener("click", () => {
   chrome.tabs.create({ url: chrome.runtime.getURL(`results.html?i=${resultIndex}`) }, () => {
     window.close();
   });
