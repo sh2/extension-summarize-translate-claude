@@ -50,14 +50,11 @@
     "popup_processing": {
         "message": "প্রক্রিয়াকরণ চলছে"
     },
-    "popup_unexpected_response": {
-        "message": "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে। বিস্তারিত জানার জন্য কনসোল পরীক্ষা করুন।"
-    },
-    "popup_no_apikey": {
-        "message": "বিকল্প পৃষ্ঠায় আপনার Claude API কী সেট করুন।"
-    },
     "popup_miscellaneous_error": {
         "message": "এই পৃষ্ঠাটি সারসংক্ষেপ বা অনুবাদ করা সম্ভব নয়।"
+    },
+    "popup_taking_long": {
+        "message": "Taking longer than expected. Click here to view results in a new tab."
     },
     "results_title": {
         "message": "ফলাফল - Claude ব্যবহার করে সারসংক্ষেপ ও অনুবাদ করুন"
@@ -83,8 +80,14 @@
     "results_waiting_response": {
         "message": "প্রতিক্রিয়ার জন্য অপেক্ষা করা হচ্ছে"
     },
-    "results_unexpected_response": {
+    "results_waiting_for_result": {
+        "message": "Waiting for result"
+    },
+    "response_unexpected_response": {
         "message": "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে। বিস্তারিত জানার জন্য কনসোল পরীক্ষা করুন।"
+    },
+    "response_no_apikey": {
+        "message": "বিকল্প পৃষ্ঠায় আপনার Claude API কী সেট করুন।"
     },
     "options_title": {
         "message": "বিকল্পসমূহ - Claude ব্যবহার করে সারসংক্ষেপ ও অনুবাদ করুন"

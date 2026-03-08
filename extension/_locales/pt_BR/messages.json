@@ -50,14 +50,11 @@
     "popup_processing": {
         "message": "Processando"
     },
-    "popup_unexpected_response": {
-        "message": "Ocorreu um erro inesperado. Verifique o console para detalhes."
-    },
-    "popup_no_apikey": {
-        "message": "Defina sua chave de API Claude na página de opções."
-    },
     "popup_miscellaneous_error": {
         "message": "Não foi possível resumir ou traduzir esta página."
+    },
+    "popup_taking_long": {
+        "message": "Taking longer than expected. Click here to view results in a new tab."
     },
     "results_title": {
         "message": "Resultados - Resumir e Traduzir com Claude"
@@ -83,8 +80,14 @@
     "results_waiting_response": {
         "message": "Aguardando resposta"
     },
-    "results_unexpected_response": {
+    "results_waiting_for_result": {
+        "message": "Waiting for result"
+    },
+    "response_unexpected_response": {
         "message": "Ocorreu um erro inesperado. Verifique o console para detalhes."
+    },
+    "response_no_apikey": {
+        "message": "Defina sua chave de API Claude na página de opções."
     },
     "options_title": {
         "message": "Opções - Resumir e Traduzir com Claude"

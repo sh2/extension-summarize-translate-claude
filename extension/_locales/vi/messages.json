@@ -50,14 +50,11 @@
     "popup_processing": {
         "message": "Đang xử lý"
     },
-    "popup_unexpected_response": {
-        "message": "Đã xảy ra lỗi không mong muốn. Vui lòng kiểm tra bảng điều khiển để biết chi tiết."
-    },
-    "popup_no_apikey": {
-        "message": "Vui lòng đặt khóa API Claude của quý vị trên trang tùy chọn."
-    },
     "popup_miscellaneous_error": {
         "message": "Không thể tóm tắt hoặc dịch trang này."
+    },
+    "popup_taking_long": {
+        "message": "Taking longer than expected. Click here to view results in a new tab."
     },
     "results_title": {
         "message": "Kết quả - Tóm tắt và Dịch với Claude"
@@ -83,8 +80,14 @@
     "results_waiting_response": {
         "message": "Đang chờ phản hồi"
     },
-    "results_unexpected_response": {
+    "results_waiting_for_result": {
+        "message": "Waiting for result"
+    },
+    "response_unexpected_response": {
         "message": "Đã xảy ra lỗi không mong muốn. Vui lòng kiểm tra bảng điều khiển để biết chi tiết."
+    },
+    "response_no_apikey": {
+        "message": "Vui lòng đặt khóa API Claude của quý vị trên trang tùy chọn."
     },
     "options_title": {
         "message": "Tùy chọn - Tóm tắt và Dịch với Claude"

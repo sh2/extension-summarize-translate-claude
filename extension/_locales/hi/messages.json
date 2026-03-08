@@ -50,14 +50,11 @@
     "popup_processing": {
         "message": "प्रक्रिया जारी है"
     },
-    "popup_unexpected_response": {
-        "message": "एक अप्रत्याशित त्रुटि हुई। कृपया विवरण के लिए कंसोल देखें।"
-    },
-    "popup_no_apikey": {
-        "message": "कृपया विकल्प पृष्ठ पर अपनी Claude API कुंजी सेट करें।"
-    },
     "popup_miscellaneous_error": {
         "message": "इस पृष्ठ को सारांशित या अनुवाद करने में असमर्थ।"
+    },
+    "popup_taking_long": {
+        "message": "Taking longer than expected. Click here to view results in a new tab."
     },
     "results_title": {
         "message": "परिणाम - Claude के साथ सारांशित करें और अनुवाद करें"
@@ -83,8 +80,14 @@
     "results_waiting_response": {
         "message": "प्रतिक्रिया की प्रतीक्षा है"
     },
-    "results_unexpected_response": {
+    "results_waiting_for_result": {
+        "message": "Waiting for result"
+    },
+    "response_unexpected_response": {
         "message": "एक अप्रत्याशित त्रुटि हुई। कृपया विवरण के लिए कंसोल देखें।"
+    },
+    "response_no_apikey": {
+        "message": "कृपया विकल्प पृष्ठ पर अपनी Claude API कुंजी सेट करें।"
     },
     "options_title": {
         "message": "विकल्प - Claude के साथ सारांशित करें और अनुवाद करें"

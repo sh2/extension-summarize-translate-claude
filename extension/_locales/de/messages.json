@@ -50,14 +50,11 @@
     "popup_processing": {
         "message": "Verarbeiten"
     },
-    "popup_unexpected_response": {
-        "message": "Ein unerwarteter Fehler ist aufgetreten. Bitte prüfen Sie die Konsole für Details."
-    },
-    "popup_no_apikey": {
-        "message": "Bitte geben Sie Ihren Claude API-Schlüssel auf der Optionsseite ein."
-    },
     "popup_miscellaneous_error": {
         "message": "Diese Seite kann nicht zusammengefasst oder übersetzt werden."
+    },
+    "popup_taking_long": {
+        "message": "Taking longer than expected. Click here to view results in a new tab."
     },
     "results_title": {
         "message": "Ergebnisse - Zusammenfassen und Übersetzen mit Claude"
@@ -83,8 +80,14 @@
     "results_waiting_response": {
         "message": "Warte auf Antwort"
     },
-    "results_unexpected_response": {
+    "results_waiting_for_result": {
+        "message": "Waiting for result"
+    },
+    "response_unexpected_response": {
         "message": "Ein unerwarteter Fehler ist aufgetreten. Bitte prüfen Sie die Konsole für Details."
+    },
+    "response_no_apikey": {
+        "message": "Bitte geben Sie Ihren Claude API-Schlüssel auf der Optionsseite ein."
     },
     "options_title": {
         "message": "Optionen - Zusammenfassen und Übersetzen mit Claude"

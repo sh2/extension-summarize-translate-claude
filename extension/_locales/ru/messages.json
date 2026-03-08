@@ -50,14 +50,11 @@
     "popup_processing": {
         "message": "Обработка"
     },
-    "popup_unexpected_response": {
-        "message": "Произошла непредвиденная ошибка. Пожалуйста, проверьте консоль для получения подробностей."
-    },
-    "popup_no_apikey": {
-        "message": "Пожалуйста, установите ваш ключ API Claude на странице настроек."
-    },
     "popup_miscellaneous_error": {
         "message": "Невозможно суммировать или перевести эту страницу."
+    },
+    "popup_taking_long": {
+        "message": "Taking longer than expected. Click here to view results in a new tab."
     },
     "results_title": {
         "message": "Результаты - Суммировать и переводить с Claude"
@@ -83,8 +80,14 @@
     "results_waiting_response": {
         "message": "Ожидание ответа"
     },
-    "results_unexpected_response": {
+    "results_waiting_for_result": {
+        "message": "Waiting for result"
+    },
+    "response_unexpected_response": {
         "message": "Произошла непредвиденная ошибка. Пожалуйста, проверьте консоль для получения подробностей."
+    },
+    "response_no_apikey": {
+        "message": "Пожалуйста, установите ваш ключ API Claude на странице настроек."
     },
     "options_title": {
         "message": "Настройки - Суммировать и переводить с Claude"

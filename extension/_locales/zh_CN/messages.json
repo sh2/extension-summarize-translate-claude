@@ -50,14 +50,11 @@
     "popup_processing": {
         "message": "正在处理"
     },
-    "popup_unexpected_response": {
-        "message": "发生意外错误。请查看控制台获取详情。"
-    },
-    "popup_no_apikey": {
-        "message": "请在选项页设置您的 Claude API 密钥。"
-    },
     "popup_miscellaneous_error": {
         "message": "无法总结或翻译此页面。"
+    },
+    "popup_taking_long": {
+        "message": "Taking longer than expected. Click here to view results in a new tab."
     },
     "results_title": {
         "message": "结果 - 使用 Claude 总结和翻译"
@@ -83,8 +80,14 @@
     "results_waiting_response": {
         "message": "等待响应"
     },
-    "results_unexpected_response": {
+    "results_waiting_for_result": {
+        "message": "Waiting for result"
+    },
+    "response_unexpected_response": {
         "message": "发生意外错误。请查看控制台获取详情。"
+    },
+    "response_no_apikey": {
+        "message": "请在选项页设置您的 Claude API 密钥。"
     },
     "options_title": {
         "message": "选项 - 使用 Claude 总结和翻译"
