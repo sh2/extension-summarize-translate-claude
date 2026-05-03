@@ -93,15 +93,13 @@ export const convertMarkdownToHtml = (content, breaks) => {
 
 export const getModelId = (languageModel) => {
   const modelMappings = {
+    "4.7-opus": "claude-opus-4-7",
     "4.6-opus": "claude-opus-4-6",
     "4.5-opus": "claude-opus-4-5",
     "4.1-opus": "claude-opus-4-1",
-    "4-opus": "claude-opus-4-0",
     "4.6-sonnet": "claude-sonnet-4-6",
     "4.5-sonnet": "claude-sonnet-4-5",
-    "4-sonnet": "claude-sonnet-4-0",
-    "4.5-haiku": "claude-haiku-4-5",
-    "3-haiku": "claude-3-haiku-20240307"
+    "4.5-haiku": "claude-haiku-4-5"
   };
 
   return modelMappings[languageModel];
