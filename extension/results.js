@@ -106,7 +106,7 @@ const saveContent = () => {
 
 const askQuestion = async () => {
   const question = document.getElementById("text").value.trim();
-  let answer = "";
+  let answer;
 
   if (!question) {
     return;
@@ -155,7 +155,7 @@ const askQuestion = async () => {
   const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
   const languageModel = document.getElementById("languageModel").value;
   const modelId = getModelId(languageModel);
-  let response = null;
+  let response;
 
   if (streaming) {
     const streamKey = `streamContent_${resultIndex}`;

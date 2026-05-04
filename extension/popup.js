@@ -143,7 +143,7 @@ const getTranscript = async () => {
 };
 
 const extractTaskInformation = async () => {
-  let actionType = "";
+  let actionType;
   let mediaType = "";
   let taskInput = "";
 
@@ -215,7 +215,7 @@ const extractTaskInformation = async () => {
 };
 
 const getLoadingMessage = (actionType, mediaType) => {
-  let loadingMessage = "";
+  let loadingMessage;
 
   if (actionType === "summarize") {
     if (mediaType === "captions") {
@@ -242,7 +242,7 @@ const getLoadingMessage = (actionType, mediaType) => {
 
 const main = async (useCache) => {
   let displayIntervalId = 0;
-  let responseContent = "";
+  let responseContent;
 
   // Clear the content
   content = "";

@@ -229,7 +229,7 @@ export const streamGenerateContent = async (apiKey, systemPrompt, apiContents, m
 };
 
 export const getResponseContent = (response, hasApiKey) => {
-  let responseContent = "";
+  let responseContent;
 
   if (response.ok) {
     if (response.body.content) {
