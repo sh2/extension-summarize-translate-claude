@@ -1,12 +1,12 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
-
+import stylistic from "@stylistic/eslint-plugin";
 
 export default [
-  pluginJs.configs.recommended,
   {
     ignores: ["extension/lib/**"]
   },
+  pluginJs.configs.recommended,
   {
     languageOptions: {
       globals: {
@@ -24,9 +24,27 @@ export default [
     }
   },
   {
+    plugins: {
+      "@stylistic": stylistic
+    },
     rules: {
-      "quotes": ["error", "double", { "avoidEscape": true }],
-      "semi": ["error", "always"]
+      "@stylistic/quotes": ["error", "double", { "avoidEscape": true }],
+      "@stylistic/semi": ["error", "always"],
+      "@stylistic/padding-line-between-statements": [
+        "error",
+        { blankLine: "always", prev: "*", next: "block-like" },
+        { blankLine: "always", prev: "block-like", next: "*" }
+      ],
+      "@stylistic/lines-around-comment": [
+        "error",
+        {
+          beforeLineComment: true,
+          allowBlockStart: true,
+          allowObjectStart: true,
+          allowArrayStart: true,
+          allowClassStart: true
+        }
+      ]
     }
   }
 ];
