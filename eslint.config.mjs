@@ -33,7 +33,8 @@ export default [
       "@stylistic/padding-line-between-statements": [
         "error",
         { blankLine: "always", prev: "*", next: "block-like" },
-        { blankLine: "always", prev: "block-like", next: "*" }
+        { blankLine: "always", prev: "block-like", next: "*" },
+        { blankLine: "always", prev: "*", next: "multiline-expression" }
       ],
       "@stylistic/lines-around-comment": [
         "error",
