@@ -23,6 +23,42 @@ let resultIndex = 0;
 let result = {};
 let resultViewStatus = RESULT_VIEW_STATUS.IDLE;
 
+// ── Pure utilities (no DOM access, no side effects) ────────────────────────
+
+const validateConversation = (data) => {
+  if (!Array.isArray(data)) {
+    return false;
+  }
+
+  if (data.length % 2 !== 0) {
+    return false;
+  }
+
+  return data.every((item, index) => {
+    if (!item || typeof item !== "object") {
+      return false;
+    }
+
+    const expectedRole = index % 2 === 0 ? "user" : "assistant";
+    return item.role === expectedRole && typeof item.content === "string";
+  });
+};
+
+const extractTextFromMessage = (item) => {
+  return item && typeof item.content === "string" ? item.content : "";
+};
+
+const isSuccessfulResponse = (response) => {
+  if (!response || !response.ok) {
+    return false;
+  }
+
+  const contentBlock = response.body?.content?.[0];
+  return typeof contentBlock?.text === "string" && contentBlock.text.length > 0;
+};
+
+// ── Tab state & notification ────────────────────────────────────────────────
+
 const setResultControlsEnabled = (enabled) => {
   document.getElementById("clear").disabled = !enabled;
   document.getElementById("copy").disabled = !enabled;
@@ -64,142 +100,168 @@ const completeWaitingForResult = () => {
   updateDocumentTitle();
 };
 
-const clearConversation = () => {
-  // Clear the conversation
-  document.getElementById("conversation").replaceChildren();
-  conversation.length = 0;
-};
+// ── UI helpers ──────────────────────────────────────────────────────────────
 
-const copyContent = async () => {
-  const operationStatus = document.getElementById("operation-status");
-  let clipboardContent = `${result.responseContent.replace(/\n+$/, "")}\n\n`;
-
-  conversation.forEach((item) => {
-    clipboardContent += `${item.question.replace(/\n+$/, "")}\n\n`;
-    clipboardContent += `${item.answer.replace(/\n+$/, "")}\n\n`;
-  });
-
-  // Copy the content to the clipboard
-  await navigator.clipboard.writeText(clipboardContent);
-
-  // Display a message indicating that the content was copied
-  operationStatus.textContent = chrome.i18n.getMessage("results_copied");
-  setTimeout(() => operationStatus.textContent = "", 1000);
-};
-
-const saveContent = () => {
-  const operationStatus = document.getElementById("operation-status");
-  let content = `${result.responseContent.replace(/\n+$/, "")}\n\n`;
-
-  conversation.forEach((item) => {
-    content += `${item.question.replace(/\n+$/, "")}\n\n`;
-    content += `${item.answer.replace(/\n+$/, "")}\n\n`;
-  });
-
-  // Save the content to a text file
-  exportTextToFile(`${result.url}\n\n${content}`);
-
-  // Display a message indicating that the content was saved
-  operationStatus.textContent = chrome.i18n.getMessage("results_saved");
-  setTimeout(() => operationStatus.textContent = "", 1000);
-};
-
-const askQuestion = async () => {
-  const question = document.getElementById("text").value.trim();
-  let answer;
-
-  if (!question) {
-    return;
-  }
-
-  // Disable the buttons and input fields
-  setResultControlsEnabled(false);
-
-  // Display a loading message
-  let displayIntervalId = setInterval(displayLoadingMessage, 500, "send-status", chrome.i18n.getMessage("results_waiting_response"));
-
-  // Prepare the first question and answer
-  const apiContents = [];
-  apiContents.push(result.requestApiContent);
-  apiContents.push({ role: "assistant", content: result.responseContent });
-
-  // Add the previous questions and answers to the conversation
-  conversation.forEach((message) => {
-    apiContents.push({ role: "user", content: message.question });
-    apiContents.push({ role: "assistant", content: message.answer });
-  });
-
-  // Add the new question to the conversation
-  apiContents.push({ role: "user", content: question });
-
-  // Create a new div element with the formatted question
+const appendQuestionToUi = (question) => {
   const formattedQuestionDiv = document.createElement("div");
   formattedQuestionDiv.style.backgroundColor = "var(--nc-bg-3)";
   formattedQuestionDiv.style.borderRadius = "1rem";
   formattedQuestionDiv.style.margin = "1.5rem";
   formattedQuestionDiv.style.padding = "1rem 1rem .1rem";
   formattedQuestionDiv.innerHTML = convertMarkdownToHtml(question, true);
-
-  // Append the formatted question to the conversation
   document.getElementById("conversation").appendChild(formattedQuestionDiv);
-  document.getElementById("text").value = "";
+};
 
-  // Append the formatted answer to the conversation
+const appendAnswerPlaceholderToUi = () => {
   const formattedAnswerDiv = document.createElement("div");
   document.getElementById("conversation").appendChild(formattedAnswerDiv);
+  return formattedAnswerDiv;
+};
 
-  // Scroll to the bottom of the page
-  window.scrollTo(0, document.body.scrollHeight);
+// ── Button action handlers ──────────────────────────────────────────────────
 
-  // Generate the response
-  const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
-  const languageModel = document.getElementById("languageModel").value;
-  const modelId = getModelId(languageModel);
-  let response;
+const clearConversation = async () => {
+  document.getElementById("conversation").replaceChildren();
+  conversation.length = 0;
 
-  if (streaming) {
-    const streamKey = `streamContent_${resultIndex}`;
-    const responsePromise = streamGenerateContent(apiKey, result.requestSystemPrompt, apiContents, modelId, streamKey);
+  try {
+    await chrome.storage.session.remove(`conversation_${resultIndex}`);
+  } catch (error) {
+    console.error("Failed to remove conversation from session storage:", error);
+  }
+};
 
-    console.log("Request:", {
-      apiContents,
-      modelId,
-      streamKey
-    });
+const copyContent = async () => {
+  try {
+    const operationStatus = document.getElementById("operation-status");
+    let clipboardContent = `${result.responseContent.replace(/\n+$/, "")}\n\n`;
 
-    // Stream the content
-    const streamIntervalId = setInterval(async () => {
-      const streamContent = (await chrome.storage.session.get({ [streamKey]: "" }))[streamKey];
+    for (const item of conversation) {
+      const text = extractTextFromMessage(item);
 
-      if (streamContent) {
-        formattedAnswerDiv.innerHTML = convertMarkdownToHtml(streamContent, false);
+      if (text) {
+        clipboardContent += `${text.replace(/\n+$/, "")}\n\n`;
       }
+    }
+
+    await navigator.clipboard.writeText(clipboardContent);
+    operationStatus.textContent = chrome.i18n.getMessage("results_copied");
+
+    setTimeout(() => {
+      operationStatus.textContent = "";
     }, 1000);
+  } catch (error) {
+    console.error("Failed to copy content:", error);
+  }
+};
 
-    // Wait for responsePromise
-    response = await responsePromise;
+const saveContent = () => {
+  try {
+    const operationStatus = document.getElementById("operation-status");
+    let content = `${result.responseContent.replace(/\n+$/, "")}\n\n`;
 
-    // Stop streaming
-    clearInterval(streamIntervalId);
-  } else {
-    response = await generateContent(apiKey, result.requestSystemPrompt, apiContents, modelId);
+    for (const item of conversation) {
+      const text = extractTextFromMessage(item);
+
+      if (text) {
+        content += `${text.replace(/\n+$/, "")}\n\n`;
+      }
+    }
+
+    exportTextToFile(`${result.url}\n\n${content}`);
+    operationStatus.textContent = chrome.i18n.getMessage("results_saved");
+
+    setTimeout(() => {
+      operationStatus.textContent = "";
+    }, 1000);
+  } catch (error) {
+    console.error("Failed to save content:", error);
+  }
+};
+
+// ── Core async logic ────────────────────────────────────────────────────────
+
+const askQuestion = async () => {
+  const question = document.getElementById("text").value.trim();
+
+  if (!question) {
+    return;
   }
 
-  console.log("Response:", response);
-  answer = getResponseContent(response, Boolean(apiKey));
+  setResultControlsEnabled(false);
+  let displayIntervalId = setInterval(displayLoadingMessage, 500, "send-status", chrome.i18n.getMessage("results_waiting_response"));
+  appendQuestionToUi(question);
+  document.getElementById("text").value = "";
 
-  // Stop displaying the loading message
-  clearInterval(displayIntervalId);
+  const formattedAnswerDiv = appendAnswerPlaceholderToUi();
+  window.scrollTo(0, document.body.scrollHeight);
+  let answer;
+  let streamIntervalId = null;
 
-  // Update the formatted answer in the conversation
-  formattedAnswerDiv.innerHTML = convertMarkdownToHtml(answer, false);
+  try {
+    const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
+    const languageModel = document.getElementById("languageModel").value;
+    const modelId = getModelId(languageModel);
 
-  // Add the question and answer to the conversation
-  conversation.push({ question: question, answer: answer });
+    const apiContents = [];
+    apiContents.push(result.requestApiContent);
+    apiContents.push({ role: "assistant", content: result.responseContent });
+    apiContents.push(...conversation);
+    apiContents.push({ role: "user", content: question });
 
-  // Enable the buttons and input fields
-  document.getElementById("send-status").textContent = "";
-  setResultControlsEnabled(true);
+    let response;
+
+    if (streaming) {
+      const streamKey = `streamContent_${resultIndex}`;
+      const responsePromise = streamGenerateContent(apiKey, result.requestSystemPrompt, apiContents, modelId, streamKey);
+
+      console.log("Request:", { apiContents, modelId, streamKey });
+
+      streamIntervalId = setInterval(async () => {
+        const streamContent = (await chrome.storage.session.get({ [streamKey]: "" }))[streamKey];
+
+        if (streamContent) {
+          formattedAnswerDiv.innerHTML = convertMarkdownToHtml(streamContent, false);
+        }
+      }, 1000);
+
+      response = await responsePromise;
+      clearInterval(streamIntervalId);
+      streamIntervalId = null;
+    } else {
+      response = await generateContent(apiKey, result.requestSystemPrompt, apiContents, modelId);
+    }
+
+    console.log("Response:", response);
+    answer = getResponseContent(response, Boolean(apiKey));
+    formattedAnswerDiv.innerHTML = convertMarkdownToHtml(answer, false);
+
+    if (isSuccessfulResponse(response)) {
+      conversation.push({ role: "user", content: question });
+      conversation.push({ role: "assistant", content: answer });
+
+      try {
+        await chrome.storage.session.set({ [`conversation_${resultIndex}`]: conversation });
+      } catch (storageError) {
+        console.error("Failed to save conversation to session storage:", storageError);
+      }
+    } else {
+      console.warn("API response was not successful:", response);
+    }
+  } catch (error) {
+    console.error("Failed to generate content:", error);
+
+    if (streamIntervalId) {
+      clearInterval(streamIntervalId);
+    }
+
+    formattedAnswerDiv.textContent = chrome.i18n.getMessage("response_unexpected_response");
+  } finally {
+    clearInterval(displayIntervalId);
+    document.getElementById("send-status").textContent = "";
+    setResultControlsEnabled(true);
+    window.scrollTo(0, document.body.scrollHeight);
+  }
 };
 
 const waitForResult = async (resultIndex) => {
@@ -283,7 +345,13 @@ const initialize = async () => {
   // Restore the content from the session storage
   const urlParams = new URLSearchParams(window.location.search);
   resultIndex = urlParams.get("i");
-  result = (await chrome.storage.session.get({ [`result_${resultIndex}`]: "" }))[`result_${resultIndex}`];
+
+  const sessionData = await chrome.storage.session.get({
+    [`result_${resultIndex}`]: "",
+    [`conversation_${resultIndex}`]: []
+  });
+
+  result = sessionData[`result_${resultIndex}`];
 
   if (!result) {
     // Disable the buttons and input fields while waiting
@@ -307,7 +375,31 @@ const initialize = async () => {
 
   // Convert the content from Markdown to HTML
   document.getElementById("content").innerHTML = convertMarkdownToHtml(result.responseContent, false);
+
+  // Restore the conversation from session storage if it exists and is valid
+  const savedConversation = sessionData[`conversation_${resultIndex}`];
+
+  if (validateConversation(savedConversation)) {
+    conversation.length = 0;
+    conversation.push(...savedConversation);
+
+    for (let i = 0; i < savedConversation.length; i += 2) {
+      const questionText = extractTextFromMessage(savedConversation[i]);
+      const answerText = extractTextFromMessage(savedConversation[i + 1]);
+
+      if (questionText) {
+        appendQuestionToUi(questionText);
+      }
+
+      if (answerText) {
+        const answerPlaceholder = appendAnswerPlaceholderToUi();
+        answerPlaceholder.innerHTML = convertMarkdownToHtml(answerText, false);
+      }
+    }
+  }
 };
+
+// ── Event listeners ─────────────────────────────────────────────────────────
 
 window.addEventListener("focus", syncAttentionCue);
 document.addEventListener("visibilitychange", syncAttentionCue);

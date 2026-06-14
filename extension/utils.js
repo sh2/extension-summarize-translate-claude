@@ -10,6 +10,8 @@ const tryParseJson = (text) => {
   }
 };
 
+// ── UI utilities ────────────────────────────────────────────────────────────
+
 export const applyTheme = (theme) => {
   if (theme === "light") {
     document.body.setAttribute("data-theme", "light");
@@ -90,6 +92,8 @@ export const convertMarkdownToHtml = (content, breaks) => {
 
   return htmlDiv.innerHTML;
 };
+
+// ── API utilities ───────────────────────────────────────────────────────────
 
 export const getModelId = (languageModel) => {
   const modelMappings = {
@@ -251,6 +255,8 @@ export const getResponseContent = (response, hasApiKey) => {
 
   return responseContent;
 };
+
+// ── File utilities ──────────────────────────────────────────────────────────
 
 export const exportTextToFile = (text) => {
   const currentDate = new Date();

@@ -14,46 +14,41 @@ import {
 let resultIndex = 0;
 let content = "";
 
-const setPopupControlsEnabled = (enabled) => {
-  document.getElementById("run").disabled = !enabled;
-  document.getElementById("languageModel").disabled = !enabled;
-  document.getElementById("languageCode").disabled = !enabled;
-  document.getElementById("copy").disabled = !enabled;
-  document.getElementById("save").disabled = !enabled;
-  document.getElementById("results").disabled = !enabled;
+// ── Pure utilities (no DOM access, no side effects) ────────────────────────
+
+const getLoadingMessage = (actionType, mediaType) => {
+  let loadingMessage;
+
+  if (actionType === "summarize") {
+    if (mediaType === "captions") {
+      loadingMessage = chrome.i18n.getMessage("popup_summarizing_captions");
+    } else if (mediaType === "image") {
+      loadingMessage = chrome.i18n.getMessage("popup_summarizing_image");
+    } else {
+      loadingMessage = chrome.i18n.getMessage("popup_summarizing");
+    }
+  } else if (actionType === "translate") {
+    if (mediaType === "captions") {
+      loadingMessage = chrome.i18n.getMessage("popup_translating_captions");
+    } else if (mediaType === "image") {
+      loadingMessage = chrome.i18n.getMessage("popup_translating_image");
+    } else {
+      loadingMessage = chrome.i18n.getMessage("popup_translating");
+    }
+  } else {
+    loadingMessage = chrome.i18n.getMessage("popup_processing");
+  }
+
+  return loadingMessage;
 };
 
-const copyContent = async () => {
-  const operationStatus = document.getElementById("operation-status");
-  let clipboardContent = `${content.replace(/\n+$/, "")}\n\n`;
-
-  // Copy the content to the clipboard
-  await navigator.clipboard.writeText(clipboardContent);
-
-  // Display a message indicating that the content was copied
-  operationStatus.textContent = chrome.i18n.getMessage("popup_copied");
-  setTimeout(() => operationStatus.textContent = "", 1000);
-};
-
-const saveContent = async () => {
-  const operationStatus = document.getElementById("operation-status");
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
-  // Save the content to a text file
-  exportTextToFile(`${tab.url}\n\n${content}`);
-
-  // Display a message indicating that the content was saved
-  operationStatus.textContent = chrome.i18n.getMessage("popup_saved");
-  setTimeout(() => operationStatus.textContent = "", 1000);
-};
+// ── Content script injection utilities ──────────────────────────────────────
 
 const getSelectedText = () => {
-  // Return the selected text
   return window.getSelection().toString();
 };
 
 const getWholeText = () => {
-  // Return the whole text
   const documentClone = document.cloneNode(true);
   const article = new Readability(documentClone).parse();
 
@@ -92,7 +87,6 @@ const getTranscript = async () => {
     return null;
   };
 
-  // Helper: Wait for the transcript renderer and segments to be fully loaded
   const waitForTranscriptSegments = async () => {
     let lastLength = 0;
     let matchCount = 0;
@@ -118,7 +112,6 @@ const getTranscript = async () => {
     throw new Error("transcript segments not found within 10 seconds.");
   };
 
-  // Main logic to get the transcript text
   const openButton = document.querySelector("ytd-video-description-transcript-section-renderer button");
 
   if (!openButton) {
@@ -130,7 +123,7 @@ const getTranscript = async () => {
   try {
     const { variant, segments } = await waitForTranscriptSegments();
 
-    const transcriptTexts = Array.from(segments).map(segment => {
+    const transcriptTexts = Array.from(segments).map((segment) => {
       const textElement = segment.querySelector(variant.TEXT);
       return textElement ? textElement.textContent.trim() : "";
     });
@@ -142,6 +135,53 @@ const getTranscript = async () => {
   }
 };
 
+// ── UI helpers ──────────────────────────────────────────────────────────────
+
+const setPopupControlsEnabled = (enabled) => {
+  document.getElementById("run").disabled = !enabled;
+  document.getElementById("languageModel").disabled = !enabled;
+  document.getElementById("languageCode").disabled = !enabled;
+  document.getElementById("copy").disabled = !enabled;
+  document.getElementById("save").disabled = !enabled;
+  document.getElementById("results").disabled = !enabled;
+};
+
+// ── Button action handlers ──────────────────────────────────────────────────
+
+const copyContent = async () => {
+  try {
+    const operationStatus = document.getElementById("operation-status");
+    const clipboardContent = `${content.replace(/\n+$/, "")}\n\n`;
+
+    await navigator.clipboard.writeText(clipboardContent);
+    operationStatus.textContent = chrome.i18n.getMessage("popup_copied");
+
+    setTimeout(() => {
+      operationStatus.textContent = "";
+    }, 1000);
+  } catch (error) {
+    console.error("Failed to copy content:", error);
+  }
+};
+
+const saveContent = async () => {
+  try {
+    const operationStatus = document.getElementById("operation-status");
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+    exportTextToFile(`${tab.url}\n\n${content}`);
+    operationStatus.textContent = chrome.i18n.getMessage("popup_saved");
+
+    setTimeout(() => {
+      operationStatus.textContent = "";
+    }, 1000);
+  } catch (error) {
+    console.error("Failed to save content:", error);
+  }
+};
+
+// ── Core async logic ────────────────────────────────────────────────────────
+
 const extractTaskInformation = async () => {
   let actionType;
   let mediaType = "";
@@ -149,7 +189,6 @@ const extractTaskInformation = async () => {
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  // Get the selected text
   try {
     taskInput = (await chrome.scripting.executeScript({
       target: { tabId: tab.id },
@@ -163,11 +202,9 @@ const extractTaskInformation = async () => {
     actionType = (await chrome.storage.local.get({ textAction: "translate" })).textAction;
     mediaType = "text";
   } else {
-    // If no text is selected, get the whole text of the page
     actionType = (await chrome.storage.local.get({ noTextAction: "summarize" })).noTextAction;
 
     if (tab.url.startsWith("https://www.youtube.com/watch?")) {
-      // If the page is a YouTube video, get the captions instead of the whole text
       mediaType = "captions";
 
       const displayIntervalId = setInterval(displayLoadingMessage, 500, "status", chrome.i18n.getMessage("popup_retrieving_captions"));
@@ -175,18 +212,16 @@ const extractTaskInformation = async () => {
       try {
         taskInput = (await chrome.scripting.executeScript({
           target: { tabId: tab.id },
-          func: getTranscript,
+          func: getTranscript
         }))[0].result;
       } catch (error) {
         console.log(error);
       } finally {
-        // Stop displaying the loading message
         clearInterval(displayIntervalId);
       }
     }
 
     if (!taskInput) {
-      // Get the main text of the page using Readability.js
       mediaType = "text";
 
       try {
@@ -205,55 +240,26 @@ const extractTaskInformation = async () => {
     }
 
     if (!taskInput) {
-      // If the whole text is empty, get the visible tab as an image
       mediaType = "image";
-      taskInput = await (chrome.tabs.captureVisibleTab(tab.windowId, { format: "jpeg" }));
+      taskInput = await chrome.tabs.captureVisibleTab(tab.windowId, { format: "jpeg" });
     }
   }
 
   return { actionType, mediaType, taskInput };
 };
 
-const getLoadingMessage = (actionType, mediaType) => {
-  let loadingMessage;
-
-  if (actionType === "summarize") {
-    if (mediaType === "captions") {
-      loadingMessage = chrome.i18n.getMessage("popup_summarizing_captions");
-    } else if (mediaType === "image") {
-      loadingMessage = chrome.i18n.getMessage("popup_summarizing_image");
-    } else {
-      loadingMessage = chrome.i18n.getMessage("popup_summarizing");
-    }
-  } else if (actionType === "translate") {
-    if (mediaType === "captions") {
-      loadingMessage = chrome.i18n.getMessage("popup_translating_captions");
-    } else if (mediaType === "image") {
-      loadingMessage = chrome.i18n.getMessage("popup_translating_image");
-    } else {
-      loadingMessage = chrome.i18n.getMessage("popup_translating");
-    }
-  } else {
-    loadingMessage = chrome.i18n.getMessage("popup_processing");
-  }
-
-  return loadingMessage;
-};
-
 const main = async (useCache) => {
   let displayIntervalId = 0;
   let responseContent;
 
-  // Clear the content
   content = "";
-
-  // Increment the result index
   resultIndex = (await chrome.storage.session.get({ resultIndex: -1 })).resultIndex;
   resultIndex = (resultIndex + 1) % 10;
   await chrome.storage.session.set({ resultIndex: resultIndex });
 
-  // Clear stale result to prevent results.html from picking up old data
+  // Clear stale result and conversation to prevent results.html from picking up old data
   await chrome.storage.session.remove(`result_${resultIndex}`);
+  await chrome.storage.session.remove(`conversation_${resultIndex}`);
 
   try {
     const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
@@ -261,24 +267,18 @@ const main = async (useCache) => {
     const languageModel = document.getElementById("languageModel").value;
     const languageCode = document.getElementById("languageCode").value;
 
-    // Disable the buttons and input fields
     document.getElementById("content").textContent = "";
     document.getElementById("status").textContent = "";
     setPopupControlsEnabled(false);
 
-    // Extract the task information
     const { actionType, mediaType, taskInput } = await extractTaskInformation();
-
-    // Display a loading message
     displayIntervalId = setInterval(displayLoadingMessage, 500, "status", getLoadingMessage(actionType, mediaType));
 
-    // Check the cache
     const { responseCacheQueue } = await chrome.storage.session.get({ responseCacheQueue: [] });
     const cacheIdentifier = JSON.stringify({ actionType, mediaType, taskInput, languageModel, languageCode });
-    const responseCache = responseCacheQueue.find(item => item.key === cacheIdentifier);
+    const responseCache = responseCacheQueue.find((item) => item.key === cacheIdentifier);
 
     if (useCache && responseCache) {
-      // Use the cached response
       const { requestMediaType, requestSystemPrompt, requestApiContent, responseContent: cachedResponseContent } = responseCache.value;
       responseContent = cachedResponseContent;
 
@@ -292,35 +292,33 @@ const main = async (useCache) => {
         }
       });
     } else {
-      // Generate content
       const streamKey = `streamContent_${resultIndex}`;
       let streamIntervalId = 0;
 
       const responsePromise = chrome.runtime.sendMessage({
         message: "generate",
-        actionType: actionType,
-        mediaType: mediaType,
-        taskInput: taskInput,
-        languageModel: languageModel,
-        languageCode: languageCode,
-        streamKey: streamKey,
-        resultIndex: resultIndex,
+        actionType,
+        mediaType,
+        taskInput,
+        languageModel,
+        languageCode,
+        streamKey,
+        resultIndex,
         url: tab.url
       });
 
       console.log("Request:", {
-        actionType: actionType,
-        mediaType: mediaType,
-        taskInput: taskInput,
-        languageModel: languageModel,
-        languageCode: languageCode,
-        streamKey: streamKey,
-        resultIndex: resultIndex,
+        actionType,
+        mediaType,
+        taskInput,
+        languageModel,
+        languageCode,
+        streamKey,
+        resultIndex,
         url: tab.url
       });
 
       if (streaming) {
-        // Stream the content
         streamIntervalId = setInterval(async () => {
           const streamContent = (await chrome.storage.session.get({ [streamKey]: "" }))[streamKey];
 
@@ -330,19 +328,16 @@ const main = async (useCache) => {
         }, 1000);
       }
 
-      // Display the "View Results" link if the response is not received within 5 seconds
-      const timeoutId = setTimeout(() => { document.getElementById("results-link").style.display = "block"; }, 5000);
+      const timeoutId = setTimeout(() => {
+        document.getElementById("results-link").style.display = "block";
+      }, 5000);
 
-      // Wait for responsePromise
       const response = await responsePromise;
       console.log("Response:", response);
       responseContent = getResponseContent(response, Boolean(apiKey));
 
-      // Clear the timeout for displaying the "View Results" link
       clearTimeout(timeoutId);
       document.getElementById("results-link").style.display = "none";
-
-      // Stop streaming
       clearInterval(streamIntervalId);
     }
 
@@ -351,55 +346,45 @@ const main = async (useCache) => {
     content = chrome.i18n.getMessage("popup_miscellaneous_error");
     console.error(error);
   } finally {
-    // Stop displaying the loading message
     clearInterval(displayIntervalId);
-
-    // Convert the content from Markdown to HTML
     document.getElementById("content").innerHTML = convertMarkdownToHtml(content, false);
-
-    // Enable the buttons and input fields
     document.getElementById("status").textContent = "";
     setPopupControlsEnabled(true);
   }
 };
 
 const initialize = async () => {
-  // Apply the theme
   applyTheme((await chrome.storage.local.get({ theme: "system" })).theme);
-
-  // Apply font size
   applyFontSize((await chrome.storage.local.get({ fontSize: "medium" })).fontSize);
 
-  // Load the language model template
   const languageModelTemplate = await loadTemplate("languageModelTemplate");
   document.getElementById("languageModelContainer").appendChild(languageModelTemplate);
 
-  // Load the language code template
   const languageCodeTemplate = await loadTemplate("languageCodeTemplate");
   document.getElementById("languageCodeContainer").appendChild(languageCodeTemplate);
 
-  // Set the text direction of the body
   document.body.setAttribute("dir", chrome.i18n.getMessage("@@bidi_dir"));
 
-  // Set the text of elements with the data-i18n attribute
-  document.querySelectorAll("[data-i18n]").forEach(element => {
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
     element.textContent = chrome.i18n.getMessage(element.getAttribute("data-i18n"));
   });
 
-  // Restore the language model and language code from the local storage
-  const { languageModel, languageCode } =
-    await chrome.storage.local.get({ languageModel: DEFAULT_LANGUAGE_MODEL, languageCode: "en" });
+  const { languageModel, languageCode } = await chrome.storage.local.get({
+    languageModel: DEFAULT_LANGUAGE_MODEL,
+    languageCode: "en"
+  });
 
   document.getElementById("languageModel").value = languageModel;
   document.getElementById("languageCode").value = languageCode;
 
-  // Set the default language model if the language model is not set
   if (!document.getElementById("languageModel").value) {
     document.getElementById("languageModel").value = DEFAULT_LANGUAGE_MODEL;
   }
 
   main(true);
 };
+
+// ── Event listeners ─────────────────────────────────────────────────────────
 
 document.addEventListener("DOMContentLoaded", initialize);
 

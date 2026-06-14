@@ -5,6 +5,8 @@ import {
   getResponseContent
 } from "./utils.js";
 
+// ── Pure utilities (no DOM access, no side effects) ────────────────────────
+
 const getSystemPrompt = async (actionType, mediaType, languageCode, taskInputLength) => {
   const languageNames = {
     en: "English",
@@ -61,6 +63,8 @@ const getSystemPrompt = async (actionType, mediaType, languageCode, taskInputLen
 
   return systemPrompt;
 };
+
+// ── Core async logic ────────────────────────────────────────────────────────
 
 chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   (async () => {
