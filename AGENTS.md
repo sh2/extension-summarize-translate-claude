@@ -14,6 +14,7 @@ Cross-browser extension (Chrome, Firefox, Edge) that uses the Anthropic Claude A
 - `generateContent()` and `streamGenerateContent()` in `extension/utils.js` are the only entry points for LLM calls.
 - Keep changes inside `extension/` unless the task is specifically about `firefox/` manifests or the translation helper scripts in `utils/`.
 - Do not edit files in `extension/lib/`.
+- Always use block braces `{}` for control statements such as `if`, `else`, `for`, and `while` (brace-less single-line statements like `if (cond) return;` are strictly prohibited). This is a manual convention; ESLint does not currently enforce it.
 
 ## Task routing
 
@@ -35,3 +36,12 @@ Cross-browser extension (Chrome, Firefox, Edge) that uses the Anthropic Claude A
 
 - `firefox/` only contains a manifest override; the extension source lives under `extension/`.
 - `extension/manifest.json` defines the unpacked extension structure, permissions, and content scripts.
+- Claude model IDs are mapped in `getModelId()` inside `extension/utils.js`. Update that mapping (and `DEFAULT_LANGUAGE_MODEL` if needed) when adding support for new Claude models. The Anthropic API version header is also set in `extension/utils.js`.
+
+## Custom error codes (1000+)
+
+Defined in `extension/utils.js`. Used internally when API calls fail before receiving an HTTP status.
+
+| Code | Meaning |
+| --- | --- |
+| 1000 | Network error (fetch failed) |
