@@ -13,6 +13,8 @@ import {
 
 let resultIndex = 0;
 let content = "";
+let pageUrl = "";
+let pageTitle = "";
 
 // ── Pure utilities (no DOM access, no side effects) ────────────────────────
 
@@ -164,20 +166,32 @@ const copyContent = async () => {
   }
 };
 
-const saveContent = async () => {
-  try {
-    const operationStatus = document.getElementById("operation-status");
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+const saveContent = () => {
+  const operationStatus = document.getElementById("operation-status");
+  const headerLines = [];
 
-    exportTextToFile(`${tab.url}\n\n${content}`);
-    operationStatus.textContent = chrome.i18n.getMessage("popup_saved");
-
-    setTimeout(() => {
-      operationStatus.textContent = "";
-    }, 1000);
-  } catch (error) {
-    console.error("Failed to save content:", error);
+  if (pageTitle) {
+    headerLines.push(pageTitle);
   }
+
+  if (pageUrl) {
+    headerLines.push(pageUrl);
+  }
+
+  let fileContent = "";
+
+  if (headerLines.length > 0) {
+    fileContent += `${headerLines.join("\n")}\n\n`;
+  }
+
+  fileContent += `${content.replace(/\n+$/, "")}\n\n`;
+
+  exportTextToFile(fileContent);
+  operationStatus.textContent = chrome.i18n.getMessage("popup_saved");
+
+  setTimeout(() => {
+    operationStatus.textContent = "";
+  }, 1000);
 };
 
 // ── Core async logic ────────────────────────────────────────────────────────
@@ -245,7 +259,7 @@ const extractTaskInformation = async () => {
     }
   }
 
-  return { actionType, mediaType, taskInput };
+  return { actionType, mediaType, taskInput, url: tab.url, title: tab.title };
 };
 
 const main = async (useCache) => {
@@ -253,6 +267,8 @@ const main = async (useCache) => {
   let responseContent;
 
   content = "";
+  pageUrl = "";
+  pageTitle = "";
   resultIndex = (await chrome.storage.session.get({ resultIndex: -1 })).resultIndex;
   resultIndex = (resultIndex + 1) % 10;
   await chrome.storage.session.set({ resultIndex: resultIndex });
@@ -263,7 +279,6 @@ const main = async (useCache) => {
 
   try {
     const { apiKey, streaming } = await chrome.storage.local.get({ apiKey: "", streaming: false });
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     const languageModel = document.getElementById("languageModel").value;
     const languageCode = document.getElementById("languageCode").value;
 
@@ -271,7 +286,9 @@ const main = async (useCache) => {
     document.getElementById("status").textContent = "";
     setPopupControlsEnabled(false);
 
-    const { actionType, mediaType, taskInput } = await extractTaskInformation();
+    const { actionType, mediaType, taskInput, url, title } = await extractTaskInformation();
+    pageUrl = url;
+    pageTitle = title;
     displayIntervalId = setInterval(displayLoadingMessage, 500, "status", getLoadingMessage(actionType, mediaType));
 
     const { responseCacheQueue } = await chrome.storage.session.get({ responseCacheQueue: [] });
@@ -288,7 +305,8 @@ const main = async (useCache) => {
           requestSystemPrompt,
           requestApiContent,
           responseContent: cachedResponseContent,
-          url: tab.url
+          url,
+          title
         }
       });
     } else {
@@ -304,7 +322,8 @@ const main = async (useCache) => {
         languageCode,
         streamKey,
         resultIndex,
-        url: tab.url
+        url,
+        title
       });
 
       console.log("Request:", {
@@ -315,7 +334,8 @@ const main = async (useCache) => {
         languageCode,
         streamKey,
         resultIndex,
-        url: tab.url
+        url,
+        title
       });
 
       if (streaming) {

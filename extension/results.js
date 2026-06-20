@@ -22,6 +22,7 @@ const conversation = [];
 let resultIndex = 0;
 let result = {};
 let resultViewStatus = RESULT_VIEW_STATUS.IDLE;
+let resultBaseTitle = chrome.i18n.getMessage("results_title");
 
 // ── Pure utilities (no DOM access, no side effects) ────────────────────────
 
@@ -71,14 +72,12 @@ const setResultControlsEnabled = (enabled) => {
 const isResultTabActive = () => document.visibilityState === "visible" && document.hasFocus();
 
 const updateDocumentTitle = () => {
-  const baseTitle = chrome.i18n.getMessage("results_title");
-
   if (resultViewStatus === RESULT_VIEW_STATUS.UNREAD) {
-    document.title = `● ${baseTitle}`;
+    document.title = `● ${resultBaseTitle}`;
   } else if (resultViewStatus === RESULT_VIEW_STATUS.WAITING) {
-    document.title = `… ${baseTitle}`;
+    document.title = `… ${resultBaseTitle}`;
   } else {
-    document.title = baseTitle;
+    document.title = resultBaseTitle;
   }
 };
 
@@ -116,6 +115,19 @@ const appendAnswerPlaceholderToUi = () => {
   const formattedAnswerDiv = document.createElement("div");
   document.getElementById("conversation").appendChild(formattedAnswerDiv);
   return formattedAnswerDiv;
+};
+
+const updatePageSource = () => {
+  const pageSourceElement = document.getElementById("page-source");
+  const pageSourceTitleElement = document.getElementById("page-source-title");
+
+  if (result.title) {
+    pageSourceTitleElement.textContent = result.title;
+    pageSourceElement.style.display = "block";
+  } else {
+    pageSourceTitleElement.textContent = "";
+    pageSourceElement.style.display = "none";
+  }
 };
 
 // ── Button action handlers ──────────────────────────────────────────────────
@@ -156,27 +168,39 @@ const copyContent = async () => {
 };
 
 const saveContent = () => {
-  try {
-    const operationStatus = document.getElementById("operation-status");
-    let content = `${result.responseContent.replace(/\n+$/, "")}\n\n`;
+  const operationStatus = document.getElementById("operation-status");
+  const headerLines = [];
 
-    for (const item of conversation) {
-      const text = extractTextFromMessage(item);
-
-      if (text) {
-        content += `${text.replace(/\n+$/, "")}\n\n`;
-      }
-    }
-
-    exportTextToFile(`${result.url}\n\n${content}`);
-    operationStatus.textContent = chrome.i18n.getMessage("results_saved");
-
-    setTimeout(() => {
-      operationStatus.textContent = "";
-    }, 1000);
-  } catch (error) {
-    console.error("Failed to save content:", error);
+  if (result.title) {
+    headerLines.push(result.title);
   }
+
+  if (result.url) {
+    headerLines.push(result.url);
+  }
+
+  let fileContent = "";
+
+  if (headerLines.length > 0) {
+    fileContent += `${headerLines.join("\n")}\n\n`;
+  }
+
+  fileContent += `${result.responseContent.replace(/\n+$/, "")}\n\n`;
+
+  for (const item of conversation) {
+    const text = extractTextFromMessage(item);
+
+    if (text) {
+      fileContent += `${text.replace(/\n+$/, "")}\n\n`;
+    }
+  }
+
+  exportTextToFile(fileContent);
+  operationStatus.textContent = chrome.i18n.getMessage("results_saved");
+
+  setTimeout(() => {
+    operationStatus.textContent = "";
+  }, 1000);
 };
 
 // ── Core async logic ────────────────────────────────────────────────────────
@@ -372,6 +396,11 @@ const initialize = async () => {
     // Re-enable the buttons and input fields
     setResultControlsEnabled(true);
   }
+
+  const baseTitle = chrome.i18n.getMessage("results_title");
+  resultBaseTitle = result.title ? `${result.title} - ${baseTitle}` : baseTitle;
+  updateDocumentTitle();
+  updatePageSource();
 
   // Convert the content from Markdown to HTML
   document.getElementById("content").innerHTML = convertMarkdownToHtml(result.responseContent, false);
