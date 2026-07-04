@@ -2,15 +2,7 @@
 
 export const DEFAULT_LANGUAGE_MODEL = "4.5-haiku";
 
-const tryParseJson = (text) => {
-  try {
-    return JSON.parse(text);
-  } catch {
-    return { error: { message: text } };
-  }
-};
-
-// ── UI utilities ────────────────────────────────────────────────────────────
+// ── UI helpers ──────────────────────────────────────────────────────────────
 
 export const applyTheme = (theme) => {
   if (theme === "light") {
@@ -93,7 +85,28 @@ export const convertMarkdownToHtml = (content, breaks) => {
   return htmlDiv.innerHTML;
 };
 
-// ── API utilities ───────────────────────────────────────────────────────────
+export const exportTextToFile = (text) => {
+  const currentDate = new Date();
+  const adjustedDate = new Date(currentDate.getTime() - currentDate.getTimezoneOffset() * 60000);
+  const localDateTimeString = adjustedDate.toISOString().split(".")[0].replaceAll("T", "_").replaceAll(":", "-");
+  const blob = new Blob([text], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `claude-results_${localDateTimeString}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+// ── Claude API helpers ──────────────────────────────────────────────────────
+
+const tryParseJson = (text) => {
+  try {
+    return JSON.parse(text);
+  } catch {
+    return { error: { message: text } };
+  }
+};
 
 export const getModelId = (languageModel) => {
   const modelMappings = {
@@ -254,19 +267,4 @@ export const getResponseContent = (response, hasApiKey) => {
   }
 
   return responseContent;
-};
-
-// ── File utilities ──────────────────────────────────────────────────────────
-
-export const exportTextToFile = (text) => {
-  const currentDate = new Date();
-  const adjustedDate = new Date(currentDate.getTime() - currentDate.getTimezoneOffset() * 60000);
-  const localDateTimeString = adjustedDate.toISOString().split(".")[0].replaceAll("T", "_").replaceAll(":", "-");
-  const blob = new Blob([text], { type: "text/plain" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `claude-results_${localDateTimeString}.txt`;
-  a.click();
-  URL.revokeObjectURL(url);
 };

@@ -148,6 +148,19 @@ const setPopupControlsEnabled = (enabled) => {
   document.getElementById("results").disabled = !enabled;
 };
 
+const clearContentArea = () => {
+  document.getElementById("content").textContent = "";
+  document.getElementById("status").textContent = "";
+};
+
+const showResultsLink = (show) => {
+  document.getElementById("results-link").style.display = show ? "block" : "none";
+};
+
+const renderStreamContent = (streamContent) => {
+  document.getElementById("content").innerHTML = convertMarkdownToHtml(streamContent, false);
+};
+
 // ── Button action handlers ──────────────────────────────────────────────────
 
 const copyContent = async () => {
@@ -162,7 +175,7 @@ const copyContent = async () => {
       operationStatus.textContent = "";
     }, 1000);
   } catch (error) {
-    console.error("Failed to copy content:", error);
+    console.log("Failed to copy content:", error);
   }
 };
 
@@ -282,8 +295,7 @@ const main = async (useCache) => {
     const languageModel = document.getElementById("languageModel").value;
     const languageCode = document.getElementById("languageCode").value;
 
-    document.getElementById("content").textContent = "";
-    document.getElementById("status").textContent = "";
+    clearContentArea();
     setPopupControlsEnabled(false);
 
     const { actionType, mediaType, taskInput, url, title } = await extractTaskInformation();
@@ -343,13 +355,13 @@ const main = async (useCache) => {
           const streamContent = (await chrome.storage.session.get({ [streamKey]: "" }))[streamKey];
 
           if (streamContent) {
-            document.getElementById("content").innerHTML = convertMarkdownToHtml(streamContent, false);
+            renderStreamContent(streamContent);
           }
         }, 1000);
       }
 
       const timeoutId = setTimeout(() => {
-        document.getElementById("results-link").style.display = "block";
+        showResultsLink(true);
       }, 5000);
 
       const response = await responsePromise;
@@ -357,7 +369,7 @@ const main = async (useCache) => {
       responseContent = getResponseContent(response, Boolean(apiKey));
 
       clearTimeout(timeoutId);
-      document.getElementById("results-link").style.display = "none";
+      showResultsLink(false);
       clearInterval(streamIntervalId);
     }
 

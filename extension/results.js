@@ -60,15 +60,6 @@ const isSuccessfulResponse = (response) => {
 
 // ── Tab state & notification ────────────────────────────────────────────────
 
-const setResultControlsEnabled = (enabled) => {
-  document.getElementById("clear").disabled = !enabled;
-  document.getElementById("copy").disabled = !enabled;
-  document.getElementById("save").disabled = !enabled;
-  document.getElementById("text").readOnly = !enabled;
-  document.getElementById("languageModel").disabled = !enabled;
-  document.getElementById("send").disabled = !enabled;
-};
-
 const isResultTabActive = () => document.visibilityState === "visible" && document.hasFocus();
 
 const updateDocumentTitle = () => {
@@ -100,6 +91,23 @@ const completeWaitingForResult = () => {
 };
 
 // ── UI helpers ──────────────────────────────────────────────────────────────
+
+const setResultControlsEnabled = (enabled) => {
+  document.getElementById("clear").disabled = !enabled;
+  document.getElementById("copy").disabled = !enabled;
+  document.getElementById("save").disabled = !enabled;
+  document.getElementById("text").readOnly = !enabled;
+  document.getElementById("languageModel").disabled = !enabled;
+  document.getElementById("send").disabled = !enabled;
+};
+
+const clearSendStatusMessage = () => {
+  document.getElementById("send-status").textContent = "";
+};
+
+const startSendStatusMessage = () => {
+  return setInterval(displayLoadingMessage, 500, "send-status", chrome.i18n.getMessage("results_waiting_response"));
+};
 
 const appendQuestionToUi = (question) => {
   const formattedQuestionDiv = document.createElement("div");
@@ -163,7 +171,7 @@ const copyContent = async () => {
       operationStatus.textContent = "";
     }, 1000);
   } catch (error) {
-    console.error("Failed to copy content:", error);
+    console.log("Failed to copy content:", error);
   }
 };
 
@@ -213,7 +221,7 @@ const askQuestion = async () => {
   }
 
   setResultControlsEnabled(false);
-  let displayIntervalId = setInterval(displayLoadingMessage, 500, "send-status", chrome.i18n.getMessage("results_waiting_response"));
+  const displayIntervalId = startSendStatusMessage();
   appendQuestionToUi(question);
   document.getElementById("text").value = "";
 
@@ -270,7 +278,7 @@ const askQuestion = async () => {
         console.error("Failed to save conversation to session storage:", storageError);
       }
     } else {
-      console.warn("API response was not successful:", response);
+      console.log("API response was not successful:", response);
     }
   } catch (error) {
     console.error("Failed to generate content:", error);
@@ -282,7 +290,7 @@ const askQuestion = async () => {
     formattedAnswerDiv.textContent = chrome.i18n.getMessage("response_unexpected_response");
   } finally {
     clearInterval(displayIntervalId);
-    document.getElementById("send-status").textContent = "";
+    clearSendStatusMessage();
     setResultControlsEnabled(true);
     window.scrollTo(0, document.body.scrollHeight);
   }
@@ -391,7 +399,7 @@ const initialize = async () => {
 
     // Stop displaying the loading message
     clearInterval(displayIntervalId);
-    document.getElementById("send-status").textContent = "";
+    clearSendStatusMessage();
 
     // Re-enable the buttons and input fields
     setResultControlsEnabled(true);

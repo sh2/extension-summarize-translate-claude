@@ -5,6 +5,8 @@ import {
   loadTemplate
 } from "./utils.js";
 
+// ── Pure utilities (no DOM access, no side effects) ────────────────────────
+
 const INITIAL_OPTIONS = {
   apiKey: "",
   languageModel: DEFAULT_LANGUAGE_MODEL,
@@ -18,6 +20,8 @@ const INITIAL_OPTIONS = {
   theme: "system",
   fontSize: "medium"
 };
+
+// ── UI helpers ──────────────────────────────────────────────────────────────
 
 const showStatusMessage = (message, duration) => {
   const status = document.getElementById("status");
@@ -73,6 +77,8 @@ const setOptionsToForm = async () => {
   }
 };
 
+// ── Core async logic ────────────────────────────────────────────────────────
+
 const saveOptions = async () => {
   const options = getOptionsFromForm(true);
 
@@ -108,9 +114,14 @@ const initialize = async () => {
   setOptionsToForm();
 };
 
-document.addEventListener("DOMContentLoaded", initialize);
+// ── Button action handlers ──────────────────────────────────────────────────
 
-document.getElementById("save").addEventListener("click", async () => {
+const handleSaveClick = async () => {
   await saveOptions();
   showStatusMessage(chrome.i18n.getMessage("options_saved"), 1000);
-});
+};
+
+// ── Event listeners ─────────────────────────────────────────────────────────
+
+document.addEventListener("DOMContentLoaded", initialize);
+document.getElementById("save").addEventListener("click", handleSaveClick);

@@ -5,7 +5,7 @@ import {
   getResponseContent
 } from "./utils.js";
 
-// ── Pure utilities (no DOM access, no side effects) ────────────────────────
+// ── System prompt construction ──────────────────────────────────────────────
 
 const getSystemPrompt = async (actionType, mediaType, languageCode, taskInputLength) => {
   const languageNames = {
