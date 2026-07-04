@@ -12,6 +12,7 @@ Cross-browser extension (Chrome, Firefox, Edge) that uses the Anthropic Claude A
 ## Core rules
 
 - `generateContent()` and `streamGenerateContent()` in `extension/utils.js` are the only entry points for LLM calls.
+- Conversation content is stored in Anthropic-style `{ role, content }` messages (`role` is `"user"` or `"assistant"`). Do not introduce Gemini-style `parts` arrays; Claude is a single-provider extension.
 - Keep changes inside `extension/` unless the task is specifically about `firefox/` manifests or the translation helper scripts in `utils/`.
 - Do not edit files in `extension/lib/`.
 - Always use block braces `{}` for control statements such as `if`, `else`, `for`, and `while` (brace-less single-line statements like `if (cond) return;` are strictly prohibited). This is a manual convention; ESLint does not currently enforce it.
@@ -27,10 +28,58 @@ Cross-browser extension (Chrome, Firefox, Edge) that uses the Anthropic Claude A
 - Localized strings: `extension/_locales/*/messages.json`
 - Firefox-specific changes: `firefox/manifest.json`
 
+## Source file organization
+
+Each JavaScript source file under `extension/` is divided into named sections with `// ── Section name ──...──` separator comments. Keep the section vocabulary and ordering consistent across files so that dependencies flow from low-level helpers toward entry points.
+
+### Section vocabulary
+
+Reuse the existing section names rather than inventing new ones. The canonical set, in dependency order:
+
+1. `Pure utilities (no DOM access, no side effects)` — functions that depend only on their arguments and return values. No `document.*`, `Image`, `FileReader`, `canvas`, listener registration, or module-state mutation. Plain data constants also belong here.
+2. Specialized helpers (e.g. `Content script injection utilities`, `Tab state & notification`) — grouped by domain when a file has enough related helpers to justify a dedicated section.
+3. `UI helpers` — DOM reads/writes, form population, preview rendering, status text. DOM element references (e.g. `const x = document.getElementById(...)`) belong here, not in `Pure utilities`.
+4. `Button action handlers` — handlers wired to specific buttons.
+5. `Core async logic` — orchestration functions (`main`, `askQuestion`, `waitForResult`, `saveOptions`, etc.). `initialize` is the last function in this section.
+6. `Event listeners` — always the last section in the file; contains only listener registration and the initial call to `initialize()`.
+
+`extension/utils.js` uses a library-oriented vocabulary instead: `UI helpers` and `Claude API helpers`. Within each section, place internal helpers before the exported entry point they support (bottom-up ordering).
+
+### Ordering rules
+
+- Place functions so that a function is defined before it is used within the same file, and so that lower-level helpers come before higher-level orchestration.
+- Within a section, prefer `internal helper → exported API` ordering. If an exported function is self-contained, it may sit at the top of its section.
+- Keep `initialize` as the last function in `Core async logic`, and keep `Event listeners` as the last section.
+- Do not place DOM-touching or side-effectful functions in `Pure utilities`. Move them to `UI helpers` or a specialized helper section.
+- When adding a function, choose the section by what the function does, not by where it happens to be called from.
+
 ## Validation
 
 - After code changes, run `npm run lint` and fix relevant errors before finishing.
 - When updating the extension version, update both `extension/manifest.json` and `firefox/manifest.json`.
+
+## Logging policy
+
+`console.*` levels are used to separate "expected during normal use" from "extension internals went wrong". Keep the distinction consistent across `popup.js`, `results.js`, `options.js`, `service-worker.js`, and `utils.js`.
+
+### Level definitions
+
+| Level | Use for | Examples |
+| --- | --- | --- |
+| `console.error` | Extension-internal failures that should not happen during normal use. Bugs, broken invariants, infrastructure failures (storage, tabs, sendResponse, template loading). | `Failed to remove conversation from session storage`, `Failed to copy content`, `Failed to find the template` |
+| `console.warn` | Reserved for cases that are abnormal but recoverable and worth surfacing without implying a bug. Avoid using it for ordinary API failures. | (currently none — prefer `log` for API outcomes) |
+| `console.log` | Expected or environment-dependent outcomes that users may hit during normal use, including LLM API errors, permission denials, and fallback paths. | `Failed to parse the article. Using document.body.innerText instead.`, clipboard permission denied, transcript retrieval failure |
+| `console.debug` | Noise that is only useful when tracing a specific issue. | (currently none in Claude version) |
+
+### Rules
+
+- LLM API failures returned as `{ ok: false, status, body }` from `generateContent()` / `streamGenerateContent()` are **expected outcomes**, not exceptions. Do not log them with `console.error` at the call site; use `console.log` if logging is needed.
+- `catch` blocks that wrap a broad flow (e.g. `main()` in `popup.js`, the generation handler in `service-worker.js`, `askQuestion()` in `results.js`) may still use `console.error`, because they catch unexpected internal failures rather than ordinary API responses. If such a block also surfaces a user-facing message, ensure the message text does not imply the API itself failed when the real cause is internal.
+- Do not log raw API keys, request headers, or `x-api-key` values. The existing `"Request:"` / `"Response:"` debug logs in `popup.js` and `results.js` are acceptable because they only include request bodies and response payloads.
+- Storage / tab / messaging / template infrastructure failures stay at `console.error`.
+- User-environment failures (clipboard permission, unsupported image format, Readability fallback, missing YouTube transcript, `chrome://` page extraction) use `console.log` (or `console.debug` when truly noise-only).
+- When a failure is already surfaced to the user via UI (toast, status text), prefer `console.log` over `console.error` unless it represents an internal bug.
+- Do not introduce `console.info`. Use `console.log` for general informational output.
 
 ## Notes
 
