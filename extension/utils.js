@@ -65,6 +65,38 @@ export const displayLoadingMessage = (elementId, loadingMessage) => {
   }
 };
 
+const allowedMarkdownUrlProtocols = new Set(["http:", "https:"]);
+
+const isAllowedMarkdownUrl = (value) => {
+  if (typeof value !== "string") {
+    return false;
+  }
+
+  const trimmedValue = value.trim();
+
+  if (!trimmedValue) {
+    return false;
+  }
+
+  try {
+    const url = new URL(trimmedValue);
+    return allowedMarkdownUrlProtocols.has(url.protocol);
+  } catch {
+    return false;
+  }
+};
+
+const removeUnsafeMarkdownUrls = (container) => {
+  container.querySelectorAll("a[href], img[src]").forEach((element) => {
+    const attributeName = element.tagName === "A" ? "href" : "src";
+    const attributeValue = element.getAttribute(attributeName);
+
+    if (!isAllowedMarkdownUrl(attributeValue)) {
+      element.removeAttribute(attributeName);
+    }
+  });
+};
+
 export const convertMarkdownToHtml = (content, breaks) => {
   // Disable links when converting from Markdown to HTML
   marked.use({ renderer: { link: ({ text }) => text } });
@@ -73,6 +105,8 @@ export const convertMarkdownToHtml = (content, breaks) => {
   markdownDiv.textContent = content;
   const htmlDiv = document.createElement("div");
   htmlDiv.innerHTML = DOMPurify.sanitize(marked.parse(markdownDiv.innerHTML, { breaks: breaks }));
+
+  removeUnsafeMarkdownUrls(htmlDiv);
 
   // Replace the HTML entities with the original characters in the code blocks
   htmlDiv.querySelectorAll("code").forEach(codeBlock => {
