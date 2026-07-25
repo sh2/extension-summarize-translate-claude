@@ -13,8 +13,8 @@ Cross-browser extension (Chrome, Firefox, Edge) that uses the Anthropic Claude A
 
 - `generateContent()` and `streamGenerateContent()` in `extension/utils.js` are the only entry points for LLM calls.
 - Conversation content is stored in Anthropic-style `{ role, content }` messages (`role` is `"user"` or `"assistant"`). Do not introduce Gemini-style `parts` arrays; Claude is a single-provider extension.
-- Keep changes inside `extension/` unless the task is specifically about `firefox/` manifests or the translation helper scripts in `utils/`.
-- Do not edit files in `extension/lib/`.
+- Keep production-source changes inside `extension/` unless the task is specifically about `firefox/` manifests or the translation helper scripts in `utils/`. Update `docs/`, root configuration files, and `AGENTS.md` when required by the task.
+- Do not edit files in `extension/lib/` except when updating a vendored library according to the procedure below.
 - Always use block braces `{}` for control statements such as `if`, `else`, `for`, and `while` (brace-less single-line statements like `if (cond) return;` are strictly prohibited). This is a manual convention; ESLint does not currently enforce it.
 
 ## Task routing
@@ -57,6 +57,19 @@ Reuse the existing section names rather than inventing new ones. The canonical s
 
 - After code changes, run `npm run lint` and fix relevant errors before finishing.
 - When updating the extension version, update both `extension/manifest.json` and `firefox/manifest.json`.
+- When creating or editing Markdown files, check and fix relevant Markdownlint diagnostics in VS Code before finishing, when the extension diagnostics are available.
+
+## Localization guidelines
+
+Style rules for edits to `extension/_locales/*/messages.json`:
+
+- Use consistent long vowel marks (`ー`) in Japanese katakana terms, for example, 「ユーザー」 and 「サーバー」.
+- Choose parentheses based on the writing system:
+  - CJK locales (`ja`, `zh_CN`, `zh_TW`): Use full-width `（...）` when the parenthetical text contains Japanese or Chinese.
+  - All other locales, including `ko`: Use half-width `(...)`.
+  - Keep technical identifiers (e.g. API parameter names) half-width in every locale.
+- Every locale must have exactly the same keys as `en`. Add new keys to all 15 locales, including `en`, in the same commit.
+- After changing locale files, run `npm run lint` to verify there are no syntax errors.
 
 ## Logging policy
 
