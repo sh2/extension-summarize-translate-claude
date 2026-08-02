@@ -225,7 +225,7 @@ const extractTaskInformation = async () => {
     console.log(error);
   }
 
-  if (taskInput) {
+  if (taskInput?.trim()) {
     actionType = (await chrome.storage.local.get({ textAction: "translate" })).textAction;
     mediaType = "text";
   } else {
@@ -248,7 +248,7 @@ const extractTaskInformation = async () => {
       }
     }
 
-    if (!taskInput) {
+    if (!taskInput?.trim()) {
       mediaType = "text";
 
       try {
@@ -266,7 +266,7 @@ const extractTaskInformation = async () => {
       }
     }
 
-    if (!taskInput) {
+    if (!taskInput?.trim()) {
       mediaType = "image";
       taskInput = await chrome.tabs.captureVisibleTab(tab.windowId, { format: "jpeg" });
     }
