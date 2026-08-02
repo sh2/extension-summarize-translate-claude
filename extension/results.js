@@ -266,7 +266,7 @@ const askQuestion = async () => {
 
     console.log("Response:", response);
     answer = getResponseContent(response, Boolean(apiKey));
-    formattedAnswerDiv.innerHTML = convertMarkdownToHtml(answer, false);
+    formattedAnswerDiv.innerHTML = convertMarkdownToHtml(answer, false, true);
 
     if (isSuccessfulResponse(response)) {
       conversation.push({ role: "user", content: question });
@@ -411,7 +411,7 @@ const initialize = async () => {
   updatePageSource();
 
   // Convert the content from Markdown to HTML
-  document.getElementById("content").innerHTML = convertMarkdownToHtml(result.responseContent, false);
+  document.getElementById("content").innerHTML = convertMarkdownToHtml(result.responseContent, false, true);
 
   // Restore the conversation from session storage if it exists and is valid
   const savedConversation = sessionData[`conversation_${resultIndex}`];
@@ -430,7 +430,7 @@ const initialize = async () => {
 
       if (answerText) {
         const answerPlaceholder = appendAnswerPlaceholderToUi();
-        answerPlaceholder.innerHTML = convertMarkdownToHtml(answerText, false);
+        answerPlaceholder.innerHTML = convertMarkdownToHtml(answerText, false, true);
       }
     }
   }

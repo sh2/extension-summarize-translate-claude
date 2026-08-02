@@ -379,7 +379,7 @@ const main = async (useCache) => {
     console.error(error);
   } finally {
     clearInterval(displayIntervalId);
-    document.getElementById("content").innerHTML = convertMarkdownToHtml(content, false);
+    document.getElementById("content").innerHTML = convertMarkdownToHtml(content, false, true);
     document.getElementById("status").textContent = "";
     setPopupControlsEnabled(true);
   }
