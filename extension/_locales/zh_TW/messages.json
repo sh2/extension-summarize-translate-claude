@@ -114,7 +114,7 @@
         "message": "未選取文字時，執行以下動作"
     },
     "options_no_text_summarize": {
-        "message": "摘要 (預設)"
+        "message": "摘要（預設）"
     },
     "options_no_text_translate": {
         "message": "翻譯"
@@ -129,7 +129,7 @@
         "message": "摘要"
     },
     "options_text_translate": {
-        "message": "翻譯 (預設)"
+        "message": "翻譯（預設）"
     },
     "options_text_custom": {
         "message": "自訂動作"
