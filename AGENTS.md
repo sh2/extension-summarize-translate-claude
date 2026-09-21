@@ -15,7 +15,7 @@ Cross-browser extension (Chrome, Firefox, Edge) that uses the Anthropic Claude A
 - Conversation content is stored in Anthropic-style `{ role, content }` messages (`role` is `"user"` or `"assistant"`). Do not introduce Gemini-style `parts` arrays; Claude is a single-provider extension.
 - Keep production-source changes inside `extension/` unless the task is specifically about `firefox/` manifests or the translation helper scripts in `utils/`. Update `docs/`, root configuration files, and `AGENTS.md` when required by the task.
 - Do not edit files in `extension/lib/` except when updating a vendored library according to the procedure below.
-- Always use block braces `{}` for control statements such as `if`, `else`, `for`, and `while` (brace-less single-line statements like `if (cond) return;` are strictly prohibited). This is a manual convention; ESLint does not currently enforce it.
+- Always use block braces `{}` for control statements such as `if`, `else`, `for`, and `while` (brace-less single-line statements like `if (cond) return;` are strictly prohibited). This is enforced by the `curly` rule in `eslint.config.mjs`.
 
 ## Task routing
 
