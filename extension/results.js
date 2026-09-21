@@ -111,10 +111,12 @@ const startSendStatusMessage = () => {
 
 const appendQuestionToUi = (question) => {
   const formattedQuestionDiv = document.createElement("div");
-  formattedQuestionDiv.style.backgroundColor = "var(--nc-bg-3)";
-  formattedQuestionDiv.style.borderRadius = "1rem";
-  formattedQuestionDiv.style.margin = "1.5rem";
-  formattedQuestionDiv.style.padding = "1rem 1rem .1rem";
+
+  // Presentation belongs to results.html: the conversation DOM is copied to the
+  // clipboard as-is, and the paste target has neither the extension stylesheet nor its
+  // root font size. See docs/archive/RESEARCH_WORD_HTML_PASTE.md.
+  formattedQuestionDiv.className = "conversation-question";
+  formattedQuestionDiv.setAttribute("dir", "auto");
   formattedQuestionDiv.innerHTML = convertMarkdownToHtml(question, true);
   document.getElementById("conversation").appendChild(formattedQuestionDiv);
 };
