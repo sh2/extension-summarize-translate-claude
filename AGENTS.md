@@ -9,13 +9,21 @@ Cross-browser extension (Chrome, Firefox, Edge) that uses the Anthropic Claude A
 - **API backend:** Anthropic Claude API
 - **Version source:** `extension/manifest.json` and `firefox/manifest.json`
 
+## Response language
+
+- Reply in the same language the user is using for the current request (English, Japanese, and so on).
+- This applies to every kind of message: explanations, plans, status reports, questions asked back, and final summaries.
+- It does not change the language of the code and documentation rules below: code, code comments, commit messages, and this file stay in English.
+
 ## Core rules
 
 - `generateContent()` and `streamGenerateContent()` in `extension/utils.js` are the only entry points for LLM calls.
 - Conversation content is stored in Anthropic-style `{ role, content }` messages (`role` is `"user"` or `"assistant"`). Do not introduce Gemini-style `parts` arrays; Claude is a single-provider extension.
 - Keep production-source changes inside `extension/` unless the task is specifically about `firefox/` manifests or the translation helper scripts in `utils/`. Update `docs/`, root configuration files, and `AGENTS.md` when required by the task.
 - Do not edit files in `extension/lib/` except when updating a vendored library according to the procedure below.
+- Do not add runtime dependencies. The extension has no bundler and no build step, and `node_modules/` is not part of `extension/`, so third-party code must be vendored into `extension/lib/` as a browser-ready file and recorded in the vendored-libraries table below.
 - Always use block braces `{}` for control statements such as `if`, `else`, `for`, and `while` (brace-less single-line statements like `if (cond) return;` are strictly prohibited). This is enforced by the `curly` rule in `eslint.config.mjs`.
+- Keep UI presentation in CSS, not in JavaScript. The results page DOM (`#content`, `#conversation`) is copied to the clipboard as-is, so an inline `style` set from JavaScript is carried into the pasted HTML, where the extension stylesheet and root font size do not exist. Use the classes defined in the page's `<style>` block instead (see `docs/archive/RESEARCH_WORD_HTML_PASTE.md`).
 
 ## Task routing
 
@@ -58,6 +66,15 @@ Reuse the existing section names rather than inventing new ones. The canonical s
 - After code changes, run `npm run lint` and fix relevant errors before finishing.
 - When updating the extension version, update both `extension/manifest.json` and `firefox/manifest.json`.
 - When creating or editing Markdown files, check and fix relevant Markdownlint diagnostics in VS Code before finishing, when the extension diagnostics are available.
+
+## Git commits
+
+- Never run `git commit` unless the user explicitly asks for a commit in the current task.
+- Do not commit automatically after finishing a task, a plan step, or a validation run.
+- Commit steps described in a plan document (for example "commit in two parts: `feat(...)` then `chore(...)`") are guidance for the user, not an authorization to commit.
+- `git commit --amend`, `git rebase`, `git revert`, and `git push` follow the same rule: only on explicit instruction.
+- When a task is complete, stop after the file changes and validation, then report what changed and leave the changes uncommitted.
+- The user decides the commit granularity, message, and timing.
 
 ## Localization guidelines
 
@@ -104,6 +121,7 @@ Style rules for edits to `extension/_locales/*/messages.json`:
 - `firefox/` only contains a manifest override; the extension source lives under `extension/`.
 - `extension/manifest.json` defines the unpacked extension structure, permissions, and content scripts.
 - Claude model IDs are mapped in `getModelId()` inside `extension/utils.js`. Update that mapping (and `DEFAULT_LANGUAGE_MODEL` if needed) when adding support for new Claude models. The Anthropic API version header is also set in `extension/utils.js`.
+- Put new plan and research documents directly under `docs/`. Move them to `docs/archive/` once the work is complete, and update the references to them (`AGENTS.md` and other documents) in the same change.
 
 ## Custom error codes (1000+)
 
