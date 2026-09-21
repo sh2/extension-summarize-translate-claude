@@ -9,7 +9,8 @@ import {
   generateContent,
   streamGenerateContent,
   getResponseContent,
-  exportTextToFile
+  exportTextToFile,
+  copyContentToClipboard
 } from "./utils.js";
 
 const RESULT_VIEW_STATUS = Object.freeze({
@@ -166,7 +167,13 @@ const copyContent = async () => {
       }
     }
 
-    await navigator.clipboard.writeText(clipboardContent);
+    // Copy the content to the clipboard
+    await copyContentToClipboard(
+      clipboardContent,
+      document.getElementById("content"),
+      document.getElementById("conversation")
+    );
+
     operationStatus.textContent = chrome.i18n.getMessage("results_copied");
 
     setTimeout(() => {

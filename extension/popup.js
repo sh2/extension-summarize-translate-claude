@@ -8,7 +8,8 @@ import {
   displayLoadingMessage,
   convertMarkdownToHtml,
   getResponseContent,
-  exportTextToFile
+  exportTextToFile,
+  copyContentToClipboard
 } from "./utils.js";
 
 let resultIndex = 0;
@@ -176,7 +177,8 @@ const copyContent = async () => {
     const operationStatus = document.getElementById("operation-status");
     const clipboardContent = `${content.replace(/\n+$/, "")}\n\n`;
 
-    await navigator.clipboard.writeText(clipboardContent);
+    // Copy the content to the clipboard
+    await copyContentToClipboard(clipboardContent, document.getElementById("content"));
     operationStatus.textContent = chrome.i18n.getMessage("popup_copied");
 
     setTimeout(() => {
