@@ -3,14 +3,16 @@
 本ドキュメントは `extension-summarize-translate-claude`（Claude版）に対し、
 `extension-summarize-translate-gemini`（Gemini版）で実装された更新を移植するための実装計画です。
 
-状態: 未実装。
+状態: 実装済み（2026-09-23）。`npm run lint` はエラーなし。手動検証は 4.3 を参照（14 項目すべて完了）。
+バージョン更新（3.5）は未実施。`docs/archive/` への移動は完了。
+本ドキュメントは作業完了後の 2026-09-23 に `docs/` から移動した。
 
 本シリーズについて:
 
 - Gemini版の更新は定期的に発生するため、取り込み計画は日付付きでシリーズ化する
 - ファイル名の形式: `PORT_QUALITY_PLAN_YYYY-MM-DD.md`
-- 第1回: [`PORT_QUALITY_PLAN_2026-08-02.md`](archive/PORT_QUALITY_PLAN_2026-08-02.md)
-- 第2回: [`PORT_QUALITY_PLAN_2026-09-21.md`](archive/PORT_QUALITY_PLAN_2026-09-21.md)
+- 第1回: [`PORT_QUALITY_PLAN_2026-08-02.md`](PORT_QUALITY_PLAN_2026-08-02.md)
+- 第2回: [`PORT_QUALITY_PLAN_2026-09-21.md`](PORT_QUALITY_PLAN_2026-09-21.md)
 
 前提:
 
@@ -54,7 +56,7 @@
   テスト構成に依存し、本ドキュメントが Claude版の計画として置き換わるため
 - `#page-source` への URL 表示（画面とコピー内容の一致）、ヘッダの ON/OFF 設定化、
   `.md` / `.html` 形式での保存 — 第7章で扱う
-- `exportTextToFile` の保存内容の変更 — 現行と同一を維持する（3.1・3.3 参照）
+- `exportTextToFile` の保存内容の変更 — 現行と同一を維持する（3.2・3.3 参照）
 - Gemini版 `d2ca760` / `fd653d4`（v1.8.19 / v1.8.20）、`314bf7e`（計画ドキュメント追加）—
   Claude版は独自採番（次は 1.4.41）で、計画は本ドキュメントが担う
 
@@ -65,7 +67,7 @@
 | `extension/utils.js` | `buildSourceHeader` を追加、`copyContentToClipboard` に第2引数を追加、内部ヘルパーを改名（#1 / #2） |
 | `extension/popup.js` | `copyContent` にヘッダを追加、`saveContent` を `buildSourceHeader` に置換（#1） |
 | `extension/results.js` | 同上（会話ループの変数名も調整）（#1 / #2） |
-| `docs/PORT_QUALITY_PLAN_2026-09-23.md` | 本ドキュメント |
+| `docs/archive/PORT_QUALITY_PLAN_2026-09-23.md` | 本ドキュメント（作業完了後に `docs/` から移動） |
 | `extension/manifest.json` / `firefox/manifest.json` | バージョン 1.4.41（任意・最終工程） |
 
 ---
@@ -87,7 +89,9 @@
 `68df6db..HEAD` の差分のうち `extension/` を変更するのは `b3277dd` のみで、
 残りの `314bf7e` / `d2ca760` / `fd653d4` はドキュメント追加とバージョン bump である。
 
-### 2.2 Copy と Save の現状（事実）
+### 2.2 Copy と Save の現状（変更前）
+
+行番号は本計画の実装前のファイルに対応する（2.3・3.1.1 も同じ）。
 
 | 操作 | 実装 | 出力 |
 | --- | --- | --- |
@@ -615,9 +619,132 @@ Word / Gmail の貼り付け結果は目視では判断しにくいため、
 | 13 | 長いタイトル / 長い URL のページで Copy | 例外なくコピーでき、貼り付け先で折り返される |
 | 14 | Firefox で 1・3・6・7 を実施 | 同じ結果（書式付きコピーとリンク化が Firefox でも成立する） |
 
-検証の優先順位: 4（Save の回帰）→ 1・6（Copy の内容）→ 7（popup の取りこぼし検出）→
+検証の優先順位（実施時の目安）: 4（Save の回帰）→ 1・6（Copy の内容）→ 7（popup の取りこぼし検出）→
 11（RTL 対策）。11 は条件が揃わない場合はローカル HTML で代替する
 （`<title>` をラテン文字始まりにし、本文が RTL になるよう要約言語をアラビア語にする）。
+
+### 4.3 実施記録
+
+静的検証（4.1）: `npm run lint` はエラーなし。改名した `isAllowedMarkdownUrl` /
+`allowedMarkdownUrlProtocols` と `buildClipboardHtml` の参照は残っていない（grep で確認）。
+本ドキュメントは VS Code の markdownlint 診断でもエラーなし。
+あわせて、実装した `buildSourceHeader` / `copyContentToClipboard` を jsdom で実行し、
+ヘッダのテキスト・マークアップ・要素順、空入力（`""` / `null` / `undefined`）、非 http(s) URL、
+タイトル内 HTML のリテラル扱い、`style` / `class` を付けないこと、元 DOM の不変性、
+断片の非破壊性、空本文ガード、data URL 画像の除去まで **36/36** の確認が通ることを確かめた。
+（Node 24 + 兄弟リポジトリの `jsdom` を借りた使い捨てスクリプトで、リポジトリには追加していない。）
+
+手動検証は 4.2 の表に対応する。
+
+| 日付 | # | 実施内容 | 結果 |
+| --- | --- | --- | --- |
+| 2026-09-23 | 1 | Gmail の下書きに貼り付け | OK。タイトル `Pricing - Claude Platform Docs` が本文と同程度の大きさの太字で先頭に入り、次行の URL が青・下線付きのリンクとして貼り付いた。以降に本文の段落（`Anthropicのモデルと機能の価格体系は…`）が続き、太字と番号付きリスト 1〜3 のインデントも保持された。順序はタイトル → URL → 本文で期待どおり（太字段落を採用した決定 4 の確認を兼ねる） |
+| 2026-09-23 | 2 | Word に貼り付け | OK。タイトルは太字で本文と同程度の大きさに収まり、見出しスタイルは付かなかった（決定 4 のトレードオフとして想定どおり）。URL は青・下線付きのリンク。本文の太字と番号付きリスト 1〜3 のハンギングインデントも保持された。Google ドキュメントは未実施 |
+| 2026-09-23 | 3 | テキストエディター（Mery）に貼り付け | OK。1 行目にタイトル、2 行目に URL、3 行目が空行、4 行目以降に `**` 記法と `1.` `2.` `3.` の Markdown 原文。プレーンテキスト（`text/plain`）がそのまま使われ、Save の `.txt` と同じ並び |
+| 2026-09-23 | 4 | 結果ページで Save した `.txt` | OK（**回帰確認の主項目**）。`claude-results_2026-09-23_10-51-18.txt` の内容はタイトル → URL → 空行 → 本文（Markdown 原文）で、#3 のテキスト貼り付けと完全に一致。`buildSourceHeader` は旧実装の `headerLines.join("\n") + "\n\n"` と同形の文字列を返すため、保存内容に変化はない |
+| 2026-09-23 | 5 | フォローアップ質問を 1 往復追加してから Copy → Word に貼り付け | OK。ヘッダ（タイトル + URL）は先頭に 1 回だけで、以降は 本文 → 質問 `Opus は値下げされましたか？` → 回答（箇条書き 4 項目を含む）の順。質問ブロックの装飾（背景色・角丸）は貼り付け先に拡張機能のスタイルシートが無いため付かないが、これは決定 5 および第2回の #1 で想定したとおりで、区切りは段落で読み取れる |
+| 2026-09-23 | 6 | popup で Copy → popup の Save ファイルと比較 | OK。`claude-results_2026-09-23_11-08-55.txt` はタイトル → URL → 空行 → 本文（Markdown 原文）で、#4 の結果ページの Save と同一の並び。popup の Copy のプレーンテキストも同じ組み立て（3.2 のとおり共通実装で、残る差分は `pageTitle` / `pageUrl` と `result.title` / `result.url` の値のみ） |
+| 2026-09-23 | 7 | popup で Copy → リッチ貼り付け | OK（**リスク 1 の検出項目**、貼り付け先は Gmail ではなく Word で代替）。ヘッダが先頭に入り、タイトルが太字、URL が青・下線付きのリンク、本文の太字と番号付きリスト 1〜3 も保持された。ヘッダが入り、かつ HTML が書かれている（書式が生きている）ことから、`popup.js` の呼び出し側も更新済みで**更新漏れは発生していない** |
+| 2026-09-23 | 8 | 結果が未描画の状態で Copy | OK。結果ページの結果を「本文が空の `result`」に差し替えて再現した（手順は下記）。`write()` は呼ばれず `writeText()` のみが呼ばれ、例外もなく「コピーしました」が表示された。コピーされたテキストは `"Empty body test\nhttps://example.com/\n\n\n\n"` で、決定 9 のとおりヘッダのみ（本文が空でも付く `\n\n` の分だけ末尾の空行が増えるが、Gemini版と同一の挙動） |
+| 2026-09-23 | 9 | 書き込み権限を拒否した状態で Copy（結果ページ） | OK。`navigator.clipboard.write` / `writeText` を `NotAllowedError` で拒否するよう上書きして Copy を実行した。`Failed to copy HTML content. Falling back to plain text: NotAllowedError: Write permission denied.`（`utils.js` の `catch`、`console.log`）に続けて `Failed to copy content: NotAllowedError: Write permission denied.`（`results.js` の `catch`、`console.log`）が出力され、ステータスは空のまま、未処理の Promise 拒否も出なかった。リッチ経路の失敗は内部でフォールバックされ、最終的な `writeText` まで失敗したときだけ呼び出し元へ伝わることを確認 |
+| 2026-09-23 | 10 | アラビア語版 Wikipedia をアラビア語で要約して Copy → Gmail | OK。ヘッダ（タイトル `جوجل - ويكيبيديا` + URL）が先頭に入り、本文と番号付きリストは右寄せ（RTL）のまま保たれた。タイトルも右寄せ。URL 行のみ左寄せになるが、決定 10 の `dir="auto"` により URL がラテン文字で LTR に解決されるため想定どおり |
+| 2026-09-23 | 11 | 英語ページ（`https://en.wikipedia.org/wiki/Google`）を要約言語アラビア語で要約して Copy → Gmail | OK（**決定 10 の確認項目**）。`<title>` が `Google - Wikipedia` とラテン文字始まり、本文がアラビア語（RTL）という 2 条件が揃った状態で、**本文と番号付きリストは右寄せ（RTL）のまま保たれた**。ブロック全体が LTR に反転していないため、ヘッダ要素の `dir="auto"` によりラッパーがヘッダを走査せず、本文で方向を解決していることが確認できた。タイトルと URL は `dir="auto"` により左寄せ（想定どおり、決定 10。Gemini版 決定 16） |
+| 2026-09-23 | 12 | 非 http(s)（`file://`）のページで Copy → Gmail | OK（決定 7）。URL 行は青・下線にならず**プレーンテキストとして貼り付いた**。テキストとしては URL が残るため出典情報は失われない。#13 と同じページで同時に確認した |
+| 2026-09-23 | 13 | 長いタイトル / 長い URL のページで Copy → Gmail | OK。タイトルは 7 行、URL は 5 行に折り返され、例外なく一つのメッセージとして貼り付いた。貼り付け先のレイアウトを壊しておらず、折り返しの見た目は許容範囲内 |
+| 2026-09-23 | 14 | Firefox で結果ページの Copy → Gmail / テキストエディターに貼り付け | OK。**Gmail（リッチ）**: タイトルが太字、URL が青・下線付きのリンク、本文の太字（`GPT-6 Sol` / `GPT-6 Luna` / `性能を高めた` / `API料金を50%引き下げた`）と番号付きリストの構造も保持された。**テキストエディター（Mery）**: 1 行目にタイトル、2 行目に URL、3 行目が空行、4 行目以降に `**` 記法と `1.` `2.` `3.` の Markdown 原文。同じクリップボードから 2 通りの表現が取り出せており、書式付きコピー・リンク化・プレーンテキスト貼り付けのすべてが Firefox でも成立することを確認した。確認したのは 4.2 の 1・3 相当で、popup 側（6・7 相当）と Android Firefox は未実施 |
+
+表の補足を以下に示す。
+
+#### #8 の再現手順（結果ページの DevTools Console）
+
+```javascript
+// 1. 本文が空の結果を書き込んでからリロードする
+const i = new URLSearchParams(location.search).get("i");
+await chrome.storage.session.set({
+  [`result_${i}`]: { title: "Empty body test", url: "https://example.com/", responseContent: "" }
+});
+await chrome.storage.session.remove(`conversation_${i}`);
+location.reload();
+
+// 2. リロード後にフックを仕込んでから Copy を 1 回押す
+for (const name of ["write", "writeText"]) {
+  const original = navigator.clipboard[name].bind(navigator.clipboard);
+  Object.defineProperty(navigator.clipboard, name, {
+    configurable: true,
+    value: (...args) => {
+      console.log(`${name}() called`, args, new Error().stack);
+      return original(...args);
+    }
+  });
+}
+```
+
+結果待ちの期間は `setResultControlsEnabled(false)` で Copy が無効化されるため（`results.js` 97〜104行）、
+「`result` はあるが本文が空」という状態を人為的に作っている。
+popup 側は `#run` を押すまで `setPopupControlsEnabled(false)` が呼ばれないため、
+**Run を押さずに Copy** すれば同じガードを通せる。
+
+呼び出し回数の確認: 観測フックで `writeText()` が 2 回記録された事例があったが、
+スタックトレース付きで再測定し、**1 クリックにつき 1 回**だけ呼ばれることを確認した。
+呼び出し連鎖は `copyContent`（`results.js` 173行）→ `copyContentToClipboard`（`utils.js` 286行）
+→ `writeText()` の単一経路で、ラッパーの入れ子も無い。先の 2 回は Copy の複数回クリックによるもの。
+
+#### #9 の再現方法
+
+ブラウザーの設定（`chrome://settings` のクリップボード）ではなく、結果ページの DevTools Console で
+書き込み系を上書きして再現した。拡張機能ページは Site settings の対象になりにくく、
+`manifest.json` も `clipboardWrite` を宣言していないため、設定 UI での再現は確実でない。
+また `navigator.clipboard.writeText()` は document が非フォーカスのだけでも失敗するため、
+エラー経路の確認には上書きのほうが適している。
+
+```javascript
+for (const name of ["write", "writeText"]) {
+  Object.defineProperty(navigator.clipboard, name, {
+    configurable: true,
+    value: () => Promise.reject(new DOMException("Write permission denied.", "NotAllowedError"))
+  });
+}
+```
+
+#### 観察: 強調として成立せず `**` が残るケース
+
+**#10** の出力で、本文に `**` がリテラルで残っていた（`**جوجل شركة **تكنولوجيا …` の形。利用者が確認済み）。
+実際の `convertMarkdownToHtml`（vendored の `marked` + `DOMPurify`）で成立・不成立の境界を確かめた。
+
+| 入力の形 | 結果 |
+| --- | --- |
+| `**جوجل شركة تكنولوجيا.**`（開き・閉じとも妥当） | `<strong>` になる |
+| `**جوجل شركة **تكنولوجيا`（**閉じ側の直前に空白**） | **`**` がリテラルで残る** |
+| `料金を**50%**引き下げた。`（**閉じ側の直前が句読点で、直後が句読点・空白でない**） | **`**` がリテラルで残る** |
+| `** جوجل شركة** …`（開き側の直後に空白） | `**` がリテラルで残る |
+
+CommonMark の flanking 規則により、強調として成立しない形がそのまま残るためである。
+`fixEmphasis` の CJK 修正は「CJK 文字・括弧に隣接する `**`」だけを対象とするため、これらの形は救えない。
+
+同じ入力に対する出力は **Claude版と Gemini版で完全に一致**し、
+`convertMarkdownToHtml` は本移植で変更していない（`utils.js` の差分はヘッダ生成と断片の組み立てのみ）ため、
+**退行ではなく Gemini版と共通の既存挙動**である（第7章にも記載）。
+
+#### #12・#13 の補足
+
+どちらもローカル HTML（`file:///C:/Users/taira/Downloads/long.html#long-…`）で確認した。
+そのページの本文は「タイトル」「本文」というプレースホルダーだけだったため、要約本文は
+モデルからの追加情報要求（`## 申し訳ございません` 以下の説明）になったが、
+ヘッダ（タイトル + URL）の検証には影響しない。この本文見出しは本文側の `<h2>` であり、
+ヘッダのタイトルを太字段落にした決定 4 とは別のもの。
+
+#### #3・#14 の補足（テキストエディターに `**` が見える理由）
+
+テキストエディターに `**` が見えるのは、`text/plain` に **Markdown 原文をそのまま入れて
+いるため**で期待どおりである（#3 と同じ）。同じクリップボードから `text/html` を取り出した
+Gmail では、`**` の代わりに太字が付いている。
+
+実施した Copy の経路: #1〜#5・#8〜#14 は結果ページ（#14 は Firefox）、#6・#7 は
+Chrome の popup の Copy を使用した。
+
+残りの検証項目: なし（4.2 の 14 項目はそれぞれ 1 回以上実施）。
+ただし #2 の Google ドキュメント、#14 の popup 側（6・7 相当）と Android Firefox は未実施
+（各項目の行を参照）。
 
 ---
 
@@ -632,13 +759,13 @@ Gemini版 `b3277dd` は 1 コミットだが、Claude版では「新機能」と
 2. `feat(clipboard): add source headers to copied content`
    - `extension/utils.js` / `extension/popup.js` / `extension/results.js`
 3. `docs: add quality improvement porting plan for 2026-09-23`
-   - `docs/PORT_QUALITY_PLAN_2026-09-23.md`
+   - `docs/archive/PORT_QUALITY_PLAN_2026-09-23.md`
 4. （任意）`chore: bump extension version to 1.4.41`
    - `extension/manifest.json` / `firefox/manifest.json`
 
 1 と 2 は同一コミットにまとめてもよい（Gemini版は 1 コミット）。
-本計画の完了後は、`docs/PORT_QUALITY_PLAN_2026-09-23.md` を `docs/archive/` へ移動し、
-参照元（本シリーズの各ドキュメント）を同じ変更で更新する（`AGENTS.md` の Notes 規約）。
+本ドキュメントは 2026-09-23 に `docs/archive/` へ移動済み（`AGENTS.md` の Notes 規約）。
+本ドキュメントを参照している既存の文書は無いため、あわせて更新した参照元も無い。
 
 ---
 
@@ -663,6 +790,13 @@ Gemini版 `b3277dd` は 1 コミットだが、Claude版では「新機能」と
 - タイトル / URL を含めるかどうかの設定化（options UI と 15 ロケール分のキー追加が必要）
 - `.md` / `.html` 形式での保存
 - コピー内容のプレビュー UI
+- **強調として成立しない `**` がリテラルで残るケース**（4.3 の #10 で確認）
+  — 閉じ側の直前に空白がある形（`**جوجل شركة **تكنولوجيا …`）や、閉じ側の直前が句読点で直後が
+  句読点・空白でない形（`料金を**50%**引き下げた。`）では、CommonMark の flanking 規則により
+  強調にならず `**` がそのまま残る。`fixEmphasis` の CJK 修正は対象外のため救えない。
+  Claude版と Gemini版で出力は一致し、共通の既存挙動である。
+  修正するなら「閉じ側の直前の空白を除去する」などの正規化を CJK 修正と同じ層に追加する形が候補。
+  ただしモデル出力の揺れにどこまで寄り添うかは別途判断が必要
 - Gemini版のテスト（`test/`）と e2e（`e2e/`）基盤の導入 — 導入できればリスク 1 を
   自動検出できるようになるため、別途検討する価値がある
 
