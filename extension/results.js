@@ -10,6 +10,7 @@ import {
   streamGenerateContent,
   getResponseContent,
   exportTextToFile,
+  buildSourceHeader,
   copyContentToClipboard
 } from "./utils.js";
 
@@ -157,19 +158,21 @@ const clearConversation = async () => {
 const copyContent = async () => {
   try {
     const operationStatus = document.getElementById("operation-status");
-    let clipboardContent = `${result.responseContent.replace(/\n+$/, "")}\n\n`;
+    const { text, fragment } = buildSourceHeader(result.title, result.url);
+    let clipboardContent = `${text}${result.responseContent.replace(/\n+$/, "")}\n\n`;
 
     for (const item of conversation) {
-      const text = extractTextFromMessage(item);
+      const conversationText = extractTextFromMessage(item);
 
-      if (text) {
-        clipboardContent += `${text.replace(/\n+$/, "")}\n\n`;
+      if (conversationText) {
+        clipboardContent += `${conversationText.replace(/\n+$/, "")}\n\n`;
       }
     }
 
     // Copy the content to the clipboard
     await copyContentToClipboard(
       clipboardContent,
+      fragment,
       document.getElementById("content"),
       document.getElementById("conversation")
     );
@@ -186,29 +189,16 @@ const copyContent = async () => {
 
 const saveContent = () => {
   const operationStatus = document.getElementById("operation-status");
-  const headerLines = [];
-
-  if (result.title) {
-    headerLines.push(result.title);
-  }
-
-  if (result.url) {
-    headerLines.push(result.url);
-  }
-
-  let fileContent = "";
-
-  if (headerLines.length > 0) {
-    fileContent += `${headerLines.join("\n")}\n\n`;
-  }
+  const { text } = buildSourceHeader(result.title, result.url);
+  let fileContent = text;
 
   fileContent += `${result.responseContent.replace(/\n+$/, "")}\n\n`;
 
   for (const item of conversation) {
-    const text = extractTextFromMessage(item);
+    const conversationText = extractTextFromMessage(item);
 
-    if (text) {
-      fileContent += `${text.replace(/\n+$/, "")}\n\n`;
+    if (conversationText) {
+      fileContent += `${conversationText.replace(/\n+$/, "")}\n\n`;
     }
   }
 

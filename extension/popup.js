@@ -9,6 +9,7 @@ import {
   convertMarkdownToHtml,
   getResponseContent,
   exportTextToFile,
+  buildSourceHeader,
   copyContentToClipboard
 } from "./utils.js";
 
@@ -175,10 +176,11 @@ const renderStreamContent = (streamContent) => {
 const copyContent = async () => {
   try {
     const operationStatus = document.getElementById("operation-status");
-    const clipboardContent = `${content.replace(/\n+$/, "")}\n\n`;
+    const { text, fragment } = buildSourceHeader(pageTitle, pageUrl);
+    const clipboardContent = `${text}${content.replace(/\n+$/, "")}\n\n`;
 
     // Copy the content to the clipboard
-    await copyContentToClipboard(clipboardContent, document.getElementById("content"));
+    await copyContentToClipboard(clipboardContent, fragment, document.getElementById("content"));
     operationStatus.textContent = chrome.i18n.getMessage("popup_copied");
 
     setTimeout(() => {
@@ -191,21 +193,8 @@ const copyContent = async () => {
 
 const saveContent = () => {
   const operationStatus = document.getElementById("operation-status");
-  const headerLines = [];
-
-  if (pageTitle) {
-    headerLines.push(pageTitle);
-  }
-
-  if (pageUrl) {
-    headerLines.push(pageUrl);
-  }
-
-  let fileContent = "";
-
-  if (headerLines.length > 0) {
-    fileContent += `${headerLines.join("\n")}\n\n`;
-  }
+  const { text } = buildSourceHeader(pageTitle, pageUrl);
+  let fileContent = text;
 
   fileContent += `${content.replace(/\n+$/, "")}\n\n`;
 
