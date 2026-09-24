@@ -327,6 +327,7 @@ export const getModelId = (languageModel) => {
   const modelMappings = {
     "5.1-fable": "claude-fable-5-1",
     "5-fable": "claude-fable-5",
+    "5.5-opus": "claude-opus-5-5",
     "5-opus": "claude-opus-5",
     "5-sonnet": "claude-sonnet-5",
     "4.8-opus": "claude-opus-4-8",
