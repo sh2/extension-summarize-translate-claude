@@ -329,13 +329,13 @@ export const getModelId = (languageModel) => {
     "5-fable": "claude-fable-5",
     "5.5-opus": "claude-opus-5-5",
     "5-opus": "claude-opus-5",
+    "5.5-sonnet": "claude-sonnet-5-5",
     "5-sonnet": "claude-sonnet-5",
     "4.8-opus": "claude-opus-4-8",
     "4.7-opus": "claude-opus-4-7",
     "4.6-opus": "claude-opus-4-6",
     "4.5-opus": "claude-opus-4-5",
     "4.6-sonnet": "claude-sonnet-4-6",
-    "4.5-sonnet": "claude-sonnet-4-5",
     "4.5-haiku": "claude-haiku-4-5"
   };
 
