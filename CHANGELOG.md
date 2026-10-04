@@ -534,7 +534,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.4.37]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.37
 [1.4.36]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.36
 [1.4.35]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.35
-[1.4.34]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v.1.4.34
+[1.4.34]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.34
 [1.4.33]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.33
 [1.4.32]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.32
 [1.4.31]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.31
@@ -543,7 +543,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.4.28]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.28
 [1.4.27]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.27
 [1.4.26]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.26
-[1.4.25]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/1.4.25
+[1.4.25]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.25
 [1.4.24]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.24
 [1.4.23]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.23
 [1.4.22]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.22
