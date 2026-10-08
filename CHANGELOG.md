@@ -9,6 +9,17 @@ tagged release, 0.9.1. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.44] - 2026-10-08
+
+### Added
+
+- Claude Haiku 5.5 is available as a language model option.
+
+### Changed
+
+- Claude Haiku 5.5 became the default language model, replacing Claude
+  Haiku 4.5.
+
 ## [1.4.43] - 2026-10-04
 
 ### Added
@@ -525,6 +536,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Popup UI, an options page for the API key, and UI localization for
   English and Japanese.
 
+[1.4.44]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.44
 [1.4.43]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.43
 [1.4.42]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.42
 [1.4.41]: https://github.com/sh2/extension-summarize-translate-claude/releases/tag/v1.4.41
