@@ -1,6 +1,6 @@
 /* globals DOMPurify, marked */
 
-export const DEFAULT_LANGUAGE_MODEL = "4.5-haiku";
+export const DEFAULT_LANGUAGE_MODEL = "5.5-haiku";
 
 // ── UI helpers ──────────────────────────────────────────────────────────────
 
@@ -331,6 +331,7 @@ export const getModelId = (languageModel) => {
     "5-opus": "claude-opus-5",
     "5.5-sonnet": "claude-sonnet-5-5",
     "5-sonnet": "claude-sonnet-5",
+    "5.5-haiku": "claude-haiku-5-5",
     "4.8-opus": "claude-opus-4-8",
     "4.7-opus": "claude-opus-4-7",
     "4.6-opus": "claude-opus-4-6",
