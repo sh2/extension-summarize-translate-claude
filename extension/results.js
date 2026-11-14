@@ -52,11 +52,11 @@ const extractTextFromMessage = (item) => {
 };
 
 const isSuccessfulResponse = (response) => {
-  if (!response || !response.ok) {
+  if (!response || !response.ok || !Array.isArray(response.body?.content)) {
     return false;
   }
 
-  const contentBlock = response.body?.content?.[0];
+  const contentBlock = response.body.content.find(block => block.type === "text");
   return typeof contentBlock?.text === "string" && contentBlock.text.length > 0;
 };
 

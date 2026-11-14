@@ -325,6 +325,7 @@ const tryParseJson = (text) => {
 
 export const getModelId = (languageModel) => {
   const modelMappings = {
+    "5.2-fable": "claude-fable-5-2",
     "5.1-fable": "claude-fable-5-1",
     "5-fable": "claude-fable-5",
     "5.5-opus": "claude-opus-5-5",
@@ -427,10 +428,13 @@ export const streamGenerateContent = async (apiKey, systemPrompt, apiContents, m
             } else if (event === "content_block_delta") {
               // Get the delta of the content and concatenate it
               const json = JSON.parse(data);
-              content += json.delta.text;
 
-              // Set the stream content to session storage
-              await chrome.storage.session.set({ [streamKey]: content });
+              if (json.delta?.type === "text_delta") {
+                content += json.delta.text;
+
+                // Set the stream content to session storage
+                await chrome.storage.session.set({ [streamKey]: content });
+              }
             }
           }
 
@@ -470,9 +474,13 @@ export const getResponseContent = (response, hasApiKey) => {
   let responseContent;
 
   if (response.ok) {
-    if (response.body.content) {
+    const textBlock = Array.isArray(response.body?.content)
+      ? response.body.content.find(block => block.type === "text")
+      : null;
+
+    if (textBlock && typeof textBlock.text === "string") {
       // A normal response was returned
-      responseContent = response.body.content[0].text;
+      responseContent = textBlock.text;
     } else {
       // The expected response was not returned
       responseContent = chrome.i18n.getMessage("response_unexpected_response");
